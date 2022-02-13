@@ -5,7 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
+#include <windows.h>
 
 
 using namespace std;
@@ -13,8 +13,13 @@ using namespace std;
 int main(int argc, char* argv[])
 
 {
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+
+	setlocale(LC_CTYPE, ".1251");
 	setlocale(LC_ALL, "Russian");
-	
+	setlocale(0, "Rus");
+
 	//Открытие файлов
 	string file = argv[1];
 	ifstream fileIn;
@@ -25,23 +30,63 @@ int main(int argc, char* argv[])
 	if (fileIn.is_open() && fileOut.is_open())
 	{
 		string strIn = argv[2];
-		int n = 1;
-		n =	strIn.length();
-		char* strArray = new char[n];
+		string strOut = argv[3];
 
-		if (fileIn.peek() != EOF) 
+
+		if (strIn == "")
 		{
-			fileIn >> strArray;
-			fileOut << strArray;
+			while (fileIn.peek() != EOF)
+			{
+				string word;
+				fileIn >> word;
+				fileOut << word;
+			}
+		}
+		else {
+			while (fileIn.peek() != EOF)
+			{
+				char ch;
+				fileIn >> ch;
+
+				if (ch == strIn[0])
+				{
+					string str = "";
+					str = str + ch;
+					for (int i = 1; i < strIn.length(); i++)
+					{
+						fileIn >> ch;
+						if (ch == strIn[i])
+						{
+							str = str + ch;
+						}
+						else
+						{
+							break;
+						};
+					};
+					if (str == strIn)
+					{
+						fileOut << strOut;
+					}
+					else
+					{
+						fileOut << str;
+					}
+				}
+				else
+				{
+					fileOut << ch;
+				}
+			};
 		};
+		fileOut << endl << strOut << endl << strIn;
+
+		//Закрытие файлов
+		fileIn.close();
+		fileOut.close();
 	}
 	else
 		cout << "Ошибка открытия файла!" << endl;
-
-	//Закрытие файлов
-	fileIn.close();
-	fileOut.close();
-
 
 	return 0;
 
