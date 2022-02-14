@@ -8,7 +8,6 @@
 #include <windows.h>
 
 
-using namespace std;
 
 int main(int argc, char* argv[])
 
@@ -21,23 +20,24 @@ int main(int argc, char* argv[])
 	setlocale(0, "Rus");
 
 	//Открытие файлов
-	string file = argv[1];
-	ifstream fileIn;
+	std::string file = argv[1];
+	std::ifstream fileIn;
 	fileIn.open(file);
-	ofstream fileOut;
-	fileOut.open("../output.txt");
+	file = argv[2];
+	std::ofstream fileOut;
+	fileOut.open(file);
 
 	if (fileIn.is_open() && fileOut.is_open())
 	{
-		string strIn = argv[2];
-		string strOut = argv[3];
+		std::string strIn = argv[3];
+		std::string strOut = argv[4];
 
 
 		if (strIn == "")
 		{
 			while (fileIn.peek() != EOF)
 			{
-				string word;
+				std::string word;
 				fileIn >> word;
 				fileOut << word;
 			}
@@ -45,48 +45,26 @@ int main(int argc, char* argv[])
 		else {
 			while (fileIn.peek() != EOF)
 			{
-				char ch;
-				fileIn >> ch;
-
-				if (ch == strIn[0])
+				std::string str;
+				std::getline(fileIn, str);
+				size_t pos = str.find(strIn);
+				size_t len = strIn.length();
+				while(pos != std::string::npos)
 				{
-					string str = "";
-					str = str + ch;
-					for (int i = 1; i < strIn.length(); i++)
-					{
-						fileIn >> ch;
-						if (ch == strIn[i])
-						{
-							str = str + ch;
-						}
-						else
-						{
-							break;
-						};
-					};
-					if (str == strIn)
-					{
-						fileOut << strOut;
-					}
-					else
-					{
-						fileOut << str;
-					}
-				}
-				else
-				{
-					fileOut << ch;
-				}
+					str.replace(pos, len, strOut);
+					pos = str.find(strIn);
+				};
+				fileOut << str;
 			};
 		};
-		fileOut << endl << strOut << endl << strIn;
+		fileOut << std::endl << strOut << std::endl << strIn;
 
 		//Закрытие файлов
 		fileIn.close();
 		fileOut.close();
 	}
 	else
-		cout << "Ошибка открытия файла!" << endl;
+		std::cout << "Ошибка открытия файла!" << std::endl;
 
 	return 0;
 
