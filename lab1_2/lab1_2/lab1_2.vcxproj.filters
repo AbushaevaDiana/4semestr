@@ -14,46 +14,61 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="testData">
-      <UniqueIdentifier>{d8cd3d3a-e0d4-4dc5-8eac-42fcbcb707f7}</UniqueIdentifier>
+      <UniqueIdentifier>{805a2952-2726-4b57-935f-9e729248ad4a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="lab1_1.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="input1.txt">
-      <Filter>testData</Filter>
-    </Text>
-    <Text Include="test1_out.txt">
-      <Filter>testData</Filter>
-    </Text>
-    <Text Include="input2.txt">
-      <Filter>testData</Filter>
-    </Text>
-    <Text Include="test2-out.txt">
-      <Filter>testData</Filter>
-    </Text>
-    <Text Include="1output.txt">
-      <Filter>testData</Filter>
-    </Text>
-    <Text Include="2output.txt">
-      <Filter>testData</Filter>
-    </Text>
-    <Text Include="input3.txt">
-      <Filter>testData</Filter>
-    </Text>
-    <Text Include="test3-out.txt">
-      <Filter>testData</Filter>
-    </Text>
-    <Text Include="3output.txt">
-      <Filter>testData</Filter>
-    </Text>
   </ItemGroup>
   <ItemGroup>
     <None Include="test.bat">
       <Filter>Исходные файлы</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="test1-out.txt">
+      <Filter>testData</Filter>
+    </Text>
+    <Text Include="test2-out.txt">
+      <Filter>testData</Filter>
+    </Text>
+    <Text Include="test3-out.txt">
+      <Filter>testData</Filter>
+    </Text>
+    <Text Include="2output.txt">
+      <Filter>testData</Filter>
+    </Text>
+    <Text Include="output1.txt">
+      <Filter>testData</Filter>
+    </Text>
+    <Text Include="output3.txt">
+      <Filter>testData</Filter>
+    </Text>
+    <Text Include="test4-out.txt">
+      <Filter>testData</Filter>
+    </Text>
+    <Text Include="output4.txt">
+      <Filter>testData</Filter>
+    </Text>
+    <Text Include="test5-out.txt">
+      <Filter>testData</Filter>
+    </Text>
+    <Text Include="test6-out.txt">
+      <Filter>testData</Filter>
+    </Text>
+    <Text Include="test7-out.txt">
+      <Filter>testData</Filter>
+    </Text>
+    <Text Include="output5.txt">
+      <Filter>testData</Filter>
+    </Text>
+    <Text Include="output6.txt">
+      <Filter>testData</Filter>
+    </Text>
+    <Text Include="output7.txt">
+      <Filter>testData</Filter>
+    </Text>
   </ItemGroup>
 </Project>

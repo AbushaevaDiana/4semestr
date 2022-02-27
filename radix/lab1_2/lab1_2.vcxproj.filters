@@ -13,47 +13,16 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="testData">
-      <UniqueIdentifier>{d8cd3d3a-e0d4-4dc5-8eac-42fcbcb707f7}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="lab1_1.cpp">
+    <ClCompile Include="lab1_2.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="input1.txt">
-      <Filter>testData</Filter>
-    </Text>
-    <Text Include="test1_out.txt">
-      <Filter>testData</Filter>
-    </Text>
-    <Text Include="input2.txt">
-      <Filter>testData</Filter>
-    </Text>
-    <Text Include="test2-out.txt">
-      <Filter>testData</Filter>
-    </Text>
-    <Text Include="1output.txt">
-      <Filter>testData</Filter>
-    </Text>
-    <Text Include="2output.txt">
-      <Filter>testData</Filter>
-    </Text>
-    <Text Include="input3.txt">
-      <Filter>testData</Filter>
-    </Text>
-    <Text Include="test3-out.txt">
-      <Filter>testData</Filter>
-    </Text>
-    <Text Include="3output.txt">
-      <Filter>testData</Filter>
-    </Text>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="test.bat">
-      <Filter>Исходные файлы</Filter>
-    </None>
+    <Text Include="testData\test1-out.txt" />
+    <Text Include="testData\test2-out.txt" />
+    <Text Include="testData\test3-out.txt" />
+    <Text Include="test.bat" />
   </ItemGroup>
 </Project>

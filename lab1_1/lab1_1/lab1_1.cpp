@@ -8,7 +8,6 @@
 #include <windows.h>
 
 
-
 int main(int argc, char* argv[])
 
 {
@@ -57,7 +56,7 @@ int main(int argc, char* argv[])
 				fileOut << str;
 			};
 		};
-		fileOut << std::endl << strOut << std::endl << strIn;
+//		fileOut << std::endl << strOut << std::endl << strIn;
 
 		//Закрытие файлов
 		fileIn.close();
