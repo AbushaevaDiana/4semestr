@@ -6,9 +6,11 @@ set IN1="input1.txt"
 set OUT1="1output.txt"
 set CORRECT1="test1_out.txt"
 
+:: обычный, несколько замен
 %PROGRAM% %IN1% %OUT1% ma pa || goto err
 fc %OUT1% %CORRECT1% || goto err
 
+:: случай с сложной под строкой
 set IN2="input2.txt"
 set OUT2="2output.txt"
 set CORRECT2="test2-out.txt"
@@ -16,6 +18,7 @@ set CORRECT2="test2-out.txt"
 %PROGRAM% %IN2% %OUT2% 1231234 * || goto err
 fc %OUT2% %CORRECT2% || goto err
 
+:: обычный, одно вхождение
 set IN3="input3.txt"
 set OUT3="3output.txt"
 set CORRECT3="test3-out.txt"
@@ -30,6 +33,7 @@ set CORRECT4="test4-out.txt"
 fc %OUT4% %CORRECT4% || goto err
 echo —---
 
+:: в качестве заменяемой строки переданна пустая строка
 set IN5="input5.txt"
 set OUT5="5output.txt"
 set CORRECT5="test5-out.txt"
