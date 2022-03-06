@@ -7,6 +7,11 @@
 #include <string>
 #include <windows.h>
 
+bool isParameterTrue(int argc, char* argv[])
+{
+	if (argc != 5) { return false; }
+	return true;
+}
 
 int main(int argc, char* argv[])
 
@@ -18,52 +23,59 @@ int main(int argc, char* argv[])
 	setlocale(LC_ALL, "Russian");
 	setlocale(0, "Rus");
 
-	//Открытие файлов
-	std::string file = argv[1];
-	std::ifstream fileIn;
-	fileIn.open(file);
-	file = argv[2];
-	std::ofstream fileOut;
-	fileOut.open(file);
+	if (isParameterTrue(argc, argv)) {
 
-	if (fileIn.is_open() && fileOut.is_open())
-	{
-		std::string strIn = argv[3];
-		std::string strOut = argv[4];
+		//Открытие файлов
+		std::string file = argv[1];
+		std::ifstream fileIn;
+		fileIn.open(file);
+		file = argv[2];
+		std::ofstream fileOut;
+		fileOut.open(file);
 
-
-		if (strIn == "")
+		if (fileIn.is_open() && fileOut.is_open())
 		{
-			while (fileIn.peek() != EOF)
-			{
-				std::string word;
-				fileIn >> word;
-				fileOut << word;
-			}
-		}
-		else {
-			while (fileIn.peek() != EOF)
-			{
-				std::string str;
-				std::getline(fileIn, str);
-				size_t pos = str.find(strIn);
-				size_t len = strIn.length();
-				while(pos != std::string::npos)
-				{
-					str.replace(pos, len, strOut);
-					pos = str.find(strIn);
-				};
-				fileOut << str;
-			};
-		};
-//		fileOut << std::endl << strOut << std::endl << strIn;
+			std::string strIn = argv[3];
+			std::string strOut = argv[4];
 
-		//Закрытие файлов
-		fileIn.close();
-		fileOut.close();
+
+			if (strIn == "")
+			{
+				while (fileIn.peek() != EOF)
+				{
+					std::string word;
+					fileIn >> word;
+					fileOut << word;
+				}
+			}
+			else {
+				while (fileIn.peek() != EOF)
+				{
+					std::string str;
+					std::getline(fileIn, str);
+					size_t pos = str.find(strIn);
+					size_t len = strIn.length();
+					while (pos != std::string::npos)
+					{
+						str.replace(pos, len, strOut);
+						pos = str.find(strIn);
+					};
+					fileOut << str;
+				};
+			};
+			//		fileOut << std::endl << strOut << std::endl << strIn;
+
+					//Закрытие файлов
+			fileIn.close();
+			fileOut.close();
+		}
+		else
+			std::cout << "Ошибка открытия файла!" << std::endl;
 	}
 	else
-		std::cout << "Ошибка открытия файла!" << std::endl;
+	{
+		std::cout << "Invalid input format";
+	}
 
 	return 0;
 

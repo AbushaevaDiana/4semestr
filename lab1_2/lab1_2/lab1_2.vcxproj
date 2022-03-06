@@ -163,18 +163,26 @@
   <ItemGroup>
     <Text Include="2output.txt" />
     <Text Include="output1.txt" />
+    <Text Include="output10.txt" />
+    <Text Include="output11.txt" />
     <Text Include="output3.txt" />
     <Text Include="output4.txt" />
     <Text Include="output5.txt" />
     <Text Include="output6.txt" />
     <Text Include="output7.txt" />
+    <Text Include="output8.txt" />
+    <Text Include="output9.txt" />
     <Text Include="test1-out.txt" />
+    <Text Include="test10-out.txt" />
+    <Text Include="test11-out.txt" />
     <Text Include="test2-out.txt" />
     <Text Include="test3-out.txt" />
     <Text Include="test4-out.txt" />
     <Text Include="test5-out.txt" />
     <Text Include="test6-out.txt" />
     <Text Include="test7-out.txt" />
+    <Text Include="test8-out.txt" />
+    <Text Include="test9-out.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

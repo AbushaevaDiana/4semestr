@@ -161,12 +161,17 @@
     <Text Include="1output.txt" />
     <Text Include="2output.txt" />
     <Text Include="3output.txt" />
+    <Text Include="5output.txt" />
     <Text Include="input1.txt" />
     <Text Include="input3.txt" />
+    <Text Include="input5.txt" />
+    <Text Include="output4.txt" />
     <Text Include="test1_out.txt" />
     <Text Include="input2.txt" />
     <Text Include="test2-out.txt" />
     <Text Include="test3-out.txt" />
+    <Text Include="test4-out.txt" />
+    <Text Include="test5-out.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="test.bat" />

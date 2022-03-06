@@ -50,6 +50,11 @@
     <Text Include="3output.txt">
       <Filter>testData</Filter>
     </Text>
+    <Text Include="output4.txt" />
+    <Text Include="test4-out.txt" />
+    <Text Include="input5.txt" />
+    <Text Include="5output.txt" />
+    <Text Include="test5-out.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="test.bat">

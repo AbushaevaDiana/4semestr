@@ -70,5 +70,29 @@
     <Text Include="output7.txt">
       <Filter>testData</Filter>
     </Text>
+    <Text Include="output8.txt">
+      <Filter>testData</Filter>
+    </Text>
+    <Text Include="test8-out.txt">
+      <Filter>testData</Filter>
+    </Text>
+    <Text Include="test9-out.txt">
+      <Filter>testData</Filter>
+    </Text>
+    <Text Include="output9.txt">
+      <Filter>testData</Filter>
+    </Text>
+    <Text Include="test10-out.txt">
+      <Filter>testData</Filter>
+    </Text>
+    <Text Include="output10.txt">
+      <Filter>testData</Filter>
+    </Text>
+    <Text Include="test11-out.txt">
+      <Filter>testData</Filter>
+    </Text>
+    <Text Include="output11.txt">
+      <Filter>testData</Filter>
+    </Text>
   </ItemGroup>
 </Project>
