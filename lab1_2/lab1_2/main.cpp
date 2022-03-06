@@ -1,6 +1,9 @@
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 
+// сравнивать по коду, в отдельных функциях
+//массив строк убрать, перегон инт в чар
 //уменьшить вложенность
 //другой способ перевода
 //константы глобально
@@ -10,30 +13,44 @@ const int baseMax = 36;
 const int baseMin = 2;
 unsigned int max = 2147483648;
 
+
+int CharToInt(const char& ch)
+{
+    if (ch <= '9' && ch >= '0')
+    {
+        return (long long)ch - '0';
+    }
+    return 10 + ch - 'A';
+}
+
+char IntToChar(long long& num)
+{
+    if (num <= 9)
+    {
+        return (char)(num + 48);
+    }
+    return (char)65 + (char)(num - 10);
+}
+
+
 unsigned int StringToInt(const std::string &str, int base, bool& wasError)
 {
     unsigned int result = 0;
-    const std::string k_base_symbols = "0123456789ABCDEFGHIJKLMNOPQRASUVWXYZ";
-    int sign = 0;
 
     if (!(baseMin <= base && base <= baseMax))
     {
         wasError = true;
         return result;
     };
-    for (int i = sign, counter = str.length() - 1; i < str.length(); ++i, --counter) 
+    for (int i = 0, counter = str.length() - 1; i < str.length(); ++i, --counter) 
     {
-        int digit = -1;
-        // сравнивать по коду, в отдельных функциях
-        for (int j = 0; j < base; j++)
-        {
-            if (str[i] == k_base_symbols[j])
-            {
-                digit = j;
-                break;
-            };
-        };
+        int digit = CharToInt(str[i]);
 
+        if (digit >= base)
+        {
+            wasError = true;
+            break;
+        }
             
         if (result + digit > max)
         {
@@ -65,16 +82,12 @@ std::string IntToString(unsigned int number, int base, bool& wasError) {
     {
         wasError = true;
         return result;
-    };
-    const std::string base_symbols[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H",
-    "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "A", "S", "U", "V", "W", "X", "Y", "Z" };
-        
+    };  
     do 
     {
-        int pos = number % base;
-            //массив строк убрать, перегон инт в чар
-        std::string s = base_symbols[number % base];
-        result.insert(0, s);
+        long long pos = number % base;
+        char ch = IntToChar(pos);
+        result.insert(0, 1, ch);
         number /= base;
     } while (number != 0);
    
