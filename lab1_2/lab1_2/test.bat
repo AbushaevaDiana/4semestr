@@ -74,7 +74,19 @@ set CORRECT10="test10-out.txt"
 fc %OUT10% %CORRECT10% || goto err
 echo Ч---
 
+::min int
+set OUT11="output11.txt"
+set CORRECT11="test11-out.txt"
+%PROGRAM% 10 20 -2147483648 > %OUT11% || goto err
+fc %OUT11% %CORRECT11% || goto err
+echo Ч---
 
+::переполнение отрицательных
+set OUT12="output12.txt"
+set CORRECT12="test12-out.txt"
+%PROGRAM% 10 16 -2147483649 > %OUT12% || goto err
+fc %OUT12% %CORRECT12% || goto err
+echo Ч---
 
 
 ::самое большое число и самое маленькое, переполнение отрицательных

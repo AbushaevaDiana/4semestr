@@ -94,5 +94,11 @@
     <Text Include="output11.txt">
       <Filter>testData</Filter>
     </Text>
+    <Text Include="test12-out.txt">
+      <Filter>testData</Filter>
+    </Text>
+    <Text Include="output12.txt">
+      <Filter>testData</Filter>
+    </Text>
   </ItemGroup>
 </Project>

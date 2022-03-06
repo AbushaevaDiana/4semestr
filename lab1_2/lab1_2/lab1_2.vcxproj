@@ -165,6 +165,7 @@
     <Text Include="output1.txt" />
     <Text Include="output10.txt" />
     <Text Include="output11.txt" />
+    <Text Include="output12.txt" />
     <Text Include="output3.txt" />
     <Text Include="output4.txt" />
     <Text Include="output5.txt" />
@@ -175,6 +176,7 @@
     <Text Include="test1-out.txt" />
     <Text Include="test10-out.txt" />
     <Text Include="test11-out.txt" />
+    <Text Include="test12-out.txt" />
     <Text Include="test2-out.txt" />
     <Text Include="test3-out.txt" />
     <Text Include="test4-out.txt" />
