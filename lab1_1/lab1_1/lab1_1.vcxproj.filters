@@ -23,38 +23,38 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="input1.txt">
+    <Text Include="simple.txt">
       <Filter>testData</Filter>
     </Text>
-    <Text Include="test1_out.txt">
+    <Text Include="simple_test_out.txt">
       <Filter>testData</Filter>
     </Text>
-    <Text Include="input2.txt">
+    <Text Include="complex_substring.txt">
       <Filter>testData</Filter>
     </Text>
-    <Text Include="test2-out.txt">
+    <Text Include="complex_substring_output_test-out.txt">
       <Filter>testData</Filter>
     </Text>
-    <Text Include="1output.txt">
+    <Text Include="simple_output.txt">
       <Filter>testData</Filter>
     </Text>
-    <Text Include="2output.txt">
+    <Text Include="complex_substring_output.txt">
       <Filter>testData</Filter>
     </Text>
-    <Text Include="input3.txt">
+    <Text Include="big_data_test_out.txt">
       <Filter>testData</Filter>
     </Text>
-    <Text Include="test3-out.txt">
+    <Text Include="big_data.txt">
       <Filter>testData</Filter>
     </Text>
-    <Text Include="3output.txt">
+    <Text Include="big_data_out.txt">
       <Filter>testData</Filter>
     </Text>
-    <Text Include="output4.txt" />
-    <Text Include="test4-out.txt" />
-    <Text Include="input5.txt" />
-    <Text Include="5output.txt" />
-    <Text Include="test5-out.txt" />
+    <Text Include="involid_parametrs_out.txt" />
+    <Text Include="involid_parametrs-out.txt" />
+    <Text Include="empty_line.txt" />
+    <Text Include="empty_line_output.txt" />
+    <Text Include="empty_line_test-out.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="test.bat">

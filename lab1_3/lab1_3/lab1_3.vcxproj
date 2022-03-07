@@ -157,17 +157,17 @@
     <None Include="test.bat" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="input1.txt" />
-    <Text Include="input2.txt" />
-    <Text Include="input4.txt" />
-    <Text Include="output1.txt" />
-    <Text Include="output2.txt" />
-    <Text Include="output3.txt" />
-    <Text Include="output4.txt" />
-    <Text Include="test1-out.txt" />
-    <Text Include="test2-out.txt" />
-    <Text Include="test3-out.txt" />
-    <Text Include="test4-out.txt" />
+    <Text Include="matrix_with_complex_numbers.txt" />
+    <Text Include="simple_matrix.txt" />
+    <Text Include="determinant_0.txt" />
+    <Text Include="matrix_with_complex_numbers_output.txt" />
+    <Text Include="simple_matrix_output.txt" />
+    <Text Include="wrong_parameters_output.txt" />
+    <Text Include="determinant_0_output.txt" />
+    <Text Include="matrix_with_complex_numbers_test_out.txt" />
+    <Text Include="simple_matrix_test_out.txt" />
+    <Text Include="wrong_parameters_test_out.txt" />
+    <Text Include="determinant_0_test_out.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
