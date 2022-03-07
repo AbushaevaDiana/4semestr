@@ -25,6 +25,14 @@ set CORRECT3="test3-out.txt"
 fc %OUT3% %CORRECT3% || goto err
 echo Test 3 passed
 
+:: матрица с 0 определителем
+set OUT4="output4.txt"
+set IN4="input4.txt"
+set CORRECT4="test4-out.txt"
+%PROGRAM% %IN4% > %OUT4% || goto err
+fc %OUT4% %CORRECT4% || goto err
+echo Test 4 passed
+
 echo All tests passed
 exit /B 0
 

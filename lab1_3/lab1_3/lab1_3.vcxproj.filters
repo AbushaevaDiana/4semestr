@@ -49,5 +49,14 @@
     <Text Include="output3.txt">
       <Filter>Файлы ресурсов</Filter>
     </Text>
+    <Text Include="test4-out.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+    <Text Include="output4.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+    <Text Include="input4.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
   </ItemGroup>
 </Project>

@@ -12,7 +12,7 @@ double findTheDeterminant3x3(double (& matrix)[M][M])
     return det;
 };
 
-double fun(double(&matrixIn)[M][M], int a, int b)
+double findTheAlgebraicComplements(double(&matrixIn)[M][M], int a, int b)
 {
     int i1 = 0;
     int j1 = 0;
@@ -48,7 +48,7 @@ int findInverseMatrix(double(&matrixIn)[M][M], double(&matrixOut)[M][M], double 
     {
         for (int j = 0; j < M; j++)
         {
-            matrixOut[i][j] = fun(matrixIn, i, j) / det;
+            matrixOut[i][j] = findTheAlgebraicComplements(matrixIn, i, j) / det;
             if (matrixOut[i][j] == -0)
             {
                 matrixOut[i][j] = 0;
@@ -97,6 +97,12 @@ int main(int argc, char* argv[]) {
     };
 
     double det = findTheDeterminant3x3(matrixIn);
+
+    if (det == 0)
+    {
+        std::cout << "Не существует обратной матрицы" << std::endl;
+        return 0;
+    };
 
     findInverseMatrix(matrixIn, matrixOut, det);
 
