@@ -1,0 +1,28 @@
+
+
+        if (text[i] == '"')
+        {
+            textEncode = textEncode + quot;
+            continue;
+        };
+        if (text[i] == '\'')
+        {
+            textEncode = textEncode + apos;
+            continue;
+        };
+        if (text[i] == '<')
+        {
+            textEncode = textEncode + lt;
+            continue;
+        };
+        if (text[i] == '>')
+        {
+            textEncode = textEncode + gt;
+            continue;
+        };
+        if (text[i] == '&')
+        {
+            textEncode = textEncode + amp;
+            continue;
+        };
+        textEncode = textEncode + text[i];
