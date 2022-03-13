@@ -63,7 +63,7 @@ SCENARIO("Output")
 			std::ostringstream output;
 			std::vector<float> v;
 			outputVector(inputVector(v, input), output);
-			CHECK(output.str() == "-2.333 5.909 5.333 111.333 4.000 ");
+			CHECK(output.str() == "-2.333 4.000 5.333 5.909 111.333 ");
 		}
 	}
 };
@@ -108,7 +108,7 @@ SCENARIO("Processing")
 			std::vector<float> out;
 			out = processingVector(inputVector(v, input));
 			outputVector(out, output);
-			CHECK(output.str() == "-0.825 0.937 2.000 1.143 ");
+			CHECK(output.str() == "-0.825 0.937 1.143 2.000 ");
 		}
 	}
 };

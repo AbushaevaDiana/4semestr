@@ -1,6 +1,7 @@
 #include "Vector.h"
 #include <iostream>
 #include <iomanip>
+#include <algorithm>
 
 std::vector<float> inputVector(std::vector<float> v, std::istream& cin)
 {
@@ -18,8 +19,10 @@ std::vector<float> inputVector(std::vector<float> v, std::istream& cin)
     return v;
 }
 
-void outputVector(const std::vector<float>& v, std::ostream& cout)
+void outputVector(std::vector<float> v, std::ostream& cout)
 {
+    sort(v.begin(), v.end());
+
     for (size_t i = 0; i < v.size(); i++)
     {
         cout << std::fixed << std::setprecision(3) << std::fixed << std::setprecision(3) << v[i] << " ";
