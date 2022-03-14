@@ -12,6 +12,7 @@ int main()
     std::vector<float> v;
     inputVector(v, std::cin);
     processingVector(v);
+    sortVector(v);
     outputVector(v, std::cout);
     return 0;
 }

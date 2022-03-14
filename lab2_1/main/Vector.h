@@ -2,8 +2,10 @@
 #include<vector>
 #include <iosfwd>
 
-std::vector<float> inputVector(std::vector<float> v, std::istream& cin);
+std::vector<float> inputVector(std::vector<float>& v, std::istream& cin);
 
-void outputVector(std::vector<float> v, std::ostream& cout);
+void outputVector(const std::vector<float>& v, std::ostream& cout);
 
-std::vector<float> processingVector(std::vector<float> v);
+std::vector<float> processingVector(std::vector<float>& v);
+
+void sortVector(std::vector<float>& v);

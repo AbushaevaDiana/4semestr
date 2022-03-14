@@ -3,7 +3,7 @@
 #include <iomanip>
 #include <algorithm>
 
-std::vector<float> inputVector(std::vector<float> v, std::istream& cin)
+std::vector<float> inputVector(std::vector<float>& v, std::istream& cin)
 {
     while (true)
     {
@@ -18,18 +18,26 @@ std::vector<float> inputVector(std::vector<float> v, std::istream& cin)
 
     return v;
 }
-
-void outputVector(std::vector<float> v, std::ostream& cout)
+void sortVector(std::vector<float>& v)
 {
-    sort(v.begin(), v.end());
+     sort(v.begin(), v.end());
+}
 
+void outputVector(const std::vector<float>& v, std::ostream& cout)
+{
+    //sort functiion отделить
     for (size_t i = 0; i < v.size(); i++)
     {
         cout << std::fixed << std::setprecision(3) << std::fixed << std::setprecision(3) << v[i] << " ";
     }
 }
 
-std::vector<float> processingVector(std::vector<float> v)
+float defMax(float fl, float max)
+{
+    return fl / max;
+};
+
+std::vector<float> processingVector(std::vector<float>& v)
 {
     std::vector<float> emptyV = {};
     if (v == emptyV)

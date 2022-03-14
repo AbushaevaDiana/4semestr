@@ -12,28 +12,31 @@ std::string HtmlEncode(std::string const& text)
 {
 
     std::string textEncode;
-    for (int i = 0; i < text.length(); i++)
+    //int size_t
+    for (size_t i = 0; i < text.length(); i++)
     {
 
         switch (text[i]) 
         {
             case '"':
-                textEncode = textEncode + quot;
+                //append or +=
+                textEncode += quot;
                 break;
             case '\'':
-                textEncode = textEncode + apos;
+                textEncode += apos;
                 break;
             case '<':
-                textEncode = textEncode + lt;
+                textEncode += lt;
                 break;
             case '>':
-                textEncode = textEncode + gt;
+                textEncode += gt;
                 break;
             case '&':
-                textEncode = textEncode + amp;
+                textEncode += amp;
                 break;
             default:
-                textEncode = textEncode + text[i];
+                textEncode += text[i];
+                break;
         }
     }
 	return textEncode;

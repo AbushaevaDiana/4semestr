@@ -5,12 +5,18 @@
 #include "../../catch2/catch.hpp"
 #include "../main/Vector.h"
 
+// 10 Признаков того, что программирование не для вас
+//  - 3. Нехватка настойчивости при возникновении проблемы
+//  - 7. Вы не можете думать самостоятельно
+//  - 10. Вы не уделяете внимания к деталям
+
 SCENARIO("Empty entered - input")
 {
 	std::istringstream input("");
 	std::vector<float> v;
 	std::vector<float> out = { };
-	REQUIRE(inputVector(v, input) == out);
+	v = inputVector(v, input);
+	REQUIRE(v== out);
 };
 
 SCENARIO("One number entered - input")
@@ -18,15 +24,18 @@ SCENARIO("One number entered - input")
 	std::istringstream input("1.0");
 	std::vector<float> v;
 	std::vector<float> out = {1.0};
-	REQUIRE(inputVector(v, input) == out);
+	v = inputVector(v, input);
+	REQUIRE(v == out);
 };
 
 SCENARIO("Some numbers entered - input")
 {
 	std::istringstream input("1.0 2.009 3.454 2.333");
 	std::vector<float> v;
-	std::vector<float> out = { 1.0,  2.009, 3.454, 2.333 };
-	REQUIRE(inputVector(v, input) == out);
+	// TODO: fix warning about casting double to float
+	std::vector<float> out = {1.0f,  2.009f, 3.454f, 2.333f};
+	v = inputVector(v, input);
+	REQUIRE(v == out);
 };
 
 SCENARIO("Output")
@@ -38,7 +47,8 @@ SCENARIO("Output")
 		{
 			std::ostringstream output;
 			std::vector<float> v;
-			outputVector(inputVector(v, input), output);
+			v = inputVector(v, input);
+			outputVector(v, output);
 			CHECK(output.str().empty());
 		}
 	}
@@ -50,7 +60,8 @@ SCENARIO("Output")
 		{
 			std::ostringstream output;
 			std::vector<float> v;
-			outputVector(inputVector(v, input), output);
+			v = inputVector(v, input);
+			outputVector(v, output);
 			CHECK(output.str() == "-2.333 ");
 		}
 	}
@@ -62,7 +73,8 @@ SCENARIO("Output")
 		{
 			std::ostringstream output;
 			std::vector<float> v;
-			outputVector(inputVector(v, input), output);
+			v = inputVector(v, input);
+			outputVector(v, output);
 			CHECK(output.str() == "-2.333 4.000 5.333 5.909 111.333 ");
 		}
 	}
@@ -78,7 +90,10 @@ SCENARIO("Processing")
 			std::ostringstream output;
 			std::vector<float> v;
 			std::vector<float> out;
-			out = processingVector(inputVector(v, input));
+			//TODO: передавать в процессинг не результат вызова функции, а переменную
+			v = inputVector(v, input);
+			out = processingVector(v);
+			sortVector(out);
 			outputVector(out, output);
 			CHECK(output.str().empty());
 		}
@@ -92,7 +107,9 @@ SCENARIO("Processing")
 			std::ostringstream output;
 			std::vector<float> v;
 			std::vector<float> out;
-			out = processingVector(inputVector(v, input));
+			v = inputVector(v, input);
+			out = processingVector(v);
+			sortVector(out);
 			outputVector(out, output);
 			CHECK(output.str() == "2.000 ");
 		}
@@ -106,7 +123,9 @@ SCENARIO("Processing")
 			std::ostringstream output;
 			std::vector<float> v;
 			std::vector<float> out;
-			out = processingVector(inputVector(v, input));
+			v = inputVector(v, input);
+			out = processingVector(v);
+			sortVector(out);
 			outputVector(out, output);
 			CHECK(output.str() == "-0.825 0.937 1.143 2.000 ");
 		}
