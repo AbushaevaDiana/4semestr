@@ -4,32 +4,77 @@
 #include <string>
 #include "Dictionary.h"
 
-int wmain(int argc, char* argv[])
+int main(int argc, char* argv[])
 {
-	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
+	SetConsoleCP(65001);
+	SetConsoleOutputCP(65001);
 	setlocale(LC_ALL, "rus");
 	if (argc != 2)
 	{
-		std::wcout << "Invalid input format";
+		std::cout << "Invalid input format";
 		return 1;
 	}
 
 	std::string file = argv[1];
-	std::wifstream fileIn;
+	std::ifstream fileIn;
+	fileIn.open(file);
 	if (!(fileIn.is_open()))
 	{
-		std::wcout << "File error!" << std::endl;
-		return 0;
+		std::fstream fileIn("file.txt", std::ios::in | std::ios::out | std::ios::app);
+		file = "newDictionary.txt";
+		fileIn.open(file);
+		std::cout << "Такого файла не существует, создан пустой словарь\n";
 	}
 
-	
-	std::wstring word;
-	std::wcin >> word;
-	LookForWord(word, fileIn);
+	bool endOfProgamm = false, changesDone = false;
+	std::map<std::string, std::string> dictionary;
+	std::string word;
+	std::string translation;
+	dictionary = MakeDictionary(dictionary, fileIn);
+	std::cout << "    Вас приветствует программа словарь. Следуйте инструкциям на экране. Для окончания прграммы введите три точки - \"...\"\n";
 
+	std::cout << "Введите слово: ";
+	//std::cin.ignore();
+	getline(std::cin, word);
+	//std::cin >> word;
+	if (word == "...")
+	{
+		endOfProgamm = true;
+	}
+
+	while (!endOfProgamm)
+	{
+		translation = LookForWord(word, dictionary);
+		if (translation == "")
+		{
+			dictionary = AddNewWordToDictionary(word, dictionary, std::cin, std::cout, changesDone);
+		}
+		else 
+		{
+			std::cout << "Перевод: " << translation << "\n";
+		}
+		
+		std::cout << "Введите слово: ";
+		//std::cin.ignore();
+		getline(std::cin, word);
+		//std::cin >> word;
+		if (word == "...")
+		{
+			endOfProgamm = true;
+		}
+	}
+
+	//std::copy(dictionary.begin(), dictionary.end(), std::ostream_iterator<std::string>(std::cout, "\n"));
+	//std::cout << word;
 	fileIn.close();
-	std::wcout << std::flush;
+	if (changesDone)
+	{
+		SaveTheChanges(file, dictionary, std::cin, std::cout);
+	}
+	
+
+	std::cout << "До свидания\n";
+	std::cout << std::flush;
 
 	return 0;
 }

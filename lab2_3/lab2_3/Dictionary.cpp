@@ -3,24 +3,71 @@
 #include <fstream>
 #include <algorithm>
 
-std::wstring LookForWord(std::wstring word, std::wifstream& fileIn)
+std::string LookForWord(std::string& word, std::map<std::string, std::string> &dictionary)
 {
-	std::wstring translation;
+	transform(word.begin(), word.end(), word.begin(), tolower);
+	return dictionary[word];
+}
+
+std::map<std::string, std::string> AddNewWordToDictionary(std::string& word, std::map<std::string, std::string> &dictionary, std::istream& fileIn, std::ostream& fileOut, bool& changesDone)
+{
+	setlocale(LC_ALL, "rus");
+	std::string translation;
+	fileOut << "Неизвестное слово \"" << word << "\".\n" << "Введите перевод или пустую строку для отказа: ";
+	//fileIn.ignore();
+	getline(fileIn, translation);
+	//getline(fileIn, translation);
+	if (translation != "")
+	{
+		changesDone = true;
+		transform(word.begin(), word.end(), word.begin(), tolower);
+		dictionary.insert(make_pair(word, translation));
+		fileOut << "Слово \"" << word << "\" сохраненно в словаре как \"" << translation << "\"\n";
+	}
+	else
+	{
+		fileOut << "Cлово \"" << word << "\" проигнорированно.\n";
+	}
+
+	return std::map<std::string, std::string>();
+}
+
+void SaveTheChanges(std::string& file, std::map<std::string, std::string>& dictionary, std::istream& fileIn, std::ostream& fileOut)
+{
+	std::string str;
+	fileOut << "В словарь были внесены изменения. Введите Y или y для сохранения перед выходом: ";
+	//fileIn.ignore();
+	getline(fileIn, str);
+	//fileIn >> str;
+	if (str == "Y" || str == "y")
+	{
+		std::ofstream newDictionary;
+		newDictionary.open(file);
+		for (auto elem : dictionary) 
+		{ 
+			newDictionary << elem.first << ">" << elem.second << std::endl; 
+		}
+		fileOut << "Изменения сохраненны. ";
+	}
+
+}
+
+std::map<std::string, std::string> MakeDictionary(std::map<std::string, std::string>& dictionary, std::ifstream& fileIn)
+{
+	std::string translation;
+	std::string word;
 
 	while (fileIn.peek() != EOF)
 	{
-		//transform(word.begin(), word.end(), word.begin(), tolower);
-			//- превращает все большие символы строки в маленькие.
-
-		std::wstring str;
+		std::string str;
 		std::getline(fileIn, str);
-		if (str.find(word) != std::string::npos)
+		size_t positionOfCenter = str.find(">");
+		if (positionOfCenter != std::string::npos)
 		{
-			translation = str.substr(str.find(word) + word.length() + 1);
-			return str;
+			word = str.substr(0, positionOfCenter);
+			translation = str.substr(positionOfCenter+1);
+			dictionary.insert(make_pair(word, translation));
 		}
-
 	}
-	
-	return translation;
+	return dictionary;
 }
