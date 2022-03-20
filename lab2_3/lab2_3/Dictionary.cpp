@@ -9,9 +9,8 @@ std::string LookForWord(std::string& word, std::map<std::string, std::string> &d
 	return dictionary[word];
 }
 
-std::map<std::string, std::string> AddNewWordToDictionary(std::string& word, std::map<std::string, std::string> &dictionary, std::istream& fileIn, std::ostream& fileOut, bool& changesDone)
+std::map<std::string, std::string> AddNewWordToDictionary(std::string word, std::map<std::string, std::string> &dictionary, std::istream& fileIn, std::ostream& fileOut, bool& changesDone)
 {
-	setlocale(LC_ALL, "rus");
 	std::string translation;
 	fileOut << "Неизвестное слово \"" << word << "\".\n" << "Введите перевод или пустую строку для отказа: ";
 	//fileIn.ignore();
@@ -21,7 +20,13 @@ std::map<std::string, std::string> AddNewWordToDictionary(std::string& word, std
 	{
 		changesDone = true;
 		transform(word.begin(), word.end(), word.begin(), tolower);
-		dictionary.insert(make_pair(word, translation));
+		dictionary.insert({ { word, "ckjdj" } });
+		//
+		for (auto elem : dictionary)
+		{
+			fileOut << elem.first << ">" << elem.second << std::endl;
+		}
+		//
 		fileOut << "Слово \"" << word << "\" сохраненно в словаре как \"" << translation << "\"\n";
 	}
 	else
@@ -29,7 +34,7 @@ std::map<std::string, std::string> AddNewWordToDictionary(std::string& word, std
 		fileOut << "Cлово \"" << word << "\" проигнорированно.\n";
 	}
 
-	return std::map<std::string, std::string>();
+	return dictionary;
 }
 
 void SaveTheChanges(std::string& file, std::map<std::string, std::string>& dictionary, std::istream& fileIn, std::ostream& fileOut)

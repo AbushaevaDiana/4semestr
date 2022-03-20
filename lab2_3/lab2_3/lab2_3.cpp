@@ -48,6 +48,7 @@ int main(int argc, char* argv[])
 		if (translation == "")
 		{
 			dictionary = AddNewWordToDictionary(word, dictionary, std::cin, std::cout, changesDone);
+
 		}
 		else 
 		{
