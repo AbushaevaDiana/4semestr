@@ -6,7 +6,7 @@
 
 int main(int argc, char* argv[])
 {
-	SetConsoleCP(65001);
+	SetConsoleCP(1251);
 	SetConsoleOutputCP(65001);
 	setlocale(LC_ALL, "rus");
 	if (argc != 2)
@@ -34,9 +34,7 @@ int main(int argc, char* argv[])
 	std::cout << "    Вас приветствует программа словарь. Следуйте инструкциям на экране. Для окончания прграммы введите три точки - \"...\"\n";
 
 	std::cout << "Введите слово: ";
-	//std::cin.ignore();
 	getline(std::cin, word);
-	//std::cin >> word;
 	if (word == "...")
 	{
 		endOfProgamm = true;
@@ -56,17 +54,13 @@ int main(int argc, char* argv[])
 		}
 		
 		std::cout << "Введите слово: ";
-		//std::cin.ignore();
 		getline(std::cin, word);
-		//std::cin >> word;
 		if (word == "...")
 		{
 			endOfProgamm = true;
 		}
 	}
 
-	//std::copy(dictionary.begin(), dictionary.end(), std::ostream_iterator<std::string>(std::cout, "\n"));
-	//std::cout << word;
 	fileIn.close();
 	if (changesDone)
 	{
