@@ -4,8 +4,6 @@
 #include "../../catch2/catch.hpp"
 #include "../lab2_3/Dictionary.h"
 
-
-
 SCENARIO("Make a correct map")
 {
 	SetConsoleCP(65001);
@@ -19,11 +17,23 @@ SCENARIO("Make a correct map")
 							 {"dog", "собака"} };
 	std::string word = "cat";
 	dictionary = MakeDictionary(dictionary, fileIn);
-	//for (auto elem : dictionary) { std::cout << "map[" << elem.first << "]=" << elem.second << std::endl; }
-	REQUIRE(dictionary["cat"] == dictionaryCorrect["cat"]);
+	REQUIRE(dictionary == dictionaryCorrect);
 };
 
-SCENARIO("Find one correct word")
+SCENARIO("Make an empty map")
+{
+	SetConsoleCP(65001);
+	SetConsoleOutputCP(65001);
+	setlocale(LC_ALL, "rus");
+	std::ifstream fileIn;
+	fileIn.open("../empty.txt");
+	std::map<std::string, std::string> dictionary;
+	std::map<std::string, std::string> dictionaryCorrect = { };
+	dictionary = MakeDictionary(dictionary, fileIn);
+	REQUIRE(dictionary == dictionaryCorrect);
+};
+
+SCENARIO("Find correct word")
 {
 	SetConsoleCP(65001);
 	SetConsoleOutputCP(65001);
@@ -48,7 +58,33 @@ SCENARIO("Find one word with general letter")
 	std::string word = "cAt";
 	dictionary = MakeDictionary(dictionary, fileIn);
 	word = LookForWord(word, dictionary);
-	//for (auto elem : dictionary) { std::cout << "map[" << elem.first << "]=" << elem.second << std::endl; }
 	REQUIRE(word == "кошка, кот");
 };
 
+SCENARIO("Find word not from dictionary")
+{
+	SetConsoleCP(65001);
+	SetConsoleOutputCP(65001);
+	setlocale(LC_ALL, "rus");
+	std::ifstream fileIn;
+	fileIn.open("../dictionary.txt");
+	std::map<std::string, std::string> dictionary;
+	std::string word = "frog";
+	dictionary = MakeDictionary(dictionary, fileIn);
+	word = LookForWord(word, dictionary);
+	REQUIRE(word == "");
+};
+
+SCENARIO("Find empty string")
+{
+	SetConsoleCP(65001);
+	SetConsoleOutputCP(65001);
+	setlocale(LC_ALL, "rus");
+	std::ifstream fileIn;
+	fileIn.open("../dictionary.txt");
+	std::map<std::string, std::string> dictionary;
+	std::string word = "";
+	dictionary = MakeDictionary(dictionary, fileIn);
+	word = LookForWord(word, dictionary);
+	REQUIRE(word == "");
+};

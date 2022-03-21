@@ -33,7 +33,6 @@ int main(int argc, char* argv[])
 		std::vector<std::string> words;
 		std::string str;
 
-		//std::cin.ignore();
 		getline(std::cin, str);
 		words = FilterStrings(dictionary, words, str);
 

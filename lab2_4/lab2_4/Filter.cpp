@@ -38,6 +38,10 @@ std::vector<std::string> FilterStrings(std::set<std::string>& dictionary, std::v
 
 std::vector<std::string> MakeSetOfWords(std::vector<std::string>& words, std::string &strIn)
 {
+	if (strIn == "")
+	{
+		return words;
+	}
 	std::string word;
 	for (size_t i = 0; i < strIn.length(); i++)
 	{
