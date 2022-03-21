@@ -23,11 +23,12 @@ std::vector<std::string> FilterStrings(std::set<std::string>& dictionary, std::v
 	std::string strOut;
 	words = MakeSetOfWords(words, strIn);
 
-	for (std::string w : words)
+	for (size_t i = 0; i < words.size(); i++)
 	{
-		if (dictionary.find(w) != dictionary.end()) 
+		if (dictionary.find(words[i]) != dictionary.end())
 		{
-			words.erase(std::remove(words.begin(), words.end(), 2), words.end());
+			words.erase(words.begin() + i);
+			//words.erase(std::remove(words.begin(), words.end(), 2), words.end());
 
 		}
 	}
@@ -35,7 +36,7 @@ std::vector<std::string> FilterStrings(std::set<std::string>& dictionary, std::v
 	return words;
 }
 
-std::vector<std::string> MakeSetOfWords(std::vector<std::string>& words, const std::string &strIn)
+std::vector<std::string> MakeSetOfWords(std::vector<std::string>& words, std::string &strIn)
 {
 	std::string word;
 	for (size_t i = 0; i < strIn.length(); i++)
@@ -54,6 +55,7 @@ std::vector<std::string> MakeSetOfWords(std::vector<std::string>& words, const s
 			word += strIn[i];
 		}
 	}
+	words.push_back(word);
 	return words;
 }
 

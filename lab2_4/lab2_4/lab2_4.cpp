@@ -3,7 +3,7 @@
 #include <fstream>
 #include <windows.h>
 #include "Filter.h"
-#include <vector>
+
 
 int main(int argc, char* argv[])
 {
@@ -24,20 +24,23 @@ int main(int argc, char* argv[])
 		std::cout << "File error";
 		return 1;
 	}
-
+	
     std::set <std::string> dictionary;
-	std::vector<std::string> words;
-	std::string str;
 	dictionary = MakeDictionary(dictionary, fileIn);
 	
 	while (std::cin.peek() != EOF)
 	{
-		std::cin.ignore();
+		std::vector<std::string> words;
+		std::string str;
+
+		//std::cin.ignore();
 		getline(std::cin, str);
 		words = FilterStrings(dictionary, words, str);
 
 		std::copy(words.begin(), words.end(), std::ostream_iterator<std::string>(std::cout, ""));
 	}
-
+	
+	fileIn.close();
+	std::cout << std::flush;
     return 0;
 }

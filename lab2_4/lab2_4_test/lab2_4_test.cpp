@@ -14,8 +14,9 @@ SCENARIO("Make set of words")
 	//std::ifstream fileIn;
 	//fileIn.open("../dictionary.txt");
 	std::vector<std::string> words;
-	std::vector<std::string> correct = {"", "4"};
+	std::vector<std::string> correct = { "Word", " " };
 	std::string str = "Word is perfect! Yes yes";
 	words = MakeSetOfWords(words, str);
+	//std::copy(words.begin(), words.end(), std::ostream_iterator<std::string>(std::cout, ""));
 	REQUIRE(words[1] == correct[1]);
 };
