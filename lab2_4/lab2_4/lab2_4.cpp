@@ -17,17 +17,16 @@ int main(int argc, char* argv[])
 	}
 
 	std::string file = argv[1];
-	std::ifstream fileIn;
-	fileIn.open(file);
-	if (!(fileIn.is_open()))
+	
+	bool wasError = false;
+    std::set <std::string> dictionary;
+	dictionary = MakeDictionary(dictionary, file, wasError);
+	
+	if (wasError)
 	{
-		std::cout << "File error";
 		return 1;
 	}
-	
-    std::set <std::string> dictionary;
-	dictionary = MakeDictionary(dictionary, fileIn);
-	
+
 	while (std::cin.peek() != EOF)
 	{
 		std::vector<std::string> words;
@@ -39,7 +38,7 @@ int main(int argc, char* argv[])
 		std::copy(words.begin(), words.end(), std::ostream_iterator<std::string>(std::cout, ""));
 	}
 	
-	fileIn.close();
+	
 	std::cout << std::flush;
     return 0;
 }

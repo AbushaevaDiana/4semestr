@@ -4,8 +4,15 @@
 #include <string>
 #include <vector>
 
-std::set<std::string> MakeDictionary(std::set<std::string> &dictionary, std::ifstream& fileIn)
+std::set<std::string> MakeDictionary(std::set<std::string> &dictionary,const std::string& file, bool &wasError)
 {
+	std::ifstream fileIn;
+	fileIn.open(file);
+	if (!(fileIn.is_open()))
+	{
+		return dictionary;
+	}
+
 	setlocale(LC_ALL, "rus");
 	while (fileIn.peek() != EOF)
 	{
@@ -14,6 +21,8 @@ std::set<std::string> MakeDictionary(std::set<std::string> &dictionary, std::ifs
 		transform(str.begin(), str.end(), str.begin(), tolower);
 		dictionary.insert(str);
 	}
+
+	fileIn.close();
 
 	return dictionary;
 }

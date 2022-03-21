@@ -3,8 +3,10 @@
 #include <fstream>
 #include <algorithm>
 
-std::string LookForWord(std::string& word, std::map<std::string, std::string> &dictionary)
+std::string LookForWord(std::string word, std::map<std::string,const std::string> &dictionary)
 {
+	//функция имеет неочевидные побочные эффекты +
+	//словарь по константной ссылке +
 	transform(word.begin(), word.end(), word.begin(), tolower); 
 
 	for (auto& pair : dictionary)
@@ -39,6 +41,42 @@ void SaveTheChanges(std::string& file, std::map<std::string, std::string>& dicti
 		fileOut << "Изменения сохраненны. ";
 	}
 
+}
+
+void Dialog(std::map<std::string, std::string>& dictionary, bool& changesDone, std::istream& input, std::ostream& output)
+{
+	bool endOfProgamm = false;
+	std::string word;
+	std::string translation;
+	output << "    Вас приветствует программа словарь. Следуйте инструкциям на экране. Для окончания прграммы введите три точки - \"...\"\n";
+
+	output << "Введите слово: ";
+	getline(input, word);
+	if (word == "...")
+	{
+		endOfProgamm = true;
+	}
+
+	while (!endOfProgamm)
+	{
+		translation = LookForWord(word, dictionary);
+		if (translation == "")
+		{
+			dictionary = AddNewWordToDictionary(word, dictionary, input, output, changesDone);
+
+		}
+		else
+		{
+			output << "Перевод: " << translation << "\n";
+		}
+
+		output << "Введите слово: ";
+		getline(input, word);
+		if (word == "...")
+		{
+			endOfProgamm = true;
+		}
+	}
 }
 
 std::map<std::string, std::string> MakeDictionary(std::map<std::string, std::string>& dictionary, std::ifstream& fileIn)

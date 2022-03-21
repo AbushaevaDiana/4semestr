@@ -32,11 +32,11 @@ SCENARIO("Make set dictionary")
 	SetConsoleCP(65001);
 	SetConsoleOutputCP(65001);
 	setlocale(LC_ALL, "rus");
-	std::ifstream fileIn;
-	fileIn.open("../dictionary.txt");
+	std::string file = "../dictionary.txt";
+	bool wasError = false;
 	std::set<std::string> dictionary;
+	dictionary = MakeDictionary(dictionary, file, wasError);
 	std::set<std::string> correct = { "блин", "дурак" };
-	dictionary = MakeDictionary(dictionary, fileIn);
 	REQUIRE(dictionary == correct);
 };
 
@@ -45,11 +45,11 @@ SCENARIO("Make set dictionary from empty file")
 	SetConsoleCP(65001);
 	SetConsoleOutputCP(65001);
 	setlocale(LC_ALL, "rus");
-	std::ifstream fileIn;
-	fileIn.open("../empty.txt");
 	std::set<std::string> dictionary;
 	std::set<std::string> correct = { };
-	dictionary = MakeDictionary(dictionary, fileIn);
+	std::string file = "../empty.txt";
+	bool wasError = false;
+	dictionary = MakeDictionary(dictionary, file, wasError);
 	REQUIRE(dictionary == correct);
 };
 
@@ -58,10 +58,10 @@ SCENARIO("Filter srting")
 	SetConsoleCP(65001);
 	SetConsoleOutputCP(65001);
 	setlocale(LC_ALL, "rus");
-	std::ifstream fileIn;
-	fileIn.open("../dictionary.txt");
+	std::string file = "../dictionary.txt";
+	bool wasError = false;
 	std::set<std::string> dictionary;
-	dictionary = MakeDictionary(dictionary, fileIn);
+	dictionary = MakeDictionary(dictionary, file, wasError);
 	std::vector<std::string> words;
 	std::vector<std::string> correct = { "Ну", " ", ",", "", " ", "нет"};
 	std::string str = "Ну блин, нет";
@@ -74,10 +74,10 @@ SCENARIO("Filter srting with general and ordinar letters")
 	SetConsoleCP(65001);
 	SetConsoleOutputCP(65001);
 	setlocale(LC_ALL, "rus");
-	std::ifstream fileIn;
-	fileIn.open("../dictionary.txt");
+	std::string file = "../dictionary.txt";
+	bool wasError = false;
 	std::set<std::string> dictionary;
-	dictionary = MakeDictionary(dictionary, fileIn);
+	dictionary = MakeDictionary(dictionary, file, wasError);
 	std::vector<std::string> words;
 	std::vector<std::string> correct = { ",", "", " ", "ты", " ", "Прошка", ",", "", " ", "!", "" };
 	std::string str = "Дурак, ты Прошка, дурак!";
@@ -90,10 +90,10 @@ SCENARIO("Filter srting witout bad words")
 	SetConsoleCP(65001);
 	SetConsoleOutputCP(65001);
 	setlocale(LC_ALL, "rus");
-	std::ifstream fileIn;
-	fileIn.open("../dictionary.txt");
+	std::string file = "../dictionary.txt";
+	bool wasError = false;
 	std::set<std::string> dictionary;
-	dictionary = MakeDictionary(dictionary, fileIn);
+	dictionary = MakeDictionary(dictionary, file, wasError);
 	std::vector<std::string> words;
 	std::vector<std::string> correct = { "Привет", ",", "", " ", "мир", "!", "", " ", "Я", " ", "рад", " ", "вам", "!", "" };
 	std::string str = "Привет, мир! Я рад вам!";
@@ -106,10 +106,10 @@ SCENARIO("Filter empty srting")
 	SetConsoleCP(65001);
 	SetConsoleOutputCP(65001);
 	setlocale(LC_ALL, "rus");
-	std::ifstream fileIn;
-	fileIn.open("../dictionary.txt");
+	std::string file = "../dictionary.txt";
+	bool wasError = false;
 	std::set<std::string> dictionary;
-	dictionary = MakeDictionary(dictionary, fileIn);
+	dictionary = MakeDictionary(dictionary, file, wasError);
 	std::vector<std::string> words;
 	std::vector<std::string> correct = { };
 	std::string str = "";
