@@ -5,8 +5,21 @@
 
 std::string LookForWord(std::string& word, std::map<std::string, std::string> &dictionary)
 {
-	transform(word.begin(), word.end(), word.begin(), tolower);
-	return dictionary[word];
+	transform(word.begin(), word.end(), word.begin(), tolower); 
+
+	for (auto& pair : dictionary)
+	{
+		if (pair.first == word)
+		{
+			return dictionary[word];
+		}
+		if (pair.second == word)
+		{
+			return pair.first;
+		}
+	}
+
+	return "";
 }
 
 void SaveTheChanges(std::string& file, std::map<std::string, std::string>& dictionary, std::istream& fileIn, std::ostream& fileOut)

@@ -12,7 +12,7 @@ SCENARIO("Make a correct map")
 	std::ifstream fileIn;
 	fileIn.open("../dictionary.txt");
 	std::map<std::string, std::string> dictionary;
-	std::map<std::string, std::string> dictionaryCorrect = { {"cat", "кошка, кот"},
+	std::map<std::string, std::string> dictionaryCorrect = { {"cat", "кошка"},
 							 {"sun", "солнце"},
 							 {"dog", "собака"} };
 	std::string word = "cat";
@@ -44,7 +44,21 @@ SCENARIO("Find correct word")
 	std::string word = "cat";
 	dictionary = MakeDictionary(dictionary, fileIn);
 	word = LookForWord(word, dictionary);
-	REQUIRE(word == "кошка, кот");
+	REQUIRE(word == "кошка");
+};
+
+SCENARIO("Find russian word")
+{
+	SetConsoleCP(65001);
+	SetConsoleOutputCP(65001);
+	setlocale(LC_ALL, "rus");
+	std::ifstream fileIn;
+	fileIn.open("../dictionary.txt");
+	std::map<std::string, std::string> dictionary;
+	std::string word = "солнце";
+	dictionary = MakeDictionary(dictionary, fileIn);
+	word = LookForWord(word, dictionary);
+	REQUIRE(word == "sun");
 };
 
 SCENARIO("Find one word with general letter")
@@ -58,7 +72,7 @@ SCENARIO("Find one word with general letter")
 	std::string word = "cAt";
 	dictionary = MakeDictionary(dictionary, fileIn);
 	word = LookForWord(word, dictionary);
-	REQUIRE(word == "кошка, кот");
+	REQUIRE(word == "кошка");
 };
 
 SCENARIO("Find word not from dictionary")

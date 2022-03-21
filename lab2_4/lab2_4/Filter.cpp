@@ -25,11 +25,11 @@ std::vector<std::string> FilterStrings(std::set<std::string>& dictionary, std::v
 
 	for (size_t i = 0; i < words.size(); i++)
 	{
-		if (dictionary.find(words[i]) != dictionary.end())
+		std::string word = words[i];
+		transform(word.begin(), word.end(), word.begin(), tolower);
+		if (dictionary.find(word) != dictionary.end())
 		{
 			words.erase(words.begin() + i);
-			//words.erase(std::remove(words.begin(), words.end(), 2), words.end());
-
 		}
 	}
 
