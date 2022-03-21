@@ -46,3 +46,19 @@ SCENARIO("Filter srting")
 	words = FilterStrings(dictionary, words, str);
 	REQUIRE(words == correct);
 };
+
+SCENARIO("Filter srting witout bad words")
+{
+	SetConsoleCP(65001);
+	SetConsoleOutputCP(65001);
+	setlocale(LC_ALL, "rus");
+	std::ifstream fileIn;
+	fileIn.open("../dictionary.txt");
+	std::set<std::string> dictionary;
+	dictionary = MakeDictionary(dictionary, fileIn);
+	std::vector<std::string> words;
+	std::vector<std::string> correct = { "Привет", ",", "", " ", "мир", "!", "", " ", "Я", " ", "рад", " ", "вам", "!", "" };
+	std::string str = "Привет, мир! Я рад вам!";
+	words = FilterStrings(dictionary, words, str);
+	REQUIRE(words == correct);
+};
