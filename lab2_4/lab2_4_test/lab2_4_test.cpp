@@ -1,10 +1,7 @@
 ﻿#include <iostream>
-
 #define CATCH_CONFIG_MAIN
 #include "../../catch2/catch.hpp"
 #include "../lab2_4/Filter.h"
-
-
 
 SCENARIO("Make set of words")
 {
@@ -19,4 +16,33 @@ SCENARIO("Make set of words")
 	words = MakeSetOfWords(words, str);
 	//std::copy(words.begin(), words.end(), std::ostream_iterator<std::string>(std::cout, ""));
 	REQUIRE(words[1] == correct[1]);
+};
+
+SCENARIO("Make set dictionary")
+{
+	SetConsoleCP(65001);
+	SetConsoleOutputCP(65001);
+	setlocale(LC_ALL, "rus");
+	std::ifstream fileIn;
+	fileIn.open("../dictionary.txt");
+	std::set<std::string> dictionary;
+	std::set<std::string> correct = { "блин", "дурак" };
+	dictionary = MakeDictionary(dictionary, fileIn);
+	REQUIRE(dictionary == correct);
+};
+
+SCENARIO("Filter srting")
+{
+	SetConsoleCP(65001);
+	SetConsoleOutputCP(65001);
+	setlocale(LC_ALL, "rus");
+	std::ifstream fileIn;
+	fileIn.open("../dictionary.txt");
+	std::set<std::string> dictionary;
+	dictionary = MakeDictionary(dictionary, fileIn);
+	std::vector<std::string> words;
+	std::vector<std::string> correct = { "Ну", " ", ",", "", " ", "нет"};
+	std::string str = "Ну блин, нет";
+	words = FilterStrings(dictionary, words, str);
+	REQUIRE(words == correct);
 };
