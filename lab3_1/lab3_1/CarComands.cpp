@@ -1,32 +1,6 @@
 #include "CarComands.h"
 
-//
-const std::map<Direction, std::string> directionString = {
-	{ Direction::Back, "back" },
-	{ Direction::Along, "forward" },
-	{ Direction::OnPlace, "on place" }
-};
-
-const std::map<Gear, std::string> gearString = {
-	{ Gear::Reverse, "reverse" },
-	{ Gear::Neutral, "neutral" },
-	{ Gear::One, "first" },
-	{ Gear::Two, "second" },
-	{ Gear::Three, "third" },
-	{ Gear::Four, "fourth" },
-	{ Gear::Five, "fifth" },
-};
-
-const std::map<int, Gear> intGear = {
-	{ -1, Gear::Reverse },
-	{ 0, Gear::Neutral },
-	{ 1, Gear::One },
-	{ 2, Gear::Two },
-	{ 3, Gear::Three },
-	{ 4, Gear::Four },
-	{ 5, Gear::Five },
-};
-
+//вспомогательные функции
 std::string DirectionToString(Direction direction)
 {
 	return directionString.at(direction);
@@ -37,27 +11,18 @@ std::string GearToString(Gear gear)
 	return gearString.at(gear);
 }
 
-bool GetNumberFromStr(std::string inputStr, int& inputNum)
+bool GetGearFromArg(std::string inputStr, Gear& gear)
 {
+	int inputNum = 0;
 	try
 	{
 		inputNum = stoi(inputStr);
 	}
+
 	catch (std::exception& exception)
 	{
 		std::cout << "Incorrect argument" << std::endl;
 		std::cerr << exception.what() << std::endl;
-		return false;
-	}
-
-	return true;
-}
-
-bool GetGearFromArg(std::string inputStr, Gear& gear)
-{
-	int inputNum = 0;
-	if (!GetNumberFromStr(inputStr, inputNum))
-	{
 		return false;
 	}
 
@@ -74,8 +39,15 @@ bool GetGearFromArg(std::string inputStr, Gear& gear)
 
 bool GetSpeedFromArg(std::string inputStr, int& speed)
 {
-	if (!GetNumberFromStr(inputStr, speed))
+	try
 	{
+		speed = stoi(inputStr);
+	}
+
+	catch (std::exception& exception)
+	{
+		std::cout << "Incorrect argument" << std::endl;
+		std::cerr << exception.what() << std::endl;
 		return false;
 	}
 

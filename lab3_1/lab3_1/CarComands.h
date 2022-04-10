@@ -5,6 +5,32 @@
 #include <string>
 #include <sstream>
 
+const std::map<Direction, std::string> directionString = {
+	{ Direction::Back, "back" },
+	{ Direction::Along, "forward" },
+	{ Direction::OnPlace, "on place" }
+};
+
+const std::map<Gear, std::string> gearString = {
+	{ Gear::Reverse, "reverse" },
+	{ Gear::Neutral, "neutral" },
+	{ Gear::One, "first" },
+	{ Gear::Two, "second" },
+	{ Gear::Three, "third" },
+	{ Gear::Four, "fourth" },
+	{ Gear::Five, "fifth" },
+};
+
+const std::map<int, Gear> intGear = {
+	{ -1, Gear::Reverse },
+	{ 0, Gear::Neutral },
+	{ 1, Gear::One },
+	{ 2, Gear::Two },
+	{ 3, Gear::Three },
+	{ 4, Gear::Four },
+	{ 5, Gear::Five },
+};
+
 class CarControl
 {
 public:
