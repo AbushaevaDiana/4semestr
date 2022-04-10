@@ -3,28 +3,28 @@
 #include <fstream>
 #include <algorithm>
 
-std::string LookForWord(std::string word, std::map<std::string,const std::string> &dictionary)
+std::string LookForWord(std::string word, const std::multimap<std::string, std::string> &dictionary)
 {
-	//функция имеет неочевидные побочные эффекты +
-	//словарь по константной ссылке +
+	//функция имеет неочевидные побочные эффекты изменяет word (исправила)
+	//словарь по константной ссылке (исправила)
 	transform(word.begin(), word.end(), word.begin(), tolower); 
-
+	std::string str;
 	for (auto& pair : dictionary)
 	{
 		if (pair.first == word)
 		{
-			return dictionary[word];
+			str += pair.second + " ";
 		}
 		if (pair.second == word)
 		{
-			return pair.first;
+			str += pair.first + " ";
 		}
 	}
 
-	return "";
+	return str;
 }
 
-void SaveTheChanges(std::string& file, std::map<std::string, std::string>& dictionary, std::istream& fileIn, std::ostream& fileOut)
+void SaveTheChanges(const std::string& file, std::multimap<std::string, std::string>& dictionary, std::istream& fileIn, std::ostream& fileOut)
 {
 	setlocale(LC_ALL, "rus");
 	std::string str;
@@ -43,8 +43,9 @@ void SaveTheChanges(std::string& file, std::map<std::string, std::string>& dicti
 
 }
 
-void Dialog(std::map<std::string, std::string>& dictionary, bool& changesDone, std::istream& input, std::ostream& output)
+void Dialog(std::multimap<std::string, std::string>& dictionary, bool& changesDone, std::istream& input, std::ostream& output)
 {
+	//changesDone выходной параметр, нужно возвращать
 	bool endOfProgamm = false;
 	std::string word;
 	std::string translation;
@@ -52,6 +53,7 @@ void Dialog(std::map<std::string, std::string>& dictionary, bool& changesDone, s
 
 	output << "Введите слово: ";
 	getline(input, word);
+	//устранить дублирование кода по проверке конца диалога
 	if (word == "...")
 	{
 		endOfProgamm = true;
@@ -62,7 +64,7 @@ void Dialog(std::map<std::string, std::string>& dictionary, bool& changesDone, s
 		translation = LookForWord(word, dictionary);
 		if (translation == "")
 		{
-			dictionary = AddNewWordToDictionary(word, dictionary, input, output, changesDone);
+			AddNewWordToDictionary(word, dictionary, input, output, changesDone);
 
 		}
 		else
@@ -79,8 +81,23 @@ void Dialog(std::map<std::string, std::string>& dictionary, bool& changesDone, s
 	}
 }
 
-std::map<std::string, std::string> MakeDictionary(std::map<std::string, std::string>& dictionary, std::ifstream& fileIn)
+std::multimap<std::string, std::string> MakeDictionary(const std::string& file, std::ostream& err, bool& wasError)
 {
+	//wasError false устанавливать до true
+	std::ifstream fileIn;
+	fileIn.open(file);
+	if (!(fileIn.is_open()))
+	{
+		std::fstream fileIn("file.txt", std::ios::in | std::ios::out | std::ios::app);
+		fileIn.open(file);
+		if (!(fileIn.is_open()))
+		{
+			wasError = true;
+			err << "File error";
+		}
+		//check 2 open, name of new dictionary like in input (исправила)
+	}
+	std::multimap<std::string, std::string> dictionary;
 	std::string translation;
 	std::string word;
 
@@ -96,11 +113,15 @@ std::map<std::string, std::string> MakeDictionary(std::map<std::string, std::str
 			dictionary.insert(std::make_pair(word, translation));
 		}
 	}
+
+	wasError = false;
+	fileIn.close();
 	return dictionary;
 }
 
-std::map<std::string, std::string> AddNewWordToDictionary(std::string &word, std::map<std::string, std::string>& dictionary, std::istream& fileIn, std::ostream& fileOut, bool& changesDone)
+void AddNewWordToDictionary(std::string word, std::multimap<std::string, std::string>& dictionary, std::istream& fileIn, std::ostream& fileOut, bool& changesDone)
 {
+	//changesDone выходной параметр, нужно возвращать
 	setlocale(LC_ALL, "rus");
 	std::string translation;
 	fileOut << "Неизвестное слово \"" << word << "\".\n Введите перевод или пустую строку для отказа: ";
@@ -110,11 +131,11 @@ std::map<std::string, std::string> AddNewWordToDictionary(std::string &word, std
 		fileOut << "Cлово \"" << word << "\" проигнорированно.\n";
 	}
 	else
+	//функция имеет неочевидные побочные эффекты изменяет word (исправила)
 	{
 		changesDone = true;
 		fileOut << "Слово \"" << word << "\" сохраненно в словаре как \"" << translation << "\"\n";
 		transform(word.begin(), word.end(), word.begin(), tolower);
-		dictionary[word] = translation;
+		dictionary.insert(std::make_pair(word, translation));
 	}
-	return dictionary;
 }

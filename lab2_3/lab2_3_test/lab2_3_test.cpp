@@ -4,32 +4,31 @@
 #include "../../catch2/catch.hpp"
 #include "../lab2_3/Dictionary.h"
 
-SCENARIO("Make a correct map")
+SCENARIO("Make a correct multimap")
 {
 	SetConsoleCP(65001);
 	SetConsoleOutputCP(65001);
 	setlocale(LC_ALL, "rus");
-	std::ifstream fileIn;
-	fileIn.open("../dictionary.txt");
-	std::map<std::string, std::string> dictionary;
-	std::map<std::string, std::string> dictionaryCorrect = { {"cat", "кошка"},
+	bool wasError = false;
+	std:: string file = "../dictionary.txt";
+	std::multimap<std::string, std::string> dictionaryCorrect = { {"cat", "кошка"},
 							 {"sun", "солнце"},
 							 {"dog", "собака"} };
 	std::string word = "cat";
-	dictionary = MakeDictionary(dictionary, fileIn);
+	//передавать в создание словаря поток, чтобы тесты не зависли от файла
+	std::multimap<std::string, std::string> dictionary = MakeDictionary(file, std::cerr, wasError);
 	REQUIRE(dictionary == dictionaryCorrect);
 };
 
-SCENARIO("Make an empty map")
+SCENARIO("Make an empty multimap")
 {
 	SetConsoleCP(65001);
 	SetConsoleOutputCP(65001);
 	setlocale(LC_ALL, "rus");
-	std::ifstream fileIn;
-	fileIn.open("../empty.txt");
-	std::map<std::string, std::string> dictionary;
-	std::map<std::string, std::string> dictionaryCorrect = { };
-	dictionary = MakeDictionary(dictionary, fileIn);
+	bool wasError = false;
+	std::string file = "../empty.txt";
+	std::multimap<std::string, std::string> dictionaryCorrect = { };
+	std::multimap<std::string, std::string> dictionary = MakeDictionary(file, std::cerr, wasError);
 	REQUIRE(dictionary == dictionaryCorrect);
 };
 
@@ -38,13 +37,12 @@ SCENARIO("Find correct word")
 	SetConsoleCP(65001);
 	SetConsoleOutputCP(65001);
 	setlocale(LC_ALL, "rus");
-	std::ifstream fileIn;
-	fileIn.open("../dictionary.txt");
-	std::map<std::string, std::string> dictionary;
+	bool wasError = false;
+	std:: string file = "../dictionary.txt";
 	std::string word = "cat";
-	dictionary = MakeDictionary(dictionary, fileIn);
+	std::multimap<std::string, std::string> dictionary = MakeDictionary(file, std::cerr, wasError);
 	word = LookForWord(word, dictionary);
-	REQUIRE(word == "кошка");
+	REQUIRE(word == "кошка ");
 };
 
 SCENARIO("Find russian word")
@@ -52,13 +50,12 @@ SCENARIO("Find russian word")
 	SetConsoleCP(65001);
 	SetConsoleOutputCP(65001);
 	setlocale(LC_ALL, "rus");
-	std::ifstream fileIn;
-	fileIn.open("../dictionary.txt");
-	std::map<std::string, std::string> dictionary;
+	bool wasError = false;
+	std:: string file = "../dictionary.txt";
 	std::string word = "солнце";
-	dictionary = MakeDictionary(dictionary, fileIn);
+	std::multimap<std::string, std::string> dictionary = MakeDictionary(file, std::cerr, wasError);
 	word = LookForWord(word, dictionary);
-	REQUIRE(word == "sun");
+	REQUIRE(word == "sun ");
 };
 
 SCENARIO("Find one word with general letter")
@@ -66,13 +63,12 @@ SCENARIO("Find one word with general letter")
 	SetConsoleCP(65001);
 	SetConsoleOutputCP(65001);
 	setlocale(LC_ALL, "rus");
-	std::ifstream fileIn;
-	fileIn.open("../dictionary.txt");
-	std::map<std::string, std::string> dictionary;
+	bool wasError = false;
+	std:: string file = "../dictionary.txt";
 	std::string word = "cAt";
-	dictionary = MakeDictionary(dictionary, fileIn);
+	std::multimap<std::string, std::string> dictionary = MakeDictionary(file, std::cerr, wasError);
 	word = LookForWord(word, dictionary);
-	REQUIRE(word == "кошка");
+	REQUIRE(word == "кошка ");
 };
 
 SCENARIO("Find word not from dictionary")
@@ -80,11 +76,11 @@ SCENARIO("Find word not from dictionary")
 	SetConsoleCP(65001);
 	SetConsoleOutputCP(65001);
 	setlocale(LC_ALL, "rus");
-	std::ifstream fileIn;
-	fileIn.open("../dictionary.txt");
-	std::map<std::string, std::string> dictionary;
+	bool wasError = false;
+	std::string file = "../dictionary.txt";
 	std::string word = "frog";
-	dictionary = MakeDictionary(dictionary, fileIn);
+	//упроситить тесты, не читать лишний раз файлы
+	std::multimap<std::string, std::string> dictionary = MakeDictionary(file, std::cerr, wasError);
 	word = LookForWord(word, dictionary);
 	REQUIRE(word == "");
 };
@@ -94,11 +90,10 @@ SCENARIO("Find empty string")
 	SetConsoleCP(65001);
 	SetConsoleOutputCP(65001);
 	setlocale(LC_ALL, "rus");
-	std::ifstream fileIn;
-	fileIn.open("../dictionary.txt");
-	std::map<std::string, std::string> dictionary;
+	bool wasError = false;
+	std:: string file = "../dictionary.txt";
 	std::string word = "";
-	dictionary = MakeDictionary(dictionary, fileIn);
+	std::multimap<std::string, std::string> dictionary = MakeDictionary(file, std::cerr, wasError);
 	word = LookForWord(word, dictionary);
 	REQUIRE(word == "");
 };

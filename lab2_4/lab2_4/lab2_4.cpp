@@ -12,31 +12,20 @@ int main(int argc, char* argv[])
 	setlocale(LC_ALL, "rus");
 	if (argc != 2)
 	{
-		std::cout << "Invalid input format";
+		std::cerr << "Invalid input format\n";
 		return 1;
 	}
 
 	std::string file = argv[1];
-	
 	bool wasError = false;
-    std::set <std::string> dictionary;
-	dictionary = MakeDictionary(dictionary, file, wasError);
+	std::set <std::string> dictionary = MakeDictionary(file, wasError);
 	
 	if (wasError)
 	{
 		return 1;
 	}
 
-	while (std::cin.peek() != EOF)
-	{
-		std::vector<std::string> words;
-		std::string str;
-
-		getline(std::cin, str);
-		words = FilterStrings(dictionary, words, str);
-
-		std::copy(words.begin(), words.end(), std::ostream_iterator<std::string>(std::cout, ""));
-	}
+	DoFiltration(dictionary, std::cin, std::cout);
 	
 	
 	std::cout << std::flush;

@@ -35,7 +35,7 @@ SCENARIO("Make set dictionary")
 	std::string file = "../dictionary.txt";
 	bool wasError = false;
 	std::set<std::string> dictionary;
-	dictionary = MakeDictionary(dictionary, file, wasError);
+	dictionary = MakeDictionary(file, wasError);
 	std::set<std::string> correct = { "блин", "дурак" };
 	REQUIRE(dictionary == correct);
 };
@@ -49,7 +49,7 @@ SCENARIO("Make set dictionary from empty file")
 	std::set<std::string> correct = { };
 	std::string file = "../empty.txt";
 	bool wasError = false;
-	dictionary = MakeDictionary(dictionary, file, wasError);
+	dictionary = MakeDictionary(file, wasError);
 	REQUIRE(dictionary == correct);
 };
 
@@ -61,7 +61,7 @@ SCENARIO("Filter srting")
 	std::string file = "../dictionary.txt";
 	bool wasError = false;
 	std::set<std::string> dictionary;
-	dictionary = MakeDictionary(dictionary, file, wasError);
+	dictionary = MakeDictionary(file, wasError);
 	std::vector<std::string> words;
 	std::vector<std::string> correct = { "Ну", " ", ",", "", " ", "нет"};
 	std::string str = "Ну блин, нет";
@@ -77,7 +77,7 @@ SCENARIO("Filter srting with general and ordinar letters")
 	std::string file = "../dictionary.txt";
 	bool wasError = false;
 	std::set<std::string> dictionary;
-	dictionary = MakeDictionary(dictionary, file, wasError);
+	dictionary = MakeDictionary(file, wasError);
 	std::vector<std::string> words;
 	std::vector<std::string> correct = { ",", "", " ", "ты", " ", "Прошка", ",", "", " ", "!", "" };
 	std::string str = "Дурак, ты Прошка, дурак!";
@@ -93,7 +93,7 @@ SCENARIO("Filter srting witout bad words")
 	std::string file = "../dictionary.txt";
 	bool wasError = false;
 	std::set<std::string> dictionary;
-	dictionary = MakeDictionary(dictionary, file, wasError);
+	dictionary = MakeDictionary(file, wasError);
 	std::vector<std::string> words;
 	std::vector<std::string> correct = { "Привет", ",", "", " ", "мир", "!", "", " ", "Я", " ", "рад", " ", "вам", "!", "" };
 	std::string str = "Привет, мир! Я рад вам!";
@@ -109,7 +109,7 @@ SCENARIO("Filter empty srting")
 	std::string file = "../dictionary.txt";
 	bool wasError = false;
 	std::set<std::string> dictionary;
-	dictionary = MakeDictionary(dictionary, file, wasError);
+	dictionary = MakeDictionary(file, wasError);
 	std::vector<std::string> words;
 	std::vector<std::string> correct = { };
 	std::string str = "";

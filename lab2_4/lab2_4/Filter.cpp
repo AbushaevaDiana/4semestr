@@ -4,30 +4,34 @@
 #include <string>
 #include <vector>
 
-std::set<std::string> MakeDictionary(std::set<std::string> &dictionary,const std::string& file, bool &wasError)
+std::set<std::string> MakeDictionary(const std::string& file, bool &wasError)
 {
+	std::set<std::string> dictionary;
 	std::ifstream fileIn;
 	fileIn.open(file);
 	if (!(fileIn.is_open()))
 	{
+		wasError = true;
 		return dictionary;
 	}
 
-	setlocale(LC_ALL, "rus");
 	while (fileIn.peek() != EOF)
 	{
 		std::string str;
 		getline(fileIn, str);
 		transform(str.begin(), str.end(), str.begin(), tolower);
+		// TODO: use std::move and emplace
+		// TODO: пробеллы и табы для разделения слов
 		dictionary.insert(str);
 	}
 
 	fileIn.close();
 
+	wasError = false;
 	return dictionary;
 }
 
-std::vector<std::string> FilterStrings(std::set<std::string>& dictionary, std::vector<std::string>& words, std::string& strIn)
+std::vector<std::string> FilterStrings(const std::set<std::string>& dictionary, std::vector<std::string>& words, const std::string& strIn)
 {
 	std::string strOut;
 	words = MakeSetOfWords(words, strIn);
@@ -45,7 +49,7 @@ std::vector<std::string> FilterStrings(std::set<std::string>& dictionary, std::v
 	return words;
 }
 
-std::vector<std::string> MakeSetOfWords(std::vector<std::string>& words, std::string &strIn)
+std::vector<std::string> MakeSetOfWords(std::vector<std::string>& words, const std::string &strIn)
 {
 	if (strIn == "")
 	{
@@ -70,5 +74,19 @@ std::vector<std::string> MakeSetOfWords(std::vector<std::string>& words, std::st
 	}
 	words.push_back(word);
 	return words;
+}
+
+void DoFiltration(const std::set <std::string>& dictionary,  std::istream& input, std::ostream& output)
+{
+	while (input.peek() != EOF)
+	{
+		std::vector<std::string> words;
+		std::string str;
+
+		getline(input, str);
+		words = FilterStrings(dictionary, words, str);
+
+		std::copy(words.begin(), words.end(), std::ostream_iterator<std::string>(output, ""));
+	}
 }
 

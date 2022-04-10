@@ -4,12 +4,12 @@
 #include <map>
 
 
-std::string LookForWord(std::string word, const std::map<std::string, std::string> &dictionary);
+std::string LookForWord(std::string word, const std::multimap<std::string, std::string> &dictionary);
 
-std::map<std::string, std::string> MakeDictionary(std::map<std::string, std::string> &dictionary, std::ifstream& fileIn);
+std::multimap<std::string, std::string> MakeDictionary(const std::string& file, std::ostream& err, bool& wasError);
 
-std::map<std::string, std::string> AddNewWordToDictionary(std::string &word, std::map<std::string, std::string> &dictionary, std::istream& fileIn, std::ostream& fileOut, bool& changesDone);
+void AddNewWordToDictionary(std::string word, std::multimap<std::string, std::string> &dictionary, std::istream& fileIn, std::ostream& fileOut, bool& changesDone);
 
-void SaveTheChanges(std::string& file, std::map<std::string, std::string> &dictionary, std::istream& fileIn, std::ostream& fileOut);
+void SaveTheChanges(const std::string& file, std::multimap<std::string, std::string> &dictionary, std::istream& fileIn, std::ostream& fileOut);
 
-void Dialog(std::map<std::string, std::string>& dictionary, bool& changesDone, std::istream& input, std::ostream& output);
+void Dialog(std::multimap<std::string, std::string>& dictionary, bool& changesDone, std::istream& input, std::ostream& output);
