@@ -38,7 +38,10 @@ public:
 	Direction GetDirection() const; 
 
 private:
-	int car_speed = 0;
-	Gear car_gear = Gear::Neutral;
-	bool car_isEngineTurnedOn = false;
+	//не соответстувеут стилю кодирование должно быть m_ +
+	int m_speed = 0;
+	Gear m_gear = Gear::Neutral;
+	bool m_isEngineTurnedOn = false;
+	bool IsCorrectGearForThisSpeed(int in_speed, Direction direction);
+
 };

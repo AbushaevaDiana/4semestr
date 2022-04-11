@@ -1,6 +1,5 @@
 #include "CarComands.h"
 
-//вспомогательные функции
 std::string DirectionToString(Direction direction)
 {
 	return directionString.at(direction);
@@ -59,7 +58,6 @@ bool GetSpeedFromArg(std::string inputStr, int& speed)
 
 	return true;
 }
-//
 
 CarControl::CarControl(Car& car, std::istream& input, std::ostream& output)
 	: m_car(car)
@@ -152,6 +150,7 @@ bool CarControl::SetGear(std::istream& args)
 {
 	std::string inpStr;
     args >> inpStr;
+	//чтение сразу в число, а не строку
     Gear gear = Gear::Neutral;
 
 	if (GetGearFromArg(inpStr, gear))
@@ -173,6 +172,7 @@ bool CarControl::SetGear(std::istream& args)
 bool CarControl::SetSpeed(std::istream& args)
 {
 	std::string inpStr;
+	//чтение сразу в число, а не строку
     args >> inpStr;
     int inSpeed = 0;
 

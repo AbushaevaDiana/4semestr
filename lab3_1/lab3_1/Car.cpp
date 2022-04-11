@@ -1,9 +1,8 @@
 #include "Car.h"
 
-//дополнительные функции
-bool IsGearInSpeedFrames(Gear gear, int car_speed)
+bool IsGearInSpeedFrames(Gear gear, int m_speed)
 {
-	if (gear == Gear::Reverse && car_speed == 0)
+	if (gear == Gear::Reverse && m_speed == 0)
 	{
 		return true;
 	}
@@ -11,23 +10,23 @@ bool IsGearInSpeedFrames(Gear gear, int car_speed)
 	{
 		return true;
 	}
-	if (gear == Gear::One && car_speed >= oneSpeedLimits.first && car_speed <= oneSpeedLimits.second)
+	if (gear == Gear::One && m_speed >= oneSpeedLimits.first && m_speed <= oneSpeedLimits.second)
 	{
 		return true;
 	}
-	if (gear == Gear::Two && car_speed >= twoSpeedLimits.first && car_speed <= twoSpeedLimits.second)
+	if (gear == Gear::Two && m_speed >= twoSpeedLimits.first && m_speed <= twoSpeedLimits.second)
 	{
 		return true;
 	}
-	if (gear == Gear::Three && car_speed >= threeSpeedLimits.first && car_speed <= threeSpeedLimits.second)
+	if (gear == Gear::Three && m_speed >= threeSpeedLimits.first && m_speed <= threeSpeedLimits.second)
 	{
 		return true;
 	}
-	if (gear == Gear::Four && car_speed >= fourSpeedLimits.first && car_speed <= fourSpeedLimits.second)
+	if (gear == Gear::Four && m_speed >= fourSpeedLimits.first && m_speed <= fourSpeedLimits.second)
 	{
 		return true;
 	}
-	if (gear == Gear::Five && car_speed >= fiveSpeedLimits.first && car_speed <= fiveSpeedLimits.second)
+	if (gear == Gear::Five && m_speed >= fiveSpeedLimits.first && m_speed <= fiveSpeedLimits.second)
 	{
 		return true;
 	}
@@ -35,17 +34,18 @@ bool IsGearInSpeedFrames(Gear gear, int car_speed)
 	return false;
 }
 
-bool IsCorrectGear(Gear car_gear, int in_speed, int car_speed, Direction direction)
+//не понятная функция
+bool Car::IsCorrectGearForThisSpeed(int in_speed, Direction direction)
 {
-	switch (car_gear)
+	switch (m_gear)
 	{
 	case Gear::Neutral:
 		switch (direction)
 		{
 		case Direction::Back:
-			return (in_speed >= car_speed && in_speed <= 0);
+			return (in_speed >= m_speed && in_speed <= 0);
 		case Direction::Along:
-			return (in_speed <= car_speed && in_speed >= 0);
+			return (in_speed <= m_speed && in_speed >= 0);
 		default:
 			return false;
 		}
@@ -54,7 +54,7 @@ bool IsCorrectGear(Gear car_gear, int in_speed, int car_speed, Direction directi
 		return (in_speed >= reverseSpeedLimits.first && in_speed <= reverseSpeedLimits.second);
 
 	default:
-		return (IsGearInSpeedFrames(car_gear, in_speed));
+		return (IsGearInSpeedFrames(m_gear, in_speed));
 	}
 
 	return false;
@@ -63,9 +63,9 @@ bool IsCorrectGear(Gear car_gear, int in_speed, int car_speed, Direction directi
 
 bool Car::TurnOffEngine()
 {
-	if (car_isEngineTurnedOn && (car_gear == Gear::Neutral) && (car_speed == 0))
+	if (m_isEngineTurnedOn && (m_gear == Gear::Neutral) && (m_speed == 0))
 	{
-		car_isEngineTurnedOn = false;
+		m_isEngineTurnedOn = false;
 		return true;
 	}
 	return false;
@@ -73,9 +73,9 @@ bool Car::TurnOffEngine()
 
 bool Car::TurnOnEngine()
 {
-	if (!car_isEngineTurnedOn)
+	if (!m_isEngineTurnedOn)
 	{
-		car_isEngineTurnedOn = true;
+		m_isEngineTurnedOn = true;
 		return true;
 	}
 	return false;
@@ -83,15 +83,15 @@ bool Car::TurnOnEngine()
 
 bool Car::IsEngineTurnedOn() const
 {
-	return car_isEngineTurnedOn;
+	return m_isEngineTurnedOn;
 }
 
 
 bool Car::SetGear(Gear gear)
 {
-	if (car_isEngineTurnedOn && IsGearInSpeedFrames(gear, car_speed))
+	if (m_isEngineTurnedOn && IsGearInSpeedFrames(gear, m_speed))
 	{
-		car_gear = gear;
+		m_gear = gear;
 		return true;
 	}
 	return false;
@@ -99,13 +99,13 @@ bool Car::SetGear(Gear gear)
 
 Gear Car::GetGear() const
 {
-	return car_gear;
+	return m_gear;
 }
 
 bool Car::SetSpeed(int moduleSpeed)
 {
 	int speed = moduleSpeed;
-	int negativeIndex = -1;
+	//const negativeIndex лучше просто убрать +
 	Direction direction = Car::GetDirection();
 
 	if (speed < 0)
@@ -113,32 +113,36 @@ bool Car::SetSpeed(int moduleSpeed)
 		return false;
 	}
 
-	if (direction == Direction::Back || (direction == Direction::OnPlace && car_gear == Gear::Reverse))
+	if (direction == Direction::Back || (direction == Direction::OnPlace && m_gear == Gear::Reverse))
 	{
-		speed = speed * negativeIndex;
+		speed = -speed;
 	}
 
-	if (car_isEngineTurnedOn && IsCorrectGear(car_gear, speed, car_speed, direction))
+	if (m_isEngineTurnedOn && IsCorrectGearForThisSpeed(speed, direction))
 	{
-		car_speed = speed;
+		m_speed = speed;
 		return true;
 	}
 	return false;
 }
 
-
+//может вернуть отрицательно значение, так не должно быть +
 int Car::GetSpeed() const
 {
-	return car_speed;
+	if (m_speed < 0)
+	{
+		return -m_speed;
+	}
+	return m_speed;
 }
 
 Direction Car::GetDirection() const
 {
-	if (car_speed < 0)
+	if (m_speed < 0)
 	{
 		return Direction::Back;
 	}
-	if (car_speed > 0)
+	if (m_speed > 0)
 	{
 		return Direction::Along;
 	}
