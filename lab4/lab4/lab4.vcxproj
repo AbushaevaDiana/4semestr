@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{c885b1c9-1d87-4534-8e56-32dad72ce747}</ProjectGuid>
-    <RootNamespace>lab15</RootNamespace>
+    <ProjectGuid>{e3678d34-4109-432a-bfbe-cbf16e7a2869}</ProjectGuid>
+    <RootNamespace>lab4</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -93,9 +93,6 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
-    <PostBuildEvent>
-      <Command>test.bat "$(TargetPath)"</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -112,9 +109,6 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
-    <PostBuildEvent>
-      <Command>test.bat "$(TargetPath)"</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -127,9 +121,6 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
-    <PostBuildEvent>
-      <Command>test.bat "$(TargetPath)"</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -146,32 +137,29 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
-    <PostBuildEvent>
-      <Command>test.bat "$(TargetPath)"</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="lab1_5.cpp" />
+    <ClCompile Include="BodiesContainer.cpp" />
+    <ClCompile Include="BodiesException.cpp" />
+    <ClCompile Include="CBody.cpp" />
+    <ClCompile Include="CCompound.cpp" />
+    <ClCompile Include="CCone.cpp" />
+    <ClCompile Include="CCylinder.cpp" />
+    <ClCompile Include="CParallelepiped.cpp" />
+    <ClCompile Include="CSolidBody.cpp" />
+    <ClCompile Include="lab4.cpp" />
+    <ClCompile Include="CSphere.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="test.bat" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="1output.txt" />
-    <Text Include="2output.txt" />
-    <Text Include="3output.txt" />
-    <Text Include="4output.txt" />
-    <Text Include="6output.txt" />
-    <Text Include="test1.txt" />
-    <Text Include="test1_out.txt" />
-    <Text Include="test2.txt" />
-    <Text Include="test2_out.txt" />
-    <Text Include="test3.txt" />
-    <Text Include="test3_out.txt" />
-    <Text Include="test4.txt" />
-    <Text Include="test4_out.txt" />
-    <Text Include="test6.txt" />
-    <Text Include="test6_out.txt" />
+    <ClInclude Include="BodiesContainer.h" />
+    <ClInclude Include="BodiesException.h" />
+    <ClInclude Include="CBody.h" />
+    <ClInclude Include="CCompound.h" />
+    <ClInclude Include="CCone.h" />
+    <ClInclude Include="CCylinder.h" />
+    <ClInclude Include="CParallelepiped.h" />
+    <ClInclude Include="CSolidBody.h" />
+    <ClInclude Include="CSphere.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

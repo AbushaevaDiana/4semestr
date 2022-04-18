@@ -34,7 +34,7 @@ bool IsGearInSpeedFrames(Gear gear, int m_speed)
 	return false;
 }
 
-//не понятная функция
+//TODO: не понятная функция
 bool Car::IsCorrectGearForThisSpeed(int in_speed, Direction direction)
 {
 	switch (m_gear)
@@ -105,7 +105,7 @@ Gear Car::GetGear() const
 bool Car::SetSpeed(int moduleSpeed)
 {
 	int speed = moduleSpeed;
-	//const negativeIndex лучше просто убрать +
+	//TODO: const negativeIndex лучше просто убрать +
 	Direction direction = Car::GetDirection();
 
 	if (speed < 0)
@@ -126,7 +126,7 @@ bool Car::SetSpeed(int moduleSpeed)
 	return false;
 }
 
-//может вернуть отрицательно значение, так не должно быть +
+//TODO: может вернуть отрицательно значение, так не должно быть +
 int Car::GetSpeed() const
 {
 	if (m_speed < 0)

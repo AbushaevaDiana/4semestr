@@ -368,4 +368,24 @@ TEST_CASE("CarComands")
 		REQUIRE(car.GetSpeed() == 0);
 	}
 
+	SECTION("GetSpeed < 0")
+	{
+		Car car;
+		std::string inStr = "EngineOn\nSetGear -1\nSetSpeed 10\n";
+
+		std::istringstream input(inStr);
+		std::ostringstream output;
+
+		CarControl CarControl(car, input, output);
+
+		CarControl.Command();
+		CarControl.Command();
+		CarControl.Command();
+
+		REQUIRE(car.IsEngineTurnedOn() == true);
+		REQUIRE(car.GetDirection() == Direction::Back);
+		REQUIRE(car.GetGear() == Gear::Reverse);
+		REQUIRE(car.GetSpeed() == 10);
+	}
+
 }

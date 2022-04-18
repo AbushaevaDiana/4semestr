@@ -38,7 +38,7 @@ public:
 	Direction GetDirection() const; 
 
 private:
-	//не соответстувеут стилю кодирование должно быть m_ +
+	//TODO: не соответстувеут стилю кодирование должно быть m_ +
 	int m_speed = 0;
 	Gear m_gear = Gear::Neutral;
 	bool m_isEngineTurnedOn = false;

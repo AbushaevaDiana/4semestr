@@ -150,7 +150,6 @@ bool CarControl::SetGear(std::istream& args)
 {
 	std::string inpStr;
     args >> inpStr;
-	//чтение сразу в число, а не строку
     Gear gear = Gear::Neutral;
 
 	if (GetGearFromArg(inpStr, gear))
@@ -172,7 +171,6 @@ bool CarControl::SetGear(std::istream& args)
 bool CarControl::SetSpeed(std::istream& args)
 {
 	std::string inpStr;
-	//чтение сразу в число, а не строку
     args >> inpStr;
     int inSpeed = 0;
 
