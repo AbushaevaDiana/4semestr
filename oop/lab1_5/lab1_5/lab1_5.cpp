@@ -11,7 +11,6 @@ enum class Symbols
 	Filled,
 };
 
- //использовать enum +
 const int MATRIX_SIZE = 100;
 typedef Symbols Matrix[MATRIX_SIZE][MATRIX_SIZE];
 struct Field
@@ -20,40 +19,35 @@ struct Field
 };
 struct Point
 {
-	int X;
-	int Y;
+	int x;
+	int y;
 };
 
 bool InitializeField(Field& field, std::deque<Point>& start, std::string& strIn);
 Field Fill(Field& field, std::deque<Point>& start);
 bool PrintField(std::string& const strOut, Field& field);
-void FillPoint(Field& field, int Y, int X, std::deque<Point>& start);
+void FillPoint(Field& field, int y, int x, std::deque<Point>& start);
 
-void FillPoint(Field& field, int Y, int X, std::deque<Point>& start)
+void FillPoint(Field& field, int y, int x, std::deque<Point>& start)
 {
-	if (Y < MATRIX_SIZE && X < MATRIX_SIZE && Y >= 0 && X >= 0 && field.items[Y][X] == Symbols::Empty)
+	if (y < MATRIX_SIZE && x < MATRIX_SIZE && y >= 0 && x >= 0 && field.items[y][x] == Symbols::Empty)
 	{
-		field.items[Y][X] = Symbols::Filled;
-		Point i2;
-		i2.Y = Y;
-		i2.X = X;
-		start.push_back(i2);
+		field.items[y][x] = Symbols::Filled;
+		start.push_back({ x, y });
 	}
 }
-//TODO: наименование lowerCamelCase
-//TODO: i2 убрать, использовать инициализирующий конструктор Point{x, y}
+//TODO: наименование lowerCamelCase +
+//TODO: i2 убрать +
 Field Fill(Field& field, std::deque<Point>& start)
 {
 	
 	while(!start.empty())
 	{
 		Point i1 = start[0];
-		//не конца убранно дублирование 
-		//уменьшить потребление памяти, двусторонненя очередь
-		FillPoint(field, i1.Y, i1.X + 1, start);
-		FillPoint(field, i1.Y + 1, i1.X, start);
-		FillPoint(field, i1.Y, i1.X - 1, start);
-		FillPoint(field, i1.Y - 1, i1.X, start);
+		FillPoint(field, i1.y, i1.x + 1, start);
+		FillPoint(field, i1.y + 1, i1.x, start);
+		FillPoint(field, i1.y, i1.x - 1, start);
+		FillPoint(field, i1.y - 1, i1.x, start);
 
 		start.pop_front();
 	}
@@ -61,7 +55,6 @@ Field Fill(Field& field, std::deque<Point>& start)
 	return field;
 };
 
-//передовать строкой +
 bool InitializeField(Field& field, std::deque<Point>& start, std::string& const strIn)
 {
 	std::ifstream fileIn;
@@ -93,8 +86,8 @@ bool InitializeField(Field& field, std::deque<Point>& start, std::string& const 
 			{
 				field.items[i][j] = Symbols::Start;
 				Point point;
-				point.Y = i;
-				point.X = j;
+				point.y = i;
+				point.x = j;
 				start.push_back(point);
 			}
 			if (str[i] == '#')
@@ -108,12 +101,9 @@ bool InitializeField(Field& field, std::deque<Point>& start, std::string& const 
 		}
 		j++;
 	}
-	//необязательно закрывать открытый для чтения файл, он закроется автоматически +
 	return true;
 }
 
-//передавать по константе поле, строкой имя файла +
-//переименовать функцию, печать поля +
 bool PrintField(std::string& const strOut, Field& const field)
 {
 	std::ofstream fileOut;
@@ -153,7 +143,6 @@ bool PrintField(std::string& const strOut, Field& const field)
 
 int main(char argc, char* argv[])
 {
-	//return EXIT_FAILER вместо 1+
 	if (argc != 3)
 	{
 		std::cerr << "Invalid input format";
