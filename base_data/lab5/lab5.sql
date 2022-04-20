@@ -129,17 +129,24 @@ SELECT t_1.id_room, t_1.id_room_in_booking, t_1.checkin_date, t_1.checkout_date,
 					t_2.id_room_in_booking, t_2.checkin_date, t_2.checkout_date FROM [room_in_booking] AS t_1
 INNER JOIN [room_in_booking] AS t_2
 	ON t_1.id_room = t_2.id_room AND t_1.id_room_in_booking != t_2.id_room_in_booking
-	WHERE t_2.checkin_date >= t_1.checkin_date 
-	    AND t_2.checkin_date < t_1.checkout_date
+	WHERE NOT 
+	  (t_2.checkin_date >= t_1.checkout_date 
+	  OR t_2.checkout_date <= t_1.checkin_date)
 
--- перепроверить обратную проверяемой ситуацию
+-- перепроверить +
 
 -- 8. Создать бронирование в транзакции.
 BEGIN DISTRIBUTED TRANSACTION;
 	INSERT INTO booking (id_client, booking_date)
-	VALUES (24057, '2022-04-06')	
+	VALUES (70, '2022-03-04')
+	INSERT INTO room_in_booking (id_booking, id_room, checkin_date, checkout_date)
+	VALUES ((SELECT id_booking FROM booking WHERE id_client = 70 AND booking_date = '2022-03-04'), 170, '2022-04-12', '2022-04-18')
 COMMIT TRANSACTION
--- room_in_booking тоже нужно
+-- room_in_booking тоже нужно +
+/*
+Для проверки
+Select * From booking WHERE id_client = 70 AND booking_date = '2022-03-04'
+Select * From room_in_booking WHERE id_booking = (Select id_booking From booking WHERE id_client = 70 AND booking_date = '2022-03-04')*/
 
 --9. Добавить необходимые индексы для всех таблиц
 CREATE INDEX IX_booking_id_client ON booking
