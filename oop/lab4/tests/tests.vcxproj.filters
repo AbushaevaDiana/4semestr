@@ -15,45 +15,45 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="lab4.cpp">
+    <ClCompile Include="tests.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="CShape.cpp">
+    <ClCompile Include="..\lab4\CControler.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="CLineSegment.cpp">
+    <ClCompile Include="..\lab4\CLineSegment.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="CControler.cpp">
+    <ClCompile Include="..\lab4\CShape.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="CSolidShape.cpp">
+    <ClCompile Include="..\lab4\CSolidShape.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="CTriangel.cpp">
+    <ClCompile Include="..\lab4\CTriangel.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="IShape.h">
+    <ClInclude Include="..\lab4\CControler.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lab4\CLineSegment.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lab4\CShape.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lab4\IShape.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lab4\ISolidShape.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lab4\CSolidShape.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="ISolidShape.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="CLineSegment.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="CShape.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="CControler.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="CSolidShape.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="CTriangel.h">
+    <ClInclude Include="..\lab4\CTriangel.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
   </ItemGroup>

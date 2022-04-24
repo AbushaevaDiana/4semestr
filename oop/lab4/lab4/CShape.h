@@ -1,6 +1,8 @@
 #pragma once
 #include "IShape.h"
+#include <optional>
 
+//зачем virtual?
 class CShape : virtual public IShape
 {
 public:
@@ -8,5 +10,7 @@ public:
 	uint32_t GetOutlineColor() const override;
 
 private:
-	uint32_t m_outlineColor;
+	uint32_t m_outlineColor; 
+	//mutable std::optional<double> m_area;
+	//mutable std::optional<double> m_perimeter;
 };

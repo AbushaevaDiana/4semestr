@@ -1,5 +1,7 @@
 #include "CLineSegment.h"
 #include "math.h"
+#include <sstream>
+#include <cstdint>
 
 CLineSegment::CLineSegment(CPoint const& startPoint, CPoint const& endPoint, uint32_t const& outlineColor):
 	m_startPoint(startPoint),
@@ -21,15 +23,21 @@ double CLineSegment::GetPerimeter() const
 	return lineSize;
 };
 
-std::string CLineSegment::ToSting() const
+std::string CLineSegment::ToString() const
 {
-	std::string infoOfLineSegment;
-	infoOfLineSegment += "  startPoint(" + std::to_string(m_endPoint.x) + " " + std::to_string(m_endPoint.y) + ") \n";
-	infoOfLineSegment += "  endPoint(" + std::to_string(m_startPoint.x) + " " + std::to_string(m_startPoint.y) + ")\n";
-	infoOfLineSegment += "  outlineColor(" + std::to_string(GetOutlineColor()) + ")\n";
-	infoOfLineSegment += "  area = " + std::to_string(GetArea()) + "\n";
-	infoOfLineSegment += "  perimeter = " + std::to_string(GetPerimeter()) + "\n";
-	return infoOfLineSegment;
+	std::ostringstream strm;
+	// для вывода числе с точкой fixed << setprecision(2)
+	strm 
+		<< ">Line:\n"
+		<< "  startPoint(" << m_startPoint.x << ", " << m_startPoint.y << ")\n"
+		<< "  endPoint(" << m_endPoint.x << ", " << m_endPoint.y << ")\n"
+		<< "  perimeter: " << GetPerimeter() << "\n"
+		<< "  area: " << GetArea() << "\n"
+		<< "  line color: " << std::hex << GetOutlineColor() << "\n";
+
+	//std::string infoOfLineSegment = strm.str();
+
+	return strm.str();
 };
 
 

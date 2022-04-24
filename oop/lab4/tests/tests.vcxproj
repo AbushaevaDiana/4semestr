@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{45f09bc2-527e-4e1a-a0ad-794ba2c648a7}</ProjectGuid>
-    <RootNamespace>lab4</RootNamespace>
+    <ProjectGuid>{c9646569-bcd2-42ca-9c39-aa0007502f6b}</ProjectGuid>
+    <RootNamespace>tests</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -93,6 +93,9 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>"$(TargetPath)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -109,6 +112,9 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>"$(TargetPath)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -121,6 +127,9 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>"$(TargetPath)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -137,23 +146,26 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>"$(TargetPath)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CLineSegment.cpp" />
-    <ClCompile Include="CControler.cpp" />
-    <ClCompile Include="CShape.cpp" />
-    <ClCompile Include="CSolidShape.cpp" />
-    <ClCompile Include="CTriangel.cpp" />
-    <ClCompile Include="lab4.cpp" />
+    <ClCompile Include="..\lab4\CControler.cpp" />
+    <ClCompile Include="..\lab4\CLineSegment.cpp" />
+    <ClCompile Include="..\lab4\CShape.cpp" />
+    <ClCompile Include="..\lab4\CSolidShape.cpp" />
+    <ClCompile Include="..\lab4\CTriangel.cpp" />
+    <ClCompile Include="tests.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CLineSegment.h" />
-    <ClInclude Include="CControler.h" />
-    <ClInclude Include="CShape.h" />
-    <ClInclude Include="CSolidShape.h" />
-    <ClInclude Include="CTriangel.h" />
-    <ClInclude Include="IShape.h" />
-    <ClInclude Include="ISolidShape.h" />
+    <ClInclude Include="..\lab4\CControler.h" />
+    <ClInclude Include="..\lab4\CLineSegment.h" />
+    <ClInclude Include="..\lab4\CShape.h" />
+    <ClInclude Include="..\lab4\CSolidShape.h" />
+    <ClInclude Include="..\lab4\CTriangel.h" />
+    <ClInclude Include="..\lab4\IShape.h" />
+    <ClInclude Include="..\lab4\ISolidShape.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

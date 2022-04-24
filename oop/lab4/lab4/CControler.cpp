@@ -4,20 +4,65 @@
 #include <iterator> 
 #include <algorithm>
 
-//check
 bool CControler::AddLineSegment(std::istream& input)
 {
 	GetInputStringVector(input);
+	if (m_inputStringVector.size() != 5)
+	{
+		m_inputStringVector.clear();
+		std::cerr << "Invalid count of line parameters \n";
+		return false;
+	}
+	try 
+	{
+		CPoint startPoint = { stod(m_inputStringVector[0]), stod(m_inputStringVector[1]) };
+		CPoint endPoint = { stod(m_inputStringVector[2]), stod(m_inputStringVector[3]) };
+		//nullptr отсутствие указателя, в другой ситуации указатель на позицию, которую обрабатывать после выполнение функции
+		uint32_t outlineColor = stoul(m_inputStringVector[4], nullptr, 16);
+		m_inputStringVector.clear();
+		std::shared_ptr<IShape> line = std::make_shared<CLineSegment>(startPoint, endPoint, outlineColor);
+		m_shapesList.push_back(line);
+	}
+	catch(const std::exception& e)
+	{
+		m_inputStringVector.clear();
+		std::cerr << "Invalid line data(" << e.what() << ")\n";
+		return false;
+	}
 
-	CPoint startPoint = { stod(m_inputStringVector[0]), stod(m_inputStringVector[1]) };
-	CPoint endPoint = { stod(m_inputStringVector[2]), stod(m_inputStringVector[3]) };
-	//check
-	uint32_t outlineColor = stoul(m_inputStringVector[4], nullptr, 16);
-	m_inputStringVector.clear();
-	std::shared_ptr<IShape> line = std::make_shared<CLineSegment>(startPoint, endPoint, outlineColor);
-	m_shapesList.push_back(line);
 	return true;
-};
+}
+bool CControler::AddTriangel(std::istream& input)
+{
+	GetInputStringVector(input);
+	if (m_inputStringVector.size() != 8)
+	{
+		m_inputStringVector.clear();
+		std::cerr << "Invalid count of triangel parameters \n";
+		return false;
+	}
+	try
+	{
+		CPoint vertex1 = { stod(m_inputStringVector[0]), stod(m_inputStringVector[1]) };
+		CPoint vertex2 = { stod(m_inputStringVector[2]), stod(m_inputStringVector[3]) };
+		CPoint vertex3 = { stod(m_inputStringVector[4]), stod(m_inputStringVector[5]) };
+		//nullptr отсутствие указателя, в другой ситуации указатель на позицию, которую обрабатывать после выполнение функции
+		uint32_t outlineColor = stoul(m_inputStringVector[6], nullptr, 16);
+		uint32_t fillColor = stoul(m_inputStringVector[7], nullptr, 16);
+		m_inputStringVector.clear();
+		std::shared_ptr<IShape> line = std::make_shared<CTriangel>(vertex1, vertex2, vertex3, outlineColor, fillColor);
+		m_shapesList.push_back(line);
+	}
+	catch (const std::exception& e)
+	{
+		m_inputStringVector.clear();
+		std::cerr << "Invalid triangel data(" << e.what() << ")\n";
+		return false;
+	}
+
+	return true;
+}
+;
 
 bool CControler::PrintInfo()
 {
@@ -32,12 +77,20 @@ bool CControler::PrintInfo()
 	for (auto i = 0; i < m_shapesList.size(); i++)
 	{
 		auto shape = m_shapesList[i];
-		m_output << shape->ToSting() << "\n";
+		m_output << shape->ToString() << "\n";
 	}
 	return true;
 };
 
-//not done
+bool compForArea(std::shared_ptr<IShape> shape1, std::shared_ptr<IShape> shape2)
+{
+	if (shape1->GetArea() > shape2->GetArea())
+	{
+		return true;
+	}
+	return false;
+}
+
 bool CControler::PrintMaxArea()
 {
 	if (m_shapesList.empty())
@@ -46,12 +99,22 @@ bool CControler::PrintMaxArea()
 		return false;
 	}
 
-	m_output << "\n Max Area =";
+	std::vector<std::shared_ptr<IShape>> shapesList = m_shapesList;
+	sort(shapesList.begin(), shapesList.end(), compForArea);
+	m_output << "\n Max Area: \n" << shapesList[0]->ToString() << "\n";;
 
 	return true;
 };
 
-//not done
+bool compForPerimeter(std::shared_ptr<IShape> shape1, std::shared_ptr<IShape> shape2)
+{
+	if (shape1->GetPerimeter() < shape2->GetPerimeter())
+	{
+		return true;
+	}
+	return false;
+}
+
 bool CControler::PrintMinPerimeter()
 {
 	if (m_shapesList.empty())
@@ -59,8 +122,9 @@ bool CControler::PrintMinPerimeter()
 		m_output << "\nEmpty shape list, add at least one shape\n";
 		return false;
 	}
-
-	m_output << "\n Min Perimeter = ";
+	std::vector<std::shared_ptr<IShape>> shapesList = m_shapesList;
+	sort(shapesList.begin(), shapesList.end(), compForPerimeter);
+	m_output << "\n Min Perimeter: \n" << shapesList[0]->ToString() << "\n";
 
 	return true;
 };
@@ -91,6 +155,11 @@ bool CControler::Command()
 	{
 		m_output << "\nUnknown shape / command\n";
 	}
+	else
+	{
+		PrintMaxArea();
+		PrintMinPerimeter();
+	}
 
 	return false;
 }
@@ -111,6 +180,9 @@ CControler::CControler(std::istream& input, std::ostream& output)
 		   } },
 		  { "AddLine", [this](std::istream& strm) {
 			   return AddLineSegment(strm);
+		   } },
+		  { "AddTriangel", [this](std::istream& strm) {
+			   return AddTriangel(strm);
 		   } },
 		})
 {

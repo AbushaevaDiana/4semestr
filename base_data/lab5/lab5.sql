@@ -125,7 +125,7 @@ WHERE room_in_booking.id_room_in_booking IN
  room_in_booking с id_room_in_booking = 5 и 2154 €вл€ютс€ примером
  неправильного состо€ни€, которые необходимо найти. –езультирующий кортеж
  выборки должен содержать информацию о двух конфликтующих номерах.*/
-SELECT t_1.id_room, t_1.id_room_in_booking, t_1.checkin_date, t_1.checkout_date, 
+SELECT TOP(10) t_1.id_room, t_1.id_room_in_booking, t_1.checkin_date, t_1.checkout_date, 
 					t_2.id_room_in_booking, t_2.checkin_date, t_2.checkout_date FROM [room_in_booking] AS t_1
 INNER JOIN [room_in_booking] AS t_2
 	ON t_1.id_room = t_2.id_room AND t_1.id_room_in_booking != t_2.id_room_in_booking

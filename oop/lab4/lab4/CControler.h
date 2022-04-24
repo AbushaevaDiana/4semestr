@@ -1,6 +1,7 @@
 #pragma once
 #include "CShape.h"
 #include "CLineSegment.h"
+#include "CTriangel.h"
 #include <iostream>
 #include <map>
 #include <functional>
@@ -21,8 +22,8 @@ private:
 	std::vector<std::shared_ptr<IShape>> m_shapesList;
 
 	bool GetInputStringVector(std::istream& input);
-	bool GetLineParameters(std::istream& input);
 	bool AddLineSegment(std::istream& input);
+	bool AddTriangel(std::istream& input);
 	// other figures
 
 	using Handler = std::function<bool(std::istream& args)>;
