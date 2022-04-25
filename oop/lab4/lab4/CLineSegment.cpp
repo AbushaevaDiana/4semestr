@@ -17,9 +17,7 @@ double CLineSegment::GetArea() const
 
 double CLineSegment::GetPerimeter() const 
 {
-	long double lineSizeIn2;
-	lineSizeIn2 = pow((m_endPoint.x - m_startPoint.x), 2) + pow((m_endPoint.y - m_startPoint.y), 2);
-	double lineSize = sqrt(lineSizeIn2);
+	double lineSize = GetLineSize(m_startPoint, m_endPoint);
 	return lineSize;
 };
 
@@ -34,8 +32,6 @@ std::string CLineSegment::ToString() const
 		<< "  perimeter: " << GetPerimeter() << "\n"
 		<< "  area: " << GetArea() << "\n"
 		<< "  line color: " << std::hex << GetOutlineColor() << "\n";
-
-	//std::string infoOfLineSegment = strm.str();
 
 	return strm.str();
 };

@@ -33,6 +33,12 @@
     <ClCompile Include="CTriangel.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="CCircle.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="CRectangle.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IShape.h">
@@ -54,6 +60,12 @@
       <Filter>Исходные файлы</Filter>
     </ClInclude>
     <ClInclude Include="CTriangel.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="CCircle.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="CRectangle.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
   </ItemGroup>

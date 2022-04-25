@@ -14,22 +14,20 @@ CTriangel::CTriangel(CPoint const& vertex1, CPoint const& vertex2, CPoint const&
 double CTriangel::GetArea() const
 {
 	// 
-	return 0;
+	double halfOfPerimeter = GetPerimeter() / 2;
+	double line1 = GetLineSize(m_vertex1, m_vertex2);
+	double line2 = GetLineSize(m_vertex2, m_vertex3);
+	double line3 = GetLineSize(m_vertex3, m_vertex1);
+	double area = sqrt(halfOfPerimeter * (halfOfPerimeter - line1) * (halfOfPerimeter - line2) * (halfOfPerimeter - line3));
+
+	return area;
 };
 
 double CTriangel::GetPerimeter() const
 {
-	long double line1SizeIn2;
-	line1SizeIn2 = pow((m_vertex1.x - m_vertex2.x), 2) + pow((m_vertex1.y - m_vertex2.y), 2);
-	double line1Size = sqrt(line1SizeIn2);
-
-	long double line2SizeIn2;
-	line2SizeIn2 = pow((m_vertex2.x - m_vertex3.x), 2) + pow((m_vertex2.y - m_vertex3.y), 2);
-	double line2Size = sqrt(line2SizeIn2);
-
-	long double line3SizeIn2;
-	line3SizeIn2 = pow((m_vertex3.x - m_vertex1.x), 2) + pow((m_vertex3.y - m_vertex1.y), 2);
-	double line3Size = sqrt(line3SizeIn2);
+	double line1Size = GetLineSize(m_vertex1, m_vertex2);
+	double line2Size = GetLineSize(m_vertex2, m_vertex3);
+	double line3Size = GetLineSize(m_vertex3, m_vertex1);
 
 	double perimeter = line1Size + line2Size + line3Size;
 	return perimeter;

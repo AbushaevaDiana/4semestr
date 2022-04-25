@@ -139,16 +139,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CCircle.cpp" />
     <ClCompile Include="CLineSegment.cpp" />
     <ClCompile Include="CControler.cpp" />
+    <ClCompile Include="CRectangle.cpp" />
     <ClCompile Include="CShape.cpp" />
     <ClCompile Include="CSolidShape.cpp" />
     <ClCompile Include="CTriangel.cpp" />
     <ClCompile Include="lab4.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CCircle.h" />
     <ClInclude Include="CLineSegment.h" />
     <ClInclude Include="CControler.h" />
+    <ClInclude Include="CRectangle.h" />
     <ClInclude Include="CShape.h" />
     <ClInclude Include="CSolidShape.h" />
     <ClInclude Include="CTriangel.h" />

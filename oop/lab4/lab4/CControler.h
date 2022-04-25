@@ -2,6 +2,8 @@
 #include "CShape.h"
 #include "CLineSegment.h"
 #include "CTriangel.h"
+#include "CRectangle.h"
+#include "CCircle.h"
 #include <iostream>
 #include <map>
 #include <functional>
@@ -24,7 +26,8 @@ private:
 	bool GetInputStringVector(std::istream& input);
 	bool AddLineSegment(std::istream& input);
 	bool AddTriangel(std::istream& input);
-	// other figures
+	bool AddCircle(std::istream& input);
+	bool AddRectangle(std::istream& input);
 
 	using Handler = std::function<bool(std::istream& args)>;
 	using ActionMap = std::map<std::string, Handler>;

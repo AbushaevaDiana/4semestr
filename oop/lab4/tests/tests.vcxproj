@@ -151,16 +151,20 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\lab4\CCircle.cpp" />
     <ClCompile Include="..\lab4\CControler.cpp" />
     <ClCompile Include="..\lab4\CLineSegment.cpp" />
+    <ClCompile Include="..\lab4\CRectangle.cpp" />
     <ClCompile Include="..\lab4\CShape.cpp" />
     <ClCompile Include="..\lab4\CSolidShape.cpp" />
     <ClCompile Include="..\lab4\CTriangel.cpp" />
     <ClCompile Include="tests.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\lab4\CCircle.h" />
     <ClInclude Include="..\lab4\CControler.h" />
     <ClInclude Include="..\lab4\CLineSegment.h" />
+    <ClInclude Include="..\lab4\CRectangle.h" />
     <ClInclude Include="..\lab4\CShape.h" />
     <ClInclude Include="..\lab4\CSolidShape.h" />
     <ClInclude Include="..\lab4\CTriangel.h" />

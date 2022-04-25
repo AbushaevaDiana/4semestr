@@ -50,13 +50,72 @@ bool CControler::AddTriangel(std::istream& input)
 		uint32_t outlineColor = stoul(m_inputStringVector[6], nullptr, 16);
 		uint32_t fillColor = stoul(m_inputStringVector[7], nullptr, 16);
 		m_inputStringVector.clear();
-		std::shared_ptr<IShape> line = std::make_shared<CTriangel>(vertex1, vertex2, vertex3, outlineColor, fillColor);
-		m_shapesList.push_back(line);
+		std::shared_ptr<IShape> triangel = std::make_shared<CTriangel>(vertex1, vertex2, vertex3, outlineColor, fillColor);
+		m_shapesList.push_back(triangel);
 	}
 	catch (const std::exception& e)
 	{
 		m_inputStringVector.clear();
 		std::cerr << "Invalid triangel data(" << e.what() << ")\n";
+		return false;
+	}
+
+	return true;
+}
+bool CControler::AddCircle(std::istream& input)
+{
+	GetInputStringVector(input);
+	if (m_inputStringVector.size() != 5)
+	{
+		m_inputStringVector.clear();
+		std::cerr << "Invalid count of circle parameters \n";
+		return false;
+	}
+	try
+	{
+		CPoint center = { stod(m_inputStringVector[0]), stod(m_inputStringVector[1]) };
+		double radius = stod(m_inputStringVector[2]);
+		//nullptr отсутствие указателя, в другой ситуации указатель на позицию, которую обрабатывать после выполнение функции
+		uint32_t outlineColor = stoul(m_inputStringVector[3], nullptr, 16);
+		uint32_t fillColor = stoul(m_inputStringVector[4], nullptr, 16);
+		m_inputStringVector.clear();
+		std::shared_ptr<IShape> circle = std::make_shared<CCircle>(center, radius, outlineColor, fillColor);
+		m_shapesList.push_back(circle);
+	}
+	catch (const std::exception& e)
+	{
+		m_inputStringVector.clear();
+		std::cerr << "Invalid circle data(" << e.what() << ")\n";
+		return false;
+	}
+
+	return true;
+}
+bool CControler::AddRectangle(std::istream& input)
+{
+	GetInputStringVector(input);
+	if (m_inputStringVector.size() != 6)
+	{
+		m_inputStringVector.clear();
+		std::cerr << "Invalid count of rectangle parameters \n";
+		return false;
+	}
+	try
+	{
+		CPoint leftTop = { stod(m_inputStringVector[0]), stod(m_inputStringVector[1]) };
+		double heigth = stod(m_inputStringVector[2]);
+		double width = stod(m_inputStringVector[3]);
+		//nullptr отсутствие указателя, в другой ситуации указатель на позицию, которую обрабатывать после выполнение функции
+		uint32_t outlineColor = stoul(m_inputStringVector[4], nullptr, 16);
+		uint32_t fillColor = stoul(m_inputStringVector[5], nullptr, 16);
+		m_inputStringVector.clear();
+		std::shared_ptr<IShape> rectangle = std::make_shared<CRectangle>(leftTop, heigth, width, outlineColor, fillColor);
+		m_shapesList.push_back(rectangle);
+	}
+	catch (const std::exception& e)
+	{
+		m_inputStringVector.clear();
+		std::cerr << "Invalid rectangle data(" << e.what() << ")\n";
 		return false;
 	}
 
@@ -183,6 +242,12 @@ CControler::CControler(std::istream& input, std::ostream& output)
 		   } },
 		  { "AddTriangel", [this](std::istream& strm) {
 			   return AddTriangel(strm);
+		   } },
+		  { "AddCircle", [this](std::istream& strm) {
+			   return AddCircle(strm);
+		   } },
+		  { "AddRectangle", [this](std::istream& strm) {
+			   return AddRectangle(strm);
 		   } },
 		})
 {
