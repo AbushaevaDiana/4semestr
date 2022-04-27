@@ -1,19 +1,19 @@
-#include "CTriangel.h"
+#include "CTriangle.h"
 #include "math.h"
 #include <sstream>
 #include <cstdint>
 
-CTriangel::CTriangel(CPoint const& vertex1, CPoint const& vertex2, CPoint const& vertex3, uint32_t const& outlineColor, uint32_t const& fillColor) :
+CTriangle::CTriangle(CPoint const& vertex1, CPoint const& vertex2, CPoint const& vertex3, uint32_t outlineColor, uint32_t fillColor) :
+	CSolidShape(outlineColor, fillColor),
 	m_vertex1(vertex1),
 	m_vertex2(vertex2),
-	m_vertex3(vertex3),
-	CSolidShape(outlineColor, fillColor)
+	m_vertex3(vertex3)
+	//родительский класс в начало списка везде	+
 {
 };
 
-double CTriangel::GetArea() const
+double CTriangle::GetArea() const
 {
-	// 
 	double halfOfPerimeter = GetPerimeter() / 2;
 	double line1 = GetLineSize(m_vertex1, m_vertex2);
 	double line2 = GetLineSize(m_vertex2, m_vertex3);
@@ -23,7 +23,7 @@ double CTriangel::GetArea() const
 	return area;
 };
 
-double CTriangel::GetPerimeter() const
+double CTriangle::GetPerimeter() const
 {
 	double line1Size = GetLineSize(m_vertex1, m_vertex2);
 	double line2Size = GetLineSize(m_vertex2, m_vertex3);
@@ -33,12 +33,11 @@ double CTriangel::GetPerimeter() const
 	return perimeter;
 };
 
-std::string CTriangel::ToString() const
+std::string CTriangle::ToString() const
 {
 	std::ostringstream strm;
-	// для вывода числе с точкой fixed << setprecision(2)
 	strm
-		<< ">Triangel:\n"
+		<< ">Triangle:\n"
 		<< "  vertex1(" << m_vertex1.x << ", " << m_vertex1.y << ")\n"
 		<< "  vertex2(" << m_vertex2.x << ", " << m_vertex2.y << ")\n"
 		<< "  vertex3(" << m_vertex3.x << ", " << m_vertex3.y << ")\n"
@@ -51,17 +50,17 @@ std::string CTriangel::ToString() const
 };
 
 
-CPoint CTriangel::GetVertex1() const
+CPoint CTriangle::GetVertex1() const
 {
 	return m_vertex1;
 }
 
-CPoint CTriangel::GetVertex2() const
+CPoint CTriangle::GetVertex2() const
 {
 	return m_vertex2;
 }
 
-CPoint CTriangel::GetVertex3() const
+CPoint CTriangle::GetVertex3() const
 {
 	return m_vertex3;
 }

@@ -1,0 +1,7 @@
+AddLine 0.0 0.0 1.1 0.0 ff0000
+AddRectangle 0.0 0.0 1.0 2.0 ff0000 ff0000
+AddTriangle 0.0 0.0 3.0 0.0 0.0 4.0 ff0000 ff0000
+AddCircle 1.0 1.0 1.0 ff0000 ff0000
+Info
+MaxArea
+inPerimeter

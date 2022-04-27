@@ -157,7 +157,7 @@
     <ClCompile Include="..\lab4\CRectangle.cpp" />
     <ClCompile Include="..\lab4\CShape.cpp" />
     <ClCompile Include="..\lab4\CSolidShape.cpp" />
-    <ClCompile Include="..\lab4\CTriangel.cpp" />
+    <ClCompile Include="..\lab4\CTriangle.cpp" />
     <ClCompile Include="tests.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -167,9 +167,12 @@
     <ClInclude Include="..\lab4\CRectangle.h" />
     <ClInclude Include="..\lab4\CShape.h" />
     <ClInclude Include="..\lab4\CSolidShape.h" />
-    <ClInclude Include="..\lab4\CTriangel.h" />
+    <ClInclude Include="..\lab4\CTriangle.h" />
     <ClInclude Include="..\lab4\IShape.h" />
     <ClInclude Include="..\lab4\ISolidShape.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="testData.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

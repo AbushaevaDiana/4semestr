@@ -3,11 +3,11 @@
 #include <sstream>
 #include <cstdint>
 
-CRectangle::CRectangle(CPoint const& leftTop, double heigth, double width, uint32_t const& outlineColor, uint32_t const& fillColor):
+CRectangle::CRectangle(CPoint const& leftTop, double heigth, double width, uint32_t outlineColor, uint32_t fillColor):
+	CSolidShape(outlineColor, fillColor),
 	m_leftTop(leftTop),
 	m_heigth(heigth),
-	m_width(width),
-	CSolidShape(outlineColor, fillColor)
+	m_width(width)
 {
 };
 
@@ -25,7 +25,6 @@ double CRectangle::GetPerimeter() const
 std::string CRectangle::ToString() const
 {
 	std::ostringstream strm;
-	// для вывода числе с точкой fixed << setprecision(2)
 	strm
 		<< ">Rectangle:\n"
 		<< "  leftTop(" << m_leftTop.x << ", " << m_leftTop.y << ")\n"

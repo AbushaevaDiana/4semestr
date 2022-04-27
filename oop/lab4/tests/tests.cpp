@@ -4,7 +4,7 @@
 #include "../lab4/CShape.h"
 #include "../lab4/CSolidShape.h"
 #include "../lab4/CLineSegment.h"
-#include "../lab4/CTriangel.h"
+#include "../lab4/CTriangle.h"
 #include "../lab4/CCircle.h"
 #include "../lab4/CRectangle.h"
 
@@ -31,9 +31,9 @@ TEST_CASE("LineSegment")
 
 }
 
-TEST_CASE("Triangel")
+TEST_CASE("Triangle")
 {
-	SECTION("Object creation - Triangel")
+	SECTION("Object creation - Triangle")
 	{
 		CPoint vertex1 = { 0.0, 0.0 };
 		CPoint vertex2 = { 3.0, 0.0 };
@@ -42,21 +42,21 @@ TEST_CASE("Triangel")
 		uint32_t fillColor = 16711680;
 		double area = 6;
 		double perimeter = 12;
-		CTriangel triangel(vertex1, vertex2, vertex3, lineColor, fillColor);
+		CTriangle Triangle(vertex1, vertex2, vertex3, lineColor, fillColor);
 
-		std::string str = ">Triangel:\n  vertex1(0, 0)\n  vertex2(3, 0)\n  vertex3(0, 4)\n  perimeter: 12\n  area: 6\n  fill color: ff0000\n  line color: ff0000\n";
+		std::string str = ">Triangle:\n  vertex1(0, 0)\n  vertex2(3, 0)\n  vertex3(0, 4)\n  perimeter: 12\n  area: 6\n  fill color: ff0000\n  line color: ff0000\n";
 
-		REQUIRE(triangel.GetArea() == area);
-		REQUIRE(triangel.GetPerimeter() == perimeter);
-		REQUIRE(triangel.ToString() == str);
-		REQUIRE(triangel.GetVertex1().x == vertex1.x);
-		REQUIRE(triangel.GetVertex1().y == vertex1.y);
-		REQUIRE(triangel.GetVertex2().x == vertex2.x);
-		REQUIRE(triangel.GetVertex2().y == vertex2.y);
-		REQUIRE(triangel.GetVertex3().x == vertex3.x);
-		REQUIRE(triangel.GetVertex3().y == vertex3.y);
-		REQUIRE(triangel.GetOutlineColor() == lineColor);
-		REQUIRE(triangel.GetFillColor() == fillColor);
+		REQUIRE(Triangle.GetArea() == area);
+		REQUIRE(Triangle.GetPerimeter() == perimeter);
+		REQUIRE(Triangle.ToString() == str);
+		REQUIRE(Triangle.GetVertex1().x == vertex1.x);
+		REQUIRE(Triangle.GetVertex1().y == vertex1.y);
+		REQUIRE(Triangle.GetVertex2().x == vertex2.x);
+		REQUIRE(Triangle.GetVertex2().y == vertex2.y);
+		REQUIRE(Triangle.GetVertex3().x == vertex3.x);
+		REQUIRE(Triangle.GetVertex3().y == vertex3.y);
+		REQUIRE(Triangle.GetOutlineColor() == lineColor);
+		REQUIRE(Triangle.GetFillColor() == fillColor);
 	}
 
 }
@@ -146,6 +146,39 @@ TEST_CASE("Controler")
 
 		controler.Command();
 		controler.Command();
+
+		REQUIRE(outStr == output.str());
+	}
+	SECTION("Add shapes and eof")
+	{
+		std::string inStr = "AddLine 0.0 0.0 1.1 0.0 ff0000\nAddRectangle 0.0 0.0 1.0 2.0 ff0000 ff0000\nAddTriangle 0.0 0.0 3.0 0.0 0.0 4.0 ff0000 ff0000\n^Z";
+		std::string outStr = "\n Max Area: \n>Triangle:\n  vertex1(0, 0)\n  vertex2(3, 0)\n  vertex3(0, 4)\n  perimeter: 12\n  area: 6\n  fill color: ff0000\n  line color: ff0000\n";
+		outStr += "\n\n Min Perimeter: \n>Line:\n  startPoint(0, 0)\n  endPoint(1.1, 0)\n  perimeter: 1.1\n  area: 0\n  line color: ff0000\n\n";
+		std::istringstream input(inStr);
+		std::ostringstream output;
+
+		CControler controler(input, output);
+
+		for (auto i = 0; i < 4; i++)
+		{
+			controler.Command();
+		}
+		
+		REQUIRE(outStr == output.str());
+	}
+	SECTION("Add invalid shapes")
+	{
+		std::string inStr = "addLine 0.0 0.0 1.1 0.0 ff0000\nAddRectangle 0.0 0.0 -1.0 2.0 ff0000 ff0000\n";
+		std::string outStr = "\nUnknown shape / command\n";
+		std::istringstream input(inStr);
+		std::ostringstream output;
+
+		CControler controler(input, output);
+
+		for (auto i = 0; i < 2; i++)
+		{
+			controler.Command();
+		}
 
 		REQUIRE(outStr == output.str());
 	}

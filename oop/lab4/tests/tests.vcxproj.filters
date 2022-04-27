@@ -30,13 +30,13 @@
     <ClCompile Include="..\lab4\CSolidShape.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="..\lab4\CTriangel.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="..\lab4\CCircle.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="..\lab4\CRectangle.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lab4\CTriangle.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -59,14 +59,17 @@
     <ClInclude Include="..\lab4\CSolidShape.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="..\lab4\CTriangel.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="..\lab4\CCircle.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
     <ClInclude Include="..\lab4\CRectangle.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="..\lab4\CTriangle.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="testData.txt" />
   </ItemGroup>
 </Project>

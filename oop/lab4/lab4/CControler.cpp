@@ -4,6 +4,7 @@
 #include <iterator> 
 #include <algorithm>
 
+
 bool CControler::AddLineSegment(std::istream& input)
 {
 	GetInputStringVector(input);
@@ -17,7 +18,6 @@ bool CControler::AddLineSegment(std::istream& input)
 	{
 		CPoint startPoint = { stod(m_inputStringVector[0]), stod(m_inputStringVector[1]) };
 		CPoint endPoint = { stod(m_inputStringVector[2]), stod(m_inputStringVector[3]) };
-		//nullptr отсутствие указателя, в другой ситуации указатель на позицию, которую обрабатывать после выполнение функции
 		uint32_t outlineColor = stoul(m_inputStringVector[4], nullptr, 16);
 		m_inputStringVector.clear();
 		std::shared_ptr<IShape> line = std::make_shared<CLineSegment>(startPoint, endPoint, outlineColor);
@@ -32,13 +32,13 @@ bool CControler::AddLineSegment(std::istream& input)
 
 	return true;
 }
-bool CControler::AddTriangel(std::istream& input)
+bool CControler::AddTriangle(std::istream& input)
 {
 	GetInputStringVector(input);
 	if (m_inputStringVector.size() != 8)
 	{
 		m_inputStringVector.clear();
-		std::cerr << "Invalid count of triangel parameters \n";
+		std::cerr << "Invalid count of Triangle parameters \n";
 		return false;
 	}
 	try
@@ -46,17 +46,16 @@ bool CControler::AddTriangel(std::istream& input)
 		CPoint vertex1 = { stod(m_inputStringVector[0]), stod(m_inputStringVector[1]) };
 		CPoint vertex2 = { stod(m_inputStringVector[2]), stod(m_inputStringVector[3]) };
 		CPoint vertex3 = { stod(m_inputStringVector[4]), stod(m_inputStringVector[5]) };
-		//nullptr отсутствие указателя, в другой ситуации указатель на позицию, которую обрабатывать после выполнение функции
 		uint32_t outlineColor = stoul(m_inputStringVector[6], nullptr, 16);
 		uint32_t fillColor = stoul(m_inputStringVector[7], nullptr, 16);
 		m_inputStringVector.clear();
-		std::shared_ptr<IShape> triangel = std::make_shared<CTriangel>(vertex1, vertex2, vertex3, outlineColor, fillColor);
-		m_shapesList.push_back(triangel);
+		std::shared_ptr<IShape> Triangle = std::make_shared<CTriangle>(vertex1, vertex2, vertex3, outlineColor, fillColor);
+		m_shapesList.push_back(Triangle);
 	}
 	catch (const std::exception& e)
 	{
 		m_inputStringVector.clear();
-		std::cerr << "Invalid triangel data(" << e.what() << ")\n";
+		std::cerr << "Invalid Triangle data(" << e.what() << ")\n";
 		return false;
 	}
 
@@ -71,11 +70,16 @@ bool CControler::AddCircle(std::istream& input)
 		std::cerr << "Invalid count of circle parameters \n";
 		return false;
 	}
+	if (stod(m_inputStringVector[2]) <= 0)
+	{
+		m_inputStringVector.clear();
+		std::cerr << "Invalid radius\n";
+		return false;
+	}
 	try
 	{
 		CPoint center = { stod(m_inputStringVector[0]), stod(m_inputStringVector[1]) };
 		double radius = stod(m_inputStringVector[2]);
-		//nullptr отсутствие указателя, в другой ситуации указатель на позицию, которую обрабатывать после выполнение функции
 		uint32_t outlineColor = stoul(m_inputStringVector[3], nullptr, 16);
 		uint32_t fillColor = stoul(m_inputStringVector[4], nullptr, 16);
 		m_inputStringVector.clear();
@@ -100,12 +104,17 @@ bool CControler::AddRectangle(std::istream& input)
 		std::cerr << "Invalid count of rectangle parameters \n";
 		return false;
 	}
+	if ((stod(m_inputStringVector[2]) <= 0) || (stod(m_inputStringVector[3]) <= 0))
+	{
+		m_inputStringVector.clear();
+		std::cerr << "Invalid heigth or width\n";
+		return false;
+	}
 	try
 	{
 		CPoint leftTop = { stod(m_inputStringVector[0]), stod(m_inputStringVector[1]) };
 		double heigth = stod(m_inputStringVector[2]);
 		double width = stod(m_inputStringVector[3]);
-		//nullptr отсутствие указателя, в другой ситуации указатель на позицию, которую обрабатывать после выполнение функции
 		uint32_t outlineColor = stoul(m_inputStringVector[4], nullptr, 16);
 		uint32_t fillColor = stoul(m_inputStringVector[5], nullptr, 16);
 		m_inputStringVector.clear();
@@ -141,15 +150,6 @@ bool CControler::PrintInfo()
 	return true;
 };
 
-bool compForArea(std::shared_ptr<IShape> shape1, std::shared_ptr<IShape> shape2)
-{
-	if (shape1->GetArea() > shape2->GetArea())
-	{
-		return true;
-	}
-	return false;
-}
-
 bool CControler::PrintMaxArea()
 {
 	if (m_shapesList.empty())
@@ -158,21 +158,16 @@ bool CControler::PrintMaxArea()
 		return false;
 	}
 
-	std::vector<std::shared_ptr<IShape>> shapesList = m_shapesList;
-	sort(shapesList.begin(), shapesList.end(), compForArea);
-	m_output << "\n Max Area: \n" << shapesList[0]->ToString() << "\n";;
+	//вместо сортировки использовать алгоритм нахождения мин или макс, котороый оптимальнее +
+	auto shape = *std::max_element(m_shapesList.begin(), m_shapesList.end(), 
+		[](std::shared_ptr<IShape>& const a, std::shared_ptr<IShape>& const b) 
+		{ 
+			return (a->GetArea()) < (b->GetArea()); 
+		});
+	m_output << "\n Max Area: \n" << shape->ToString() << "\n";;
 
 	return true;
 };
-
-bool compForPerimeter(std::shared_ptr<IShape> shape1, std::shared_ptr<IShape> shape2)
-{
-	if (shape1->GetPerimeter() < shape2->GetPerimeter())
-	{
-		return true;
-	}
-	return false;
-}
 
 bool CControler::PrintMinPerimeter()
 {
@@ -181,9 +176,12 @@ bool CControler::PrintMinPerimeter()
 		m_output << "\nEmpty shape list, add at least one shape\n";
 		return false;
 	}
-	std::vector<std::shared_ptr<IShape>> shapesList = m_shapesList;
-	sort(shapesList.begin(), shapesList.end(), compForPerimeter);
-	m_output << "\n Min Perimeter: \n" << shapesList[0]->ToString() << "\n";
+	auto shape = *std::min_element(m_shapesList.begin(), m_shapesList.end(), 
+		[](std::shared_ptr<IShape>& const a, std::shared_ptr<IShape>& const b) 
+		{ 
+			return (a->GetArea()) < (b->GetArea()); 
+		});
+	m_output << "\n Min Perimeter: \n" << shape->ToString() << "\n";
 
 	return true;
 };
@@ -240,8 +238,8 @@ CControler::CControler(std::istream& input, std::ostream& output)
 		  { "AddLine", [this](std::istream& strm) {
 			   return AddLineSegment(strm);
 		   } },
-		  { "AddTriangel", [this](std::istream& strm) {
-			   return AddTriangel(strm);
+		  { "AddTriangle", [this](std::istream& strm) {
+			   return AddTriangle(strm);
 		   } },
 		  { "AddCircle", [this](std::istream& strm) {
 			   return AddCircle(strm);

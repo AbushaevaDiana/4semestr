@@ -1,7 +1,7 @@
 #pragma once
 #include "CShape.h"
 #include "CLineSegment.h"
-#include "CTriangel.h"
+#include "CTriangle.h"
 #include "CRectangle.h"
 #include "CCircle.h"
 #include <iostream>
@@ -25,7 +25,7 @@ private:
 
 	bool GetInputStringVector(std::istream& input);
 	bool AddLineSegment(std::istream& input);
-	bool AddTriangel(std::istream& input);
+	bool AddTriangle(std::istream& input);
 	bool AddCircle(std::istream& input);
 	bool AddRectangle(std::istream& input);
 

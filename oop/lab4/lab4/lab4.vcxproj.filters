@@ -30,7 +30,7 @@
     <ClCompile Include="CSolidShape.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="CTriangel.cpp">
+    <ClCompile Include="CTriangle.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="CCircle.cpp">
@@ -59,7 +59,7 @@
     <ClInclude Include="CSolidShape.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="CTriangel.h">
+    <ClInclude Include="CTriangle.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
     <ClInclude Include="CCircle.h">

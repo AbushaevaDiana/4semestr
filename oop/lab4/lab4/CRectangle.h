@@ -1,10 +1,10 @@
 #pragma once
 #include "CSolidShape.h"
 
-class CRectangle : public CSolidShape
+class CRectangle: public CSolidShape
 {
 public:
-	CRectangle(CPoint const& leftTop, double heigth, double width, uint32_t const& outlineColor, uint32_t const& fillColor);
+	CRectangle(CPoint const& leftTop, double heigth, double width, uint32_t outlineColor, uint32_t fillColor);
 	double GetArea() const override;
 	double GetPerimeter() const override;
 	std::string ToString() const override;
@@ -12,7 +12,7 @@ public:
 	CPoint GetRightBottom() const;
 	double GetHeigth() const;
 	double GetWidth() const;
-
+	~CRectangle() {};
 private:
 	CPoint m_leftTop;
 	double m_heigth;

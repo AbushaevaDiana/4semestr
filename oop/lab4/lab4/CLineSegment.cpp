@@ -3,10 +3,10 @@
 #include <sstream>
 #include <cstdint>
 
-CLineSegment::CLineSegment(CPoint const& startPoint, CPoint const& endPoint, uint32_t const& outlineColor):
+CLineSegment::CLineSegment(CPoint const& startPoint, CPoint const& endPoint, uint32_t outlineColor):
+	CShape(outlineColor),
 	m_startPoint(startPoint),
-	m_endPoint(endPoint),
-	CShape(outlineColor)
+	m_endPoint(endPoint)
 {
 };
 
@@ -24,7 +24,6 @@ double CLineSegment::GetPerimeter() const
 std::string CLineSegment::ToString() const
 {
 	std::ostringstream strm;
-	// для вывода числе с точкой fixed << setprecision(2)
 	strm 
 		<< ">Line:\n"
 		<< "  startPoint(" << m_startPoint.x << ", " << m_startPoint.y << ")\n"

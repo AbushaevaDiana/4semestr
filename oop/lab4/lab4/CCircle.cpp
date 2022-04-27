@@ -4,10 +4,10 @@
 #include <cstdint>
 
 
-CCircle::CCircle(CPoint const& center, double const& radius, uint32_t const& outlineColor, uint32_t const& fillColor):
+CCircle::CCircle(CPoint const& center, double const& radius, uint32_t outlineColor, uint32_t fillColor):
+	CSolidShape(outlineColor, fillColor),
 	m_center(center),
-	m_radius(radius),
-	CSolidShape(outlineColor, fillColor)
+	m_radius(radius)
 {
 };
 
@@ -26,7 +26,6 @@ double CCircle::GetPerimeter() const
 std::string CCircle::ToString() const
 {
 	std::ostringstream strm;
-	// для вывода числе с точкой fixed << setprecision(2)
 	strm
 		<< ">Circle:\n"
 		<< "  center(" << m_center.x << ", " << m_center.y << ")\n"

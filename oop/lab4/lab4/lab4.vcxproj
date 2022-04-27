@@ -145,7 +145,7 @@
     <ClCompile Include="CRectangle.cpp" />
     <ClCompile Include="CShape.cpp" />
     <ClCompile Include="CSolidShape.cpp" />
-    <ClCompile Include="CTriangel.cpp" />
+    <ClCompile Include="CTriangle.cpp" />
     <ClCompile Include="lab4.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -155,7 +155,7 @@
     <ClInclude Include="CRectangle.h" />
     <ClInclude Include="CShape.h" />
     <ClInclude Include="CSolidShape.h" />
-    <ClInclude Include="CTriangel.h" />
+    <ClInclude Include="CTriangle.h" />
     <ClInclude Include="IShape.h" />
     <ClInclude Include="ISolidShape.h" />
   </ItemGroup>
