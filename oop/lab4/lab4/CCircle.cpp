@@ -48,3 +48,8 @@ CPoint CCircle::GetCenter() const
 {
 	return m_center;
 }
+
+/*bool CCircle::Draw(ICanvas& canvas) const
+{
+	canvas.DrawCircle(GetRadius(), GetCenter(), GetOutlineColor());
+}*/

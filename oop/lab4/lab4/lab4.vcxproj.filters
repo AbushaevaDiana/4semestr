@@ -68,5 +68,8 @@
     <ClInclude Include="CRectangle.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="ICanvasDrawable.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

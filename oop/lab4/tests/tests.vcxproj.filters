@@ -68,6 +68,9 @@
     <ClInclude Include="..\lab4\CTriangle.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="..\lab4\ICanvasDrawable.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="testData.txt" />

@@ -19,6 +19,7 @@ private:
 	bool PrintInfo();
 	bool PrintMaxArea();
 	bool PrintMinPerimeter();
+	//bool Draw();
 
 	std::vector<std::string> m_inputStringVector;
 	std::vector<std::shared_ptr<IShape>> m_shapesList;

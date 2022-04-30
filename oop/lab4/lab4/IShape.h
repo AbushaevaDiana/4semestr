@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include <stdint.h>
+#include "ICanvasDrawable.h"
 
 class CPoint
 {
@@ -9,7 +9,7 @@ public:
 	double y = 0;
 };
 
-class IShape
+class IShape: virtual public ICanvasDrawable
 {
 public:
 	virtual double GetArea() const = 0;

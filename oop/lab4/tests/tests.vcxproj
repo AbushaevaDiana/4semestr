@@ -168,6 +168,7 @@
     <ClInclude Include="..\lab4\CShape.h" />
     <ClInclude Include="..\lab4\CSolidShape.h" />
     <ClInclude Include="..\lab4\CTriangle.h" />
+    <ClInclude Include="..\lab4\ICanvasDrawable.h" />
     <ClInclude Include="..\lab4\IShape.h" />
     <ClInclude Include="..\lab4\ISolidShape.h" />
   </ItemGroup>
