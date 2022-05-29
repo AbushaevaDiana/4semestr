@@ -3,6 +3,7 @@
 #include <sstream>
 #include <iterator> 
 #include <algorithm>
+#include "CCanvas.h"
 
 
 bool CControler::AddLineSegment(std::istream& input)
@@ -112,6 +113,7 @@ bool CControler::AddRectangle(std::istream& input)
 	}
 	try
 	{
+		//упростить код чтения параметров фигур
 		CPoint leftTop = { stod(m_inputStringVector[0]), stod(m_inputStringVector[1]) };
 		double heigth = stod(m_inputStringVector[2]);
 		double width = stod(m_inputStringVector[3]);
@@ -221,6 +223,36 @@ bool CControler::Command()
 	return false;
 }
 
+bool CControler::Draw()
+{
+	sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGTH), "Shapes");
+	CCanvas canvas(window);
+
+	while (window.isOpen())
+	{
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+			{
+				window.close();
+			}
+		}
+
+		window.clear(sf::Color::White);
+
+		for (auto i = 0; i < m_shapesList.size(); i++)
+		{
+			auto shape = m_shapesList[i];
+			shape->Draw(canvas);
+		}
+
+		window.display();
+	}
+	
+	return true;
+}
+
 CControler::CControler(std::istream& input, std::ostream& output)
 	: m_input(input),
 	m_output(output),
@@ -246,6 +278,9 @@ CControler::CControler(std::istream& input, std::ostream& output)
 		   } },
 		  { "AddRectangle", [this](std::istream& strm) {
 			   return AddRectangle(strm);
+		   } },
+		  { "Draw", [this](std::istream& strm) {
+			   return Draw();
 		   } },
 		})
 {

@@ -12,6 +12,7 @@ public:
 	CPoint GetRightBottom() const;
 	double GetHeigth() const;
 	double GetWidth() const;
+	bool Draw(ICanvas& canvas) const override;
 	~CRectangle() {};
 private:
 	CPoint m_leftTop;

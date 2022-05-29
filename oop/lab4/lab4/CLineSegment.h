@@ -12,6 +12,7 @@ public:
 	CPoint GetStartPoint() const;
 	CPoint GetEndPoint() const;
 	~CLineSegment() {};
+	bool Draw(ICanvas& canvas) const override;
 private:
 	CPoint m_startPoint;
 	CPoint m_endPoint;

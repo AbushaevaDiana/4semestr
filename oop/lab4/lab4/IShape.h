@@ -2,13 +2,6 @@
 #include <string>
 #include "ICanvasDrawable.h"
 
-class CPoint
-{
-public:
-	double x = 0;
-	double y = 0;
-};
-
 class IShape: virtual public ICanvasDrawable
 {
 public:

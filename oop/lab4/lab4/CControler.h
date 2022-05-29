@@ -9,6 +9,9 @@
 #include <functional>
 #include <vector>
 
+const int WINDOW_WIDTH = 1100;
+const int WINDOW_HEIGTH = 900;
+
 class CControler
 {
 public:
@@ -19,7 +22,7 @@ private:
 	bool PrintInfo();
 	bool PrintMaxArea();
 	bool PrintMinPerimeter();
-	//bool Draw();
+	bool Draw();
 
 	std::vector<std::string> m_inputStringVector;
 	std::vector<std::shared_ptr<IShape>> m_shapesList;

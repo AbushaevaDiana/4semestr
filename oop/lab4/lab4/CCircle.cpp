@@ -3,7 +3,6 @@
 #include <sstream>
 #include <cstdint>
 
-
 CCircle::CCircle(CPoint const& center, double const& radius, uint32_t outlineColor, uint32_t fillColor):
 	CSolidShape(outlineColor, fillColor),
 	m_center(center),
@@ -44,12 +43,14 @@ double CCircle::GetRadius() const
 	return m_radius;
 }
 
+bool CCircle::Draw(ICanvas& canvas) const
+{
+	canvas.DrawCircle(m_center, m_radius, GetOutlineColor(), GetFillColor());
+	//canvas.FillCircle(m_center, m_radius, GetFillColor());
+	return true;
+}
+
 CPoint CCircle::GetCenter() const
 {
 	return m_center;
 }
-
-/*bool CCircle::Draw(ICanvas& canvas) const
-{
-	canvas.DrawCircle(GetRadius(), GetCenter(), GetOutlineColor());
-}*/

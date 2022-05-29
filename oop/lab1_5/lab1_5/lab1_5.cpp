@@ -36,11 +36,10 @@ void FillPoint(Field& field, int y, int x, std::deque<Point>& start)
 		start.push_back({ x, y });
 	}
 }
-//TODO: наименование lowerCamelCase +
-//TODO: i2 убрать +
+//TODO: наименование lowerCamelCase X Y -> x y +
+//TODO: i2 убрать(лишнее действие, можно сразу push_back({ x, y }))  +
 Field Fill(Field& field, std::deque<Point>& start)
 {
-	
 	while(!start.empty())
 	{
 		Point i1 = start[0];
@@ -85,10 +84,7 @@ bool InitializeField(Field& field, std::deque<Point>& start, std::string& const 
 			if (str[i] == '0')
 			{
 				field.items[i][j] = Symbols::Start;
-				Point point;
-				point.y = i;
-				point.x = j;
-				start.push_back(point);
+				start.push_back({ j, i });
 			}
 			if (str[i] == '#')
 			{

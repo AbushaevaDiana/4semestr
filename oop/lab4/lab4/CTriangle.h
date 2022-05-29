@@ -12,6 +12,7 @@ public:
 	CPoint GetVertex1() const;
 	CPoint GetVertex2() const;
 	CPoint GetVertex3() const;
+	bool Draw(ICanvas& canvas) const override;
 	~CTriangle() {};
 private:
 	CPoint m_vertex1;

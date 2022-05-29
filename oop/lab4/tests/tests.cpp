@@ -8,6 +8,9 @@
 #include "../lab4/CCircle.h"
 #include "../lab4/CRectangle.h"
 #include "../lab4/ICanvasDrawable.h"
+#include "../lab4/ICanvas.h"
+#include "../lab4/CCanvas.h"
+
 
 TEST_CASE("LineSegment")
 {

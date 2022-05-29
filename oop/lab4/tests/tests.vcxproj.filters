@@ -39,6 +39,9 @@
     <ClCompile Include="..\lab4\CTriangle.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="..\lab4\CCanvas.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lab4\CControler.h">
@@ -69,6 +72,12 @@
       <Filter>Исходные файлы</Filter>
     </ClInclude>
     <ClInclude Include="..\lab4\ICanvasDrawable.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lab4\ICanvas.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lab4\CCanvas.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
   </ItemGroup>

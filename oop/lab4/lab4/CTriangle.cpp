@@ -64,3 +64,21 @@ CPoint CTriangle::GetVertex3() const
 {
 	return m_vertex3;
 }
+
+bool CTriangle::Draw(ICanvas& canvas) const
+{
+	std::vector<CPoint> points = 
+	{
+	    GetVertex1(),
+	    GetVertex2(),
+	    GetVertex3()
+	};
+
+	canvas.FillPolygon(points, GetFillColor());
+
+	uint32_t outlineColor = GetOutlineColor();
+	canvas.DrawLine(points[0], points[1], outlineColor);
+	canvas.DrawLine(points[1], points[2], outlineColor);
+	canvas.DrawLine(points[0], points[2], outlineColor);
+	return true;
+}
