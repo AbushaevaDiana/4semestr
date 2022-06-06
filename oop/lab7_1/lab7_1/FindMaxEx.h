@@ -2,54 +2,6 @@
 #include <string>
 #include <vector>
 
-struct Sportsman
-{
-	std::string name;
-    int height;
-	int weight;
-};
-
-template < typename T >
-bool FindMaxEx(std::vector<T> const& arr, T& maxValue)
-{
-	if (arr.empty())
-	{
-		return false;
-	}
-
-	maxValue = arr[0];
-
-	for (auto i = 1; i < arr.size(); i++)
-	{
-		if (maxValue < arr[i])
-		{
-			maxValue = arr[i];
-		}
-	}
-
-	return true;
-}
-
-template <>
-bool FindMaxEx<const char*>(std::vector<const char*> const& arr, const char*& maxValue)
-{
-	if (arr.empty())
-	{
-		return false;
-	}
-
-	maxValue = arr[0];
-
-	for (auto i = 1; i < arr.size(); i++)
-	{
-		if (std::strcmp(arr[i], maxValue) > 0)
-		{
-		    maxValue = arr[i];
-		}
-	}
-	return true;
-}
-
 template < typename T, typename Less>
 bool FindMaxEx(std::vector<T> const& arr, T& maxValue, Less const& less)
 {
@@ -58,15 +10,17 @@ bool FindMaxEx(std::vector<T> const& arr, T& maxValue, Less const& less)
 		return false;
 	}
 
-	maxValue = arr[0];
-
-	for (auto i = 1; i < arr.size(); i++)
+	//i должна иметь тип size_t +
+	//присваивать maxValue только, после того как нашли max +
+	size_t indexOfMax = 0;
+	for (size_t i = 1; i < arr.size(); i++)
 	{
-		if (less(maxValue, arr[i]))
+		if (less(arr[indexOfMax], arr[i]))
 		{
-			maxValue = arr[i];
+			indexOfMax = i;
 		}
 	}
+	maxValue = arr[indexOfMax];
 	return true;
 }
 

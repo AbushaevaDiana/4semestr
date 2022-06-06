@@ -58,7 +58,6 @@ CRational::CRational(int numerator, int denominator) :
 	m_numerator(numerator),
 	m_denominator(denominator)
 {
-	//лучше исключение
 	if (m_denominator == 0)
 	{
 		m_denominator = 1;

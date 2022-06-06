@@ -55,6 +55,5 @@ bool operator>=(const CRational& number1, const CRational& number2);
 std::istream& operator >>(std::istream& inStream, CRational& number);
 std::ostream& operator <<(std::ostream& outStream, const CRational& number);
 
-//есть в стандартной библиотеке
 int GetLeastCommonMultiplier(int a, int b);
 int GreatestCommonDivisor(int a, int b);

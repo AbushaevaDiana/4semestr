@@ -58,12 +58,14 @@ public:
 	unsigned short GetPort()const;
 	std::string GetProtocolLikeString() const;
 private:
+	//константные методы +
+	//протокол в любом регистре +
+	std::string ConvertToValidDocument(std::string const& document) const;
+	Protocol ConvertToValidProtocol(std::string& protocolString) const;
+	unsigned short ConvertToValidPort(const std::string& strPort) const;
 	std::string m_document;
 	std::string m_domain;
 	Protocol m_protocol;
 	unsigned short m_port;
 };
 
-std::string ConvertToValidDocument(std::string const& document);
-Protocol ConvertToValidProtocol(std::string const& protocolString);
-unsigned short ConvertToValidPort(const std::string& strPort, const Protocol& protocol);

@@ -14,6 +14,16 @@ TEST_CASE("correct")
 		REQUIRE(url.GetURL() == str);
 	}
 
+	SECTION("Parse sample URL from string with HTTP")
+	{
+		std::string str("HTTP://www.example.com/docs/document1.html?page=30&lang=en#title");
+		std::string strOut("http://www.example.com/docs/document1.html?page=30&lang=en#title");
+
+		REQUIRE_NOTHROW(CHttpUrl(str));
+		CHttpUrl url(str);
+		REQUIRE(url.GetURL() == strOut);
+	}
+
 	SECTION("Parse sample URL with 3 parameters")
 	{
 		std::string str("http://www.example.com/docs/document1.html?page=30&lang=en#title");

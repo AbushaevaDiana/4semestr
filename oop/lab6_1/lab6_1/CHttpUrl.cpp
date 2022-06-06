@@ -19,9 +19,11 @@ CHttpUrl::CHttpUrl(std::string const& url)
 
 	m_protocol = ConvertToValidProtocol(protocolString);
 	if (domain.empty())
+	{
 		throw CUrlParsingError("invalid domain");
+	}
 	m_domain = domain;
-	m_port = ConvertToValidPort(port, m_protocol);
+	m_port = ConvertToValidPort(port);
 	m_document = ConvertToValidDocument(document);
 }
 
@@ -30,12 +32,14 @@ CHttpUrl::CHttpUrl(std::string const& domain,
 	Protocol protocol)
 {
 	if (domain.empty())
+	{
 		throw CUrlParsingError("invalid domain");
+	}
 	m_domain = domain;
 	m_protocol = protocol;
 	m_document = ConvertToValidDocument(document);
 	std::string port = "";
-	m_port = ConvertToValidPort(port, protocol);
+	m_port = ConvertToValidPort(port);
 	
 }
 
@@ -46,16 +50,18 @@ CHttpUrl::CHttpUrl(
 	unsigned short port)
 {
 	if (domain.empty())
+	{
 		throw CUrlParsingError("invalid domain");
+	}
 	m_domain = domain;
 	m_protocol = protocol;
 	m_document = ConvertToValidDocument(document);
 	m_port = port;
 }
 
-
-Protocol ConvertToValidProtocol(std::string const& protocolString)
+Protocol CHttpUrl::ConvertToValidProtocol(std::string& protocolString) const
 {
+	std::transform(protocolString.begin(), protocolString.end(), protocolString.begin(), tolower);
 	if (protocolString == "http")
 	{
 		return Protocol::HTTP;
@@ -67,15 +73,15 @@ Protocol ConvertToValidProtocol(std::string const& protocolString)
 	throw CUrlParsingError("invalid protocol");
 }
 
-unsigned short ConvertToValidPort(const std::string& strPort, const Protocol& protocol)
+unsigned short CHttpUrl::ConvertToValidPort(const std::string& strPort) const
 {
 	if (strPort.empty())
 	{
-		if (protocol == Protocol::HTTP)
+		if (m_protocol == Protocol::HTTP)
 		{
 			return 80;
 		}
-		if (protocol == Protocol::HTTP)
+		if (m_protocol == Protocol::HTTP)
 		{
 			return 443;
 		}
@@ -99,7 +105,7 @@ unsigned short ConvertToValidPort(const std::string& strPort, const Protocol& pr
 	return portNum;
 }
 
-std::string ConvertToValidDocument(std::string const& document)
+std::string CHttpUrl::ConvertToValidDocument(std::string const& document) const
 {
 	if (document.empty() || document[0] != '/')
 	{
@@ -144,8 +150,7 @@ std::string CHttpUrl::GetProtocolLikeString() const
 	{
 		return "http";
 	}
-	if (m_protocol == Protocol::HTTPS)
-	{
-		return "https";
-	}
+	
+	return "https";
+	
 }
