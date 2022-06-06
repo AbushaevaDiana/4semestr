@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{01cadf22-4145-4dfd-8370-f761735a10b6}</ProjectGuid>
-    <RootNamespace>tests</RootNamespace>
+    <ProjectGuid>{b1dca9ac-2831-4b3c-a14d-0a325308e7eb}</ProjectGuid>
+    <RootNamespace>test</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -151,14 +151,13 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\lab5_1\Rationl.cpp" />
-    <ClCompile Include="tests.cpp" />
+    <ClCompile Include="..\lab6_1\CHttpUrl.cpp" />
+    <ClCompile Include="..\lab6_1\CUrlParsingError.cpp" />
+    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\lab5_1\Rationl.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="cpp.hint" />
+    <ClInclude Include="..\lab6_1\CHttpUrl.h" />
+    <ClInclude Include="..\lab6_1\CUrlParsingError.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
