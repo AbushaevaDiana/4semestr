@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-int main()
+unsigned  main()
 {
     return 0;
 }
