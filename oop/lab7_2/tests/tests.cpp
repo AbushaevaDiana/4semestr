@@ -10,7 +10,7 @@ TEST_CASE("CStack int")
 	SECTION("empty stack ")
 	{
 		CHECK(intStack.IsEmpty());
-		CHECK_THROWS(intStack.GetTopElement());
+		CHECK_THROWS(intStack.GetTopElement(), "Empty stack");
 	}
 
 	SECTION("push")
@@ -26,6 +26,7 @@ TEST_CASE("CStack int")
 	SECTION("pop")
 	{
 		CHECK(intStack.IsEmpty());
+		CHECK_THROWS(intStack.Pop(), "Empty stack. Can't pop");
 		intStack.Push(2);
 		intStack.Push(5);
 		intStack.Push(3);
@@ -35,7 +36,7 @@ TEST_CASE("CStack int")
 		CHECK(intStack.GetTopElement() == 5);
 		intStack.Pop();
 		intStack.Pop();
-		CHECK_THROWS(intStack.GetTopElement());
+		CHECK_THROWS(intStack.GetTopElement(), "Empty stack");
 		CHECK(intStack.IsEmpty());
 	}
 
@@ -60,6 +61,17 @@ TEST_CASE("CStack int")
 		CHECK(!intStack2.IsEmpty());
 		CHECK(intStack.GetTopElement() == intStack.GetTopElement());
 	}
+	//проверка копирования самого себя, присваивание через перемещающий конструктор, и перемещающий опрератор присваивания
+
+	SECTION("copy create")
+	{
+		intStack.Push(2);
+		intStack.Push(5);
+		intStack.Push(3);
+		CMyStack<int> intStack2(intStack);
+		CHECK(!intStack2.IsEmpty());
+		CHECK(intStack.GetTopElement() == intStack.GetTopElement());
+	}
 }
 
 TEST_CASE("CStack string")
@@ -69,7 +81,7 @@ TEST_CASE("CStack string")
 	SECTION("empty stack")
 	{
 		CHECK(strStack.IsEmpty());
-		CHECK_THROWS(strStack.GetTopElement());
+		CHECK_THROWS(strStack.GetTopElement(), "Empty stack");
 	}
 
 	SECTION("push")
@@ -85,6 +97,7 @@ TEST_CASE("CStack string")
 	SECTION("pop")
 	{
 		CHECK(strStack.IsEmpty());
+		CHECK_THROWS(strStack.Pop(), "Empty stack. Can't pop");
 		strStack.Push(" ");
 		strStack.Push("dd");
 		strStack.Push("dddd");
@@ -94,7 +107,7 @@ TEST_CASE("CStack string")
 		CHECK(strStack.GetTopElement() == "dd");
 		strStack.Pop();
 		strStack.Pop();
-		CHECK_THROWS(strStack.GetTopElement());
+		CHECK_THROWS(strStack.GetTopElement(), "Empty stack");
 		CHECK(strStack.IsEmpty());
 	}
 
@@ -115,6 +128,16 @@ TEST_CASE("CStack string")
 		strStack.Push("ff");
 		CHECK(strStack2.IsEmpty());
 		strStack2 = strStack;
+		CHECK(!strStack2.IsEmpty());
+		CHECK(strStack.GetTopElement() == strStack.GetTopElement());
+	}
+
+	SECTION("copy create")
+	{
+		strStack.Push("4");
+		strStack.Push("5");
+		strStack.Push("5");
+		CMyStack<std::string> strStack2(strStack);
 		CHECK(!strStack2.IsEmpty());
 		CHECK(strStack.GetTopElement() == strStack.GetTopElement());
 	}
