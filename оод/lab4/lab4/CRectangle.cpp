@@ -3,8 +3,8 @@
 #include <sstream>
 #include <cstdint>
 
-CRectangle::CRectangle(SapePtr&& shape, CPoint const& leftTop, float heigth, float width):
-	CShapeDecorator(std::move(shape)),
+CRectangle::CRectangle(ShapePtr&& shape, sf::Vector2f const& leftTop, float heigth, float width, sf::Color fillColor, sf::Color outlineColor):
+	CShapeDecorator(std::move(shape), fillColor, outlineColor),
 	m_leftTop(leftTop),
 	m_heigth(heigth),
 	m_width(width)
@@ -35,13 +35,13 @@ std::string CRectangle::ToString() const
 
 	return strm.str();
 }
-CPoint CRectangle::GetLeftTop() const
+sf::Vector2f CRectangle::GetLeftTop() const
 {
 	return m_leftTop;
 }
-CPoint CRectangle::GetRightBottom() const
+sf::Vector2f CRectangle::GetRightBottom() const
 {
-	CPoint rigthBottom = { m_leftTop.x + m_width, m_leftTop.y + m_heigth};
+	sf::Vector2f rigthBottom = { m_leftTop.x + m_width, m_leftTop.y + m_heigth};
 	return rigthBottom;
 }
 
@@ -54,13 +54,4 @@ float CRectangle::GetWidth() const
 	return m_width;
 }
 
-std::size_t CRectangle::getPointCount() const
-{
-	return 1;
-}
-
-sf::Vector2f CRectangle::getPoint(std::size_t index) const
-{
-	return m_leftTop;
-}
 

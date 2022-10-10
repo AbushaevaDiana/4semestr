@@ -4,8 +4,8 @@
 #include <cstdint>
 #include "Line.h"
 
-CCircle::CCircle(SapePtr&& shape, CPoint const& center, float const& radius):
-	CShapeDecorator(std::move(shape)),
+CCircle::CCircle(ShapePtr&& shape, sf::Vector2f const& center, float const& radius, sf::Color fillColor, sf::Color outlineColor):
+	CShapeDecorator(std::move(shape), fillColor, outlineColor),
 	m_center(center),
 	m_radius(radius)
 {
@@ -42,17 +42,7 @@ float CCircle::GetRadius() const
 	return m_radius;
 }
 
-CPoint CCircle::GetCenter() const
-{
-	return m_center;
-}
-
-std::size_t CCircle::getPointCount() const
-{
-	return 1;
-}
-
-sf::Vector2f CCircle::getPoint(std::size_t index) const
+sf::Vector2f CCircle::GetCenter() const
 {
 	return m_center;
 }

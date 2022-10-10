@@ -1,21 +1,19 @@
 #pragma once
-#include "IShapeDecorator.h"
+#include "CShapeDecorator.h"
 
 class CTriangle: public CShapeDecorator
 {
 public:
-	CTriangle(SapePtr&& shape, CPoint const& vertex1, CPoint const& vertex2, CPoint const& vertex3);
-	std::size_t getPointCount() const override;
-	sf::Vector2f getPoint(std::size_t index) const override;
+	CTriangle(ShapePtr&& shape, sf::Vector2f const& vertex1, sf::Vector2f const& vertex2, sf::Vector2f const& vertex3, sf::Color fillColor, sf::Color outlineColor);
 	float GetArea() const override;
 	float GetPerimeter() const override;
 	std::string ToString() const override;
-	CPoint GetVertex1() const;
-	CPoint GetVertex2() const;
-	CPoint GetVertex3() const;
+	sf::Vector2f GetVertex1() const;
+	sf::Vector2f GetVertex2() const;
+	sf::Vector2f GetVertex3() const;
 	~CTriangle() {};
 private:
-	CPoint m_vertex1;
-	CPoint m_vertex2;
-	CPoint m_vertex3;
+	sf::Vector2f m_vertex1;
+	sf::Vector2f m_vertex2;
+	sf::Vector2f m_vertex3;
 };

@@ -15,9 +15,9 @@ bool CControler::AddTriangle(std::istream& input)
 	}
 	try
 	{
-		CPoint vertex1 = { stof(m_inputStringVector[0]), stof(m_inputStringVector[1]) };
-		CPoint vertex2 = { stof(m_inputStringVector[2]), stof(m_inputStringVector[3]) };
-		CPoint vertex3 = { stof(m_inputStringVector[4]), stof(m_inputStringVector[5]) };
+		sf::Vector2f vertex1 = { stof(m_inputStringVector[0]), stof(m_inputStringVector[1]) };
+		sf::Vector2f vertex2 = { stof(m_inputStringVector[2]), stof(m_inputStringVector[3]) };
+		sf::Vector2f vertex3 = { stof(m_inputStringVector[4]), stof(m_inputStringVector[5]) };
 		uint32_t outlineColor = stoul(m_inputStringVector[6], nullptr, 16);
 		uint32_t fillColor = stoul(m_inputStringVector[7], nullptr, 16);
 		m_inputStringVector.clear();
@@ -32,7 +32,7 @@ bool CControler::AddTriangle(std::istream& input)
 		triangle->setOutlineColor(GetColor(outlineColor));
 		triangle->setFillColor(GetColor(fillColor));
 
-		auto shape = std::make_unique<CTriangle>(std::move(triangle), vertex1, vertex2, vertex3);
+		auto shape = std::make_unique<CTriangle>(std::move(triangle), vertex1, vertex2, vertex3, GetColor(fillColor), GetColor(outlineColor));
 		m_shapesList.push_back(std::move(shape));
 
 	}
@@ -62,7 +62,7 @@ bool CControler::AddCircle(std::istream& input)
 	}
 	try
 	{
-		CPoint center = { stof(m_inputStringVector[0]), stof(m_inputStringVector[1]) };
+		sf::Vector2f center = { stof(m_inputStringVector[0]), stof(m_inputStringVector[1]) };
 		float radius = stof(m_inputStringVector[2]);
 		uint32_t outlineColor = stoul(m_inputStringVector[3], nullptr, 16);
 		uint32_t fillColor = stoul(m_inputStringVector[4], nullptr, 16);
@@ -76,7 +76,7 @@ bool CControler::AddCircle(std::istream& input)
 		circle->setOutlineColor(GetColor(outlineColor));
 		circle->setFillColor(GetColor(fillColor));
 
-		auto shape = std::make_unique<CCircle>(std::move(circle), center, radius);
+		auto shape = std::make_unique<CCircle>(std::move(circle), center, radius, GetColor(fillColor), GetColor(outlineColor));
 		m_shapesList.push_back(std::move(shape));
 	}
 	catch (const std::exception& e)
@@ -105,7 +105,7 @@ bool CControler::AddRectangle(std::istream& input)
 	}
 	try
 	{
-		CPoint leftTop = { stof(m_inputStringVector[0]), stof(m_inputStringVector[1]) };
+		sf::Vector2f leftTop = { stof(m_inputStringVector[0]), stof(m_inputStringVector[1]) };
 		float heigth = stof(m_inputStringVector[2]);
 		float width = stof(m_inputStringVector[3]);
 		uint32_t outlineColor = stoul(m_inputStringVector[4], nullptr, 16);
@@ -120,7 +120,7 @@ bool CControler::AddRectangle(std::istream& input)
 		rectangle->setOutlineColor(GetColor(outlineColor));
 		rectangle->setFillColor(GetColor(fillColor));
 
-		auto shape = std::make_unique<CRectangle>(std::move(rectangle), leftTop, heigth, width);
+		auto shape = std::make_unique<CRectangle>(std::move(rectangle), leftTop, heigth, width, GetColor(fillColor), GetColor(outlineColor));
 		m_shapesList.push_back(std::move(shape));
 	}
 	catch (const std::exception& e)
@@ -199,21 +199,11 @@ bool CControler::Draw()
 
 		window.clear(sf::Color::White);
 
-		auto circle = std::make_unique<sf::CircleShape>();
-		CPoint leftTop = { 10, 20 };
-		circle->setRadius(150);
-		circle->setOutlineThickness(5);
-		circle->setOutlineColor(GetColor(std::stoul("000000", nullptr, 16)));
-		circle->setPosition(leftTop);
-		//auto shape = std::make_unique<CCircle>(std::move(circle), leftTop, 150);
-
-	    window.draw(*circle);
-
-		//for (auto i = 0; i < m_shapesList.size(); i++)
-		//{
-			//auto& shape = m_shapesList[i];
-			//window.draw(*shape);
-		//}
+		for (auto i = 0; i < m_shapesList.size(); i++)
+		{
+			auto& shape = m_shapesList[i];
+			shape->Draw(window);
+		}
 
 		window.display();
 	}

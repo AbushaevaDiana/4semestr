@@ -1,22 +1,20 @@
 #pragma once
-#include "IShapeDecorator.h"
+#include "CShapeDecorator.h"
 
 class CRectangle: public CShapeDecorator
 {
 public:
-	CRectangle(SapePtr&& shape, CPoint const& leftTop, float heigth, float width);
-	std::size_t getPointCount() const override;
-	sf::Vector2f getPoint(std::size_t index) const override;
+	CRectangle(ShapePtr&& shape, sf::Vector2f const& leftTop, float heigth, float width, sf::Color fillColor, sf::Color outlineColor);
 	float GetArea() const override;
 	float GetPerimeter() const override;
 	std::string ToString() const override;
-	CPoint GetLeftTop() const;
-	CPoint GetRightBottom() const;
+	sf::Vector2f GetLeftTop() const;
+	sf::Vector2f GetRightBottom() const;
 	float GetHeigth() const;
 	float GetWidth() const;
 	~CRectangle() {};
 private:
-	CPoint m_leftTop;
+	sf::Vector2f m_leftTop;
 	float m_heigth;
 	float m_width;
 };

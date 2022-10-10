@@ -4,8 +4,8 @@
 #include <cstdint>
 #include "Line.h"
 
-CTriangle::CTriangle(SapePtr&& shape, CPoint const& vertex1, CPoint const& vertex2, CPoint const& vertex3):
-	CShapeDecorator(std::move(shape)),
+CTriangle::CTriangle(ShapePtr&& shape, sf::Vector2f const& vertex1, sf::Vector2f const& vertex2, sf::Vector2f const& vertex3, sf::Color fillColor, sf::Color outlineColor) :
+	CShapeDecorator(std::move(shape), fillColor, outlineColor),
 	m_vertex1(vertex1),
 	m_vertex2(vertex2),
 	m_vertex3(vertex3)
@@ -48,28 +48,19 @@ std::string CTriangle::ToString() const
 };
 
 
-CPoint CTriangle::GetVertex1() const
+sf::Vector2f CTriangle::GetVertex1() const
 {
 	return m_vertex1;
 }
 
-CPoint CTriangle::GetVertex2() const
+sf::Vector2f CTriangle::GetVertex2() const
 {
 	return m_vertex2;
 }
 
-CPoint CTriangle::GetVertex3() const
+sf::Vector2f CTriangle::GetVertex3() const
 {
 	return m_vertex3;
 }
 
-std::size_t CTriangle::getPointCount() const
-{
-	return 1;
-}
-
-sf::Vector2f CTriangle::getPoint(std::size_t index) const
-{
-	return m_vertex1;
-}
 

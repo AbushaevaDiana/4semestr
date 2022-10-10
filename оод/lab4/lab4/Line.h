@@ -1,4 +1,4 @@
 #pragma once
-#include "IShapeDecorator.h"
+#include "CShapeDecorator.h"
 
-float GetLineSize(CPoint startLOfLine, CPoint endLOfLine);
+float GetLineSize(sf::Vector2f startLOfLine, sf::Vector2f endLOfLine);

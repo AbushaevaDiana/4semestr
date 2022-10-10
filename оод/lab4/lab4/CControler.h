@@ -6,7 +6,7 @@
 #include <map>
 #include <functional>
 #include <vector>
-#include "IShapeDecorator.h"
+#include "CShapeDecorator.h"
 
 const int WINDOW_WIDTH = 1100;
 const int WINDOW_HEIGTH = 900;
@@ -28,6 +28,7 @@ private:
 	bool AddTriangle(std::istream& input);
 	bool AddCircle(std::istream& input);
 	bool AddRectangle(std::istream& input);
+	//паттерн фабричный метод для add
 
 	using Handler = std::function<bool(std::istream& args)>;
 	using ActionMap = std::map<std::string, Handler>;

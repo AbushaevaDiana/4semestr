@@ -33,9 +33,12 @@
     <ClCompile Include="CRectangle.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="CShapeDecorator.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="IShapeDecorator.h">
+    <ClInclude Include="CShapeDecorator.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
     <ClInclude Include="Line.h">
@@ -51,9 +54,6 @@
       <Filter>Исходные файлы</Filter>
     </ClInclude>
     <ClInclude Include="CRectangle.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="ICanvas.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
   </ItemGroup>
