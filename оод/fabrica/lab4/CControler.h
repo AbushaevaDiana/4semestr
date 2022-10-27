@@ -29,7 +29,6 @@ private:
 	bool AddTriangle(std::istream& input);
 	bool AddCircle(std::istream& input);
 	bool AddRectangle(std::istream& input);
-	//паттерн фабричный метод для add
 
 	using Handler = std::function<bool(std::istream& args)>;
 	using ActionMap = std::map<std::string, Handler>;

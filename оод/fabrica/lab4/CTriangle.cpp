@@ -63,4 +63,8 @@ sf::Vector2f CTriangle::GetVertex3() const
 	return m_vertex3;
 }
 
+sf::FloatRect CTriangle::getGlobalBounds() const
+{
+	return m_shape->getGlobalBounds();
+}
 

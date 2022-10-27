@@ -11,3 +11,13 @@ CShapeDecorator::CShapeDecorator(ShapePtr&& shape, sf::Color fillColor, sf::Colo
       m_outlineColor(outlineColor)
 {
 }
+
+void CShapeDecorator::setBorderColor(sf::Color color)
+{
+	m_borderColor = color;
+};
+
+sf::Color CShapeDecorator::getBorderColor()
+{
+	return m_borderColor;
+};

@@ -12,6 +12,8 @@ public:
 	sf::Vector2f GetVertex2() const;
 	sf::Vector2f GetVertex3() const;
 	~CTriangle() {};
+
+	sf::FloatRect getGlobalBounds() const override;
 private:
 	sf::Vector2f m_vertex1;
 	sf::Vector2f m_vertex2;

@@ -54,4 +54,8 @@ float CRectangle::GetWidth() const
 	return m_width;
 }
 
+sf::FloatRect CRectangle::getGlobalBounds() const
+{
+	return m_shape->getGlobalBounds();
+}
 

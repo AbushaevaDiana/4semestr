@@ -13,6 +13,8 @@ public:
 	float GetHeigth() const;
 	float GetWidth() const;
 	~CRectangle() {};
+
+	sf::FloatRect getGlobalBounds() const override;
 private:
 	sf::Vector2f m_leftTop;
 	float m_heigth;

@@ -46,3 +46,8 @@ sf::Vector2f CCircle::GetCenter() const
 {
 	return m_center;
 }
+
+sf::FloatRect CCircle::getGlobalBounds() const
+{
+	return m_shape->getGlobalBounds();
+}

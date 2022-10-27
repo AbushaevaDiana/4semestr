@@ -11,7 +11,7 @@
 #include <functional>
 #include <vector>
 
-int outlineThickness = 5;
+int const outlineThickness = 5;
 
 struct IShapeCreator
 {

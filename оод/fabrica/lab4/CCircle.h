@@ -13,6 +13,8 @@ public:
 	sf::Vector2f GetCenter() const;
 	float GetRadius() const;
 	~CCircle() {};
+
+	sf::FloatRect getGlobalBounds() const override;
 private:
 	sf::Vector2f m_center;
 	float m_radius;

@@ -18,9 +18,6 @@ std::string const invalidRectangleParameters = "Invalid count of rectangle param
 std::string const invalidHeigthWidth = "Invalid heigth or width\n";
 std::string const unknown = "\nUnknown shape / command\n";
 
-
-
-
 bool CControler::AddTriangle(std::istream& input)
 {
 	GetInputStringVector(input);
@@ -105,8 +102,7 @@ bool CControler::AddRectangle(std::istream& input)
 	}
 
 	return true;
-}
-;
+};
 
 bool CControler::PrintInfo()
 {
@@ -163,23 +159,51 @@ bool CControler::Draw()
 	while (window.isOpen())
 	{
 		sf::Event event;
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-			{
-				window.close();
-			}
-		}
+		sf::Vector2i pixelPos = sf::Mouse::getPosition(window);//забираем коорд курсора
+		sf::Vector2f pos = window.mapPixelToCoords(pixelPos);//переводим их в игровые (уходим от коорд окна)
+		bool isMove = false;
+		float dX, dY;
 
 		window.clear(sf::Color::White);
 
 		for (auto i = 0; i < m_shapesList.size(); i++)
 		{
 			auto& shape = m_shapesList[i];
+			sf::RectangleShape rectangle;
+			rectangle.setSize({ shape->getGlobalBounds().width, shape->getGlobalBounds().height });
+			rectangle.setPosition({ shape->getGlobalBounds().left, shape->getGlobalBounds().top });
+			rectangle.setOutlineThickness(outlineThickness - 1);
+			rectangle.setOutlineColor(shape->getBorderColor());
+			rectangle.setFillColor(sf::Color::Transparent);
+			window.draw(rectangle);
 			shape->Draw(window);
 		}
-
 		window.display();
+
+
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+			{
+				window.close();
+			}
+			if (event.type == sf::Event::MouseButtonPressed)
+			{
+				if (event.key.code == sf::Mouse::Left)
+				{
+					std::cout << "isClicked!\n";
+					for (auto i = 0; i < m_shapesList.size(); i++)
+					{
+						auto& shape = m_shapesList[i];
+						if (shape->getGlobalBounds().contains(pos))
+						{
+							std::cout << "isClicked! no shape\n";
+							shape->setBorderColor(sf::Color::Black);
+						}
+					}
+				}
+			}
+		}
 	}
 
 	return true;
