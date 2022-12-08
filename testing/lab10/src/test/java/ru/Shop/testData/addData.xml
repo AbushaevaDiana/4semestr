@@ -1,0 +1,11 @@
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Тестирование добаления товара в корзину" verbose="1" >
+    <test name="Переход на страницу товара с главной страницы и добавление его в корзину" >
+        <parameter name="test" value="+"/>
+        <parameter name="inputWord" value="Casio GA-1000-1AER"/>
+        <classes>
+            <class name="ru.Shop.tests.addTest"/>
+        </classes>
+    </test>
+</suite>

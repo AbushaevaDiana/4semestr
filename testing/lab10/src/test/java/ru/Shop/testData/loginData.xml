@@ -1,0 +1,12 @@
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Тестирование формы логинации" verbose="1" >
+    <test name="Авторизация с существующими подходящими паролем и логином" >
+        <parameter name="test" value="+"/>
+        <parameter name="inputLogin" value="AbushaevaDiana"/>
+        <parameter name="password" value="12345678"/>
+        <classes>
+            <class name="ru.Shop.tests.loginTest"/>
+        </classes>
+    </test>
+</suite>
