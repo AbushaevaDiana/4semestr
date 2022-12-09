@@ -10,12 +10,12 @@ public class mainPage {
         this.driver = driver;
     }
     public mainPage openSelect() {
-        WebElement loginButton = driver.findElement(By.xpath("/html/body/div[1]/div/div/div[1]/div/div[2]/a"));
+        WebElement loginButton = driver.findElement(By.xpath("//*[@class='dropdown-toggle']"));
         loginButton.click();
         return this;
     }
     public mainPage startLogination() {
-        WebElement loginClic = driver.findElement(By.xpath("/html/body/div[1]/div/div/div[1]/div/div[2]/ul/li[1]/a"));
+        WebElement loginClic = driver.findElement(By.xpath("//a[text()='Вход']"));
         loginClic.click();
         return this;
     }

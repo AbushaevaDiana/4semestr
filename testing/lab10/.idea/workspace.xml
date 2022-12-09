@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0669d32-64d1-48f5-a424-2c0c197afdb7" name="Changes" comment="" />
+    <list default="true" id="d0669d32-64d1-48f5-a424-2c0c197afdb7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/metods/mainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/metods/mainPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/testData/addData.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/testData/addData.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/tests/addTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/tests/addTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/tests/buyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/tests/buyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/tests/loginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/tests/loginTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/tests/searchTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/tests/searchTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,6 +24,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -104,8 +115,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="TestNG./home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/addData.xml" />
-        <item itemvalue="TestNG./home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/searchData.xml" />
         <item itemvalue="TestNG./home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/buyData.xml" />
+        <item itemvalue="TestNG./home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/searchData.xml" />
         <item itemvalue="TestNG./home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/loginData.xml" />
         <item itemvalue="TestNG./home/diana/Documents/tests/lab10/addData.xml" />
       </list>

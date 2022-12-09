@@ -6,12 +6,13 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import ru.Shop.metods.mainPage;
 
 import java.util.concurrent.TimeUnit;
 
 public class searchTest {
     private ChromeDriver driver;
-    private ru.Shop.metods.mainPage mainPage;
+    private mainPage mainPage;
     @BeforeMethod
     public void setUp(){
         System.setProperty("webdriver.chrome.driver", "/home/diana/Documents/tests/chromedriver");
@@ -23,7 +24,7 @@ public class searchTest {
     @Parameters({"inputWord", "outputWord"})
     public void testSearch(String inputWord, String outputWord){
 
-        mainPage = new ru.Shop.metods.mainPage(driver);
+        mainPage = new mainPage(driver);
         mainPage
                 .searchEnterWord(inputWord)
                 .clickSearch();
@@ -31,6 +32,9 @@ public class searchTest {
         String url = driver.getCurrentUrl();
         if(url.equals(outputWord)) {
             System.out.println("Успешный поиск");
+        }
+        else {
+            System.out.println("Тест не пройден");
         }
     }
     @AfterMethod

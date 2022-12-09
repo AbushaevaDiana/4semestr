@@ -8,13 +8,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import ru.Shop.metods.login;
+import ru.Shop.metods.mainPage;
 
 import java.util.concurrent.TimeUnit;
 
 public class loginTest {
     private ChromeDriver driver;
-    private ru.Shop.metods.login login;
-    private ru.Shop.metods.mainPage mainPage;
+    private login login;
+    private mainPage mainPage;
     @BeforeMethod
     public void setUp(){
         System.setProperty("webdriver.chrome.driver", "/home/diana/Documents/tests/chromedriver");
@@ -22,14 +23,14 @@ public class loginTest {
         driver.get("http://shop.qatl.ru/");
     }
 
-    @Test(description = "Авторизация на форме")
+    @Test(description = "Авторизация на сайте")
     @Parameters({"inputLogin", "password"})
     public void testLogination(String inputLogin, String password){
-        mainPage = new ru.Shop.metods.mainPage(driver);
+        mainPage = new mainPage(driver);
         mainPage
                 .openSelect()
                 .startLogination();
-        login = new ru.Shop.metods.login(driver);
+        login = new login(driver);
         login
                 .setLogin(inputLogin)
                 .setPassword(password)
@@ -38,6 +39,9 @@ public class loginTest {
         WebElement alert = driver.findElement(By.xpath("//*[@class='alert alert-success']"));
         if(alert.isDisplayed()) {
             System.out.println("Успешный вход");
+        }
+        else {
+            System.out.println("Тест не пройден");
         }
     }
     @AfterMethod

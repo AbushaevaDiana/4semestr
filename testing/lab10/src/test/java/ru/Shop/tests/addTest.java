@@ -8,6 +8,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import java.util.concurrent.TimeUnit;
+
 public class addTest {
     private ChromeDriver driver;
     private ru.Shop.metods.mainPage mainPage;
@@ -19,21 +21,24 @@ public class addTest {
     }
 
     @Test(description = "Добавление товара в корзину")
-    @Parameters({"inputWord"})
-    public void testAdding(String inputWord){
+    @Parameters({"inputWord", "outputWord"})
+    public void testAdding(String inputWord, String outputWord){
 
         mainPage = new ru.Shop.metods.mainPage(driver);
         mainPage
                 .goToProductCard(inputWord)
                 .clickAddToCart();
-    }
 
-    public void check(String inputWord) {
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         WebElement modal = driver.findElement(By.xpath("//*[@id=\"myModalLabel\"]"));
-        WebElement a = driver.findElement(By.xpath("//a[text()='"+inputWord+"']"));
+        WebElement a = driver.findElement(By.xpath(outputWord));
         if(modal.isDisplayed() && a.isDisplayed()) {
             System.out.println("Успешное добавление товара");
         }
+        else {
+            System.out.println("Тест не пройден");
+        }
+
     }
     @AfterMethod
     public void closeDriver() {
