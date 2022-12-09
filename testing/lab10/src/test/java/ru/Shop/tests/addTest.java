@@ -1,5 +1,4 @@
 package ru.Shop.tests;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -7,12 +6,13 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import ru.Shop.metods.mainPage;
 
 import java.util.concurrent.TimeUnit;
 
 public class addTest {
     private ChromeDriver driver;
-    private ru.Shop.metods.mainPage mainPage;
+    private mainPage mainPage;
     @BeforeMethod
     public void setUp(){
         System.setProperty("webdriver.chrome.driver", "/home/diana/Documents/tests/chromedriver");
@@ -24,7 +24,7 @@ public class addTest {
     @Parameters({"inputWord", "outputWord"})
     public void testAdding(String inputWord, String outputWord){
 
-        mainPage = new ru.Shop.metods.mainPage(driver);
+        mainPage = new mainPage(driver);
         mainPage
                 .goToProductCard(inputWord)
                 .clickAddToCart();
