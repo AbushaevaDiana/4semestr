@@ -200,9 +200,9 @@ void CControler::HandleKeyPressed(sf::Event event)
 void CControler::GroupShapes()
 {
 	if (m_selectedShapes.size() > 1)
-	{ 
-		CShapeComposite compShape;
-		CShapeComposite* compositeShape = &compShape;
+	{
+
+		CShapeComposite* compositeShape = new CShapeComposite();
 
 		std::vector<CShapeDecorator*> copySelectedShapes = m_selectedShapes;
 
@@ -221,5 +221,21 @@ void CControler::GroupShapes()
 
 void CControler::UngroupShapes()
 {
+	if (m_selectedShapes.size() == 1 && dynamic_cast<CShapeComposite*>(m_selectedShapes.back()))
+	{
 
+		CShapeComposite* compositeShape = static_cast<CShapeComposite*>(m_selectedShapes.back());
+
+		std::vector<CShapeDecorator*> compositeShapes = compositeShape->GetShapes();
+
+		auto it = find(m_shapes.begin(), m_shapes.end(), m_selectedShapes.back());
+		m_shapes.erase(it);
+		ResetSelectingShape(m_selectedShapes.back());
+
+		for (const auto& shape : compositeShapes)
+		{
+			AddSelectingShape(shape);
+			m_shapes.push_back(shape);
+		}
+	}
 }
