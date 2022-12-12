@@ -1,0 +1,56 @@
+WidthSm: 0.1, 1, 23.67, 100, 149130, Auto
+HeigthSm: 0.1, 1, 23.67, 100, 149130, Auto
+Width%: 0.9, 1, 25, 100, 630086, Auto
+Heigth%: 0.9, 1, 25, 100, 630086, Auto
+SaveAspectRatio: true, false
+Corner: 0, 33.5, 90, 180, 360
+FlipVertical: true, false
+FlipHorizontally: true, false
+
+PositionFrom: center, topLeft
+PositionX: 0, -149130, 149130, 20, 6.28
+PositionY: 0, -149130, 149130, 20, 6.28
+
+IndentLeft: -0.25, 0, 0.16, 10, 130.53
+IndentRight: -0.25, 0, 0.15, 10, 130.53
+Special: no, first, hanging
+SpecialSize: no, 0.01, 1.31, 10, 130.53
+NoAuto: true, false
+ReduceOverlappingText: true, false
+CustomizeField:  true, false 
+BorderTop: 0, 0.1, 10, 131.04
+BorderBottom: 0, 0.1, 10, 131.04
+BorderLeft: 0, 0.1, 10, 131.04
+BorderRigth: 0, 0.1, 10, 131.04
+
+
+Shadow: true, false
+ShadowCorner: no, 0, 90, 180, 360
+ShadowTransparency: no, 0, 25, 100
+ShadowDistance: no, 0, 25, 100
+ShadowRadius: no, 0, 25, 100
+ShadowColor: no, black, green, red
+
+Reflection: true, false
+ReflectionTransparency: no, 0, 25, 100
+ReflectionDistance: no, 0, 25, 100
+ReflectionSize:  no, 0, 25, 100
+
+IF [WidthSm] <> "Auto" THEN [Width%] = "Auto";
+IF [WidthSm] <> "Auto" AND [SaveAspectRatio] = "true"  THEN [HeigthSm] = "Auto";
+IF [Width%] <> "Auto" THEN [WidthSm] = "Auto";
+IF [Width%] <> "Auto" AND [SaveAspectRatio] = "true"  THEN [Heigth%] = "Auto";
+
+IF [HeigthSm] <> "Auto" THEN [Heigth%] = "Auto";
+IF [HeigthSm] <> "Auto" AND [SaveAspectRatio] = "true"  THEN [WidthSm] = "Auto";
+IF [Heigth%] <> "Auto" THEN [HeigthSm] = "Auto";
+IF [Heigth%] <> "Auto" AND [SaveAspectRatio] = "true"  THEN [Width%] = "Auto";
+
+IF [Special] = "no" THEN [SpecialSize] = "no";
+IF [NoAuto] = "true" THEN [ReduceOverlappingText] = "false" AND  [CustomizeField] = "false";
+IF [ReduceOverlappingText] = "true" THEN [NoAuto] = "false" AND  [CustomizeField] = "false";
+IF [CustomizeField] = "true" THEN [NoAuto] = "false" AND  [ReduceOverlappingText] = "false";
+
+IF [Shadow] = "false" THEN[ShadowCorner] = "no" AND  [ShadowTransparency] = "no" AND  [ShadowDistance] = "no" AND  [ShadowRadius] = "no" AND  [ShadowColor] = "no";
+
+IF [Reflection] = "false" THEN [ReflectionTransparency] = "no" AND  [ReflectionDistance] = "no" AND  [ReflectionSize] = "no" ;

@@ -1,0 +1,35 @@
+AddLine 0.0 0.0 1.1 0.0 ff0000
+AddRectangle 0.0 0.0 1.0 2.0 ff0000 ff0000
+AddTriangle 0.0 0.0 3.0 0.0 0.0 4.0 ff0000 ff0000
+AddCircle 1.0 1.0 1.0 ff0000 ff0000
+Info
+Draw
+
+AddTriangle 0.0 0.0 300.0 0.0 0.0 400.0 ff0000 0000ff
+AddRectangle 300.0 400.0 50.0 50.0 ff00ee ffffee
+AddLine 450.0 450.0 100.0 100.0 ff0033
+
+AddCircle 300.0 300.0 100.0 000000 ffffff
+
+ffff00 yellow
+ff0000 red
+000000 black
+
+
+Я люблю Мики Мауса:
+AddRectangle 10.0 10.0 200.0 50.0 000000 000000
+AddRectangle 70.0 60.0 50.0 200.0 ff0000 ff0000
+AddRectangle 100.0 110.0 50.0 140.0 ff0000 ff0000
+AddRectangle 145.0 160.0 50.0 50.0 ff0000 ff0000
+AddRectangle 100.0 10.0 50.0 60.0 ff0000 ff0000
+AddRectangle 180.0 10.0 50.0 60.0 ff0000 ff0000
+AddCircle 350.0 70.0 70.0 000000 000000
+AddCircle 280.0 20.0 50.0 000000 000000
+AddCircle 460.0 20.0 50.0 000000 000000
+Draw
+
+Звезда:
+AddTriangle 110.0 110.0 250.0 110.0 280.0 240.0 ffff00 ffff00
+AddTriangle 310.0 110.0 170.0 110.0 140.0 240.0 7fffd4 7fffd4
+AddTriangle 250.0 110.0 170.0 110.0 210.0 30.0 9400d3 9400d3
+Draw
