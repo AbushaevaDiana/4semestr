@@ -1,0 +1,12 @@
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Тестирование поиска товара" verbose="1" >
+    <test name="Ввод в поисковую строку названия существующего товара" >
+        <parameter name="test" value="+"/>
+        <parameter name="inputWord" value="CITIZEN BJ2111"/>
+        <parameter name="outputWord" value="http://shop.qatl.ru/search?s=CITIZEN+BJ2111"/>
+        <classes>
+            <class name="ru.Shop.tests.searchTest"/>
+        </classes>
+    </test>
+</suite>
