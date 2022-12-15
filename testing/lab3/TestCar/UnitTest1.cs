@@ -43,6 +43,7 @@ namespace CarTests
             Assert.AreEqual(controller.GetBrokenCars()[0].ToStr(), carMock.Object.ToStr());
         }
 
+        
         [TestMethod]
         public void AddCarsToController()
         {
@@ -78,6 +79,7 @@ namespace CarTests
             Assert.AreEqual(controller.GetAmountBroken(), 0);
         }
 
+        //добавление сломанных машин в не пустой список
         [TestMethod]
         public void AddExistingBrokenCarToController()
         {
