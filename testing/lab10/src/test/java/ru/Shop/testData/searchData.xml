@@ -6,7 +6,7 @@
         <parameter name="inputWord" value="CITIZEN BJ2111"/>
         <parameter name="outputWord" value="http://shop.qatl.ru/search?s=CITIZEN+BJ2111"/>
         <classes>
-            <class name="ru.Shop.tests.searchTest"/>
+            <class name="ru.Shop.tests.SearchTest"/>
         </classes>
     </test>
 </suite>

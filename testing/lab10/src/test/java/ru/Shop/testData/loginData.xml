@@ -6,7 +6,7 @@
         <parameter name="inputLogin" value="AbushaevaDiana"/>
         <parameter name="password" value="12345678"/>
         <classes>
-            <class name="ru.Shop.tests.loginTest"/>
+            <class name="ru.Shop.tests.LoginTest"/>
         </classes>
     </test>
 </suite>
