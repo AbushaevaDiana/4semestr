@@ -151,9 +151,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CBuilder.cpp" />
     <ClCompile Include="CButton.cpp" />
     <ClCompile Include="CCircle.cpp" />
-    <ClCompile Include="CControler.cpp" />
+    <ClCompile Include="CCircleBuilder.cpp" />
+    <ClCompile Include="CCompositeBuilder.cpp" />
+    <ClCompile Include="CHendler.cpp" />
     <ClCompile Include="CCreateCircleCommand.cpp" />
     <ClCompile Include="CCreateRectangleCommand.cpp" />
     <ClCompile Include="CCreateTriangleCommand.cpp" />
@@ -166,27 +169,40 @@
     <ClCompile Include="CFillShapeState.cpp" />
     <ClCompile Include="CFillShapeVisitor.cpp" />
     <ClCompile Include="CircleCreator.cpp" />
+    <ClCompile Include="CRectangleBuilder.cpp" />
     <ClCompile Include="CSetCurrentColorCommand.cpp" />
     <ClCompile Include="CSetCurrentWidthCommand.cpp" />
+    <ClCompile Include="CShapeBuilderCreator.cpp" />
     <ClCompile Include="CShapeComposite.cpp" />
-    <ClCompile Include="CShapeHandler.cpp" />
+    <ClCompile Include="CShapeHendler.cpp" />
     <ClCompile Include="CSingleShapeDecorator.cpp" />
     <ClCompile Include="CShapeCreator.cpp" />
     <ClCompile Include="CRectangle.cpp" />
     <ClCompile Include="CShapeDecorator.cpp" />
+    <ClCompile Include="CTriangleBuilder.cpp" />
     <ClCompile Include="CUserInterface.cpp" />
     <ClCompile Include="CWidthBorderCommand.cpp" />
     <ClCompile Include="CWidthBorderState.cpp" />
     <ClCompile Include="CWidthBorderVisitor.cpp" />
+    <ClCompile Include="CFileHendler.cpp" />
+    <ClCompile Include="ImportFrom.cpp" />
+    <ClCompile Include="ImportFromBinary.cpp" />
+    <ClCompile Include="ImportFromText.cpp" />
     <ClCompile Include="CTriangle.cpp" />
     <ClCompile Include="lab4.cpp" />
     <ClCompile Include="RectangleCreator.cpp" />
+    <ClCompile Include="SaveIn.cpp" />
+    <ClCompile Include="SaveInBinary.cpp" />
+    <ClCompile Include="SaveInText.cpp" />
     <ClCompile Include="TriangleCreator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CBuilder.h" />
     <ClInclude Include="CButton.h" />
     <ClInclude Include="CCircle.h" />
-    <ClInclude Include="CControler.h" />
+    <ClInclude Include="CCircleBuilder.h" />
+    <ClInclude Include="CCompositeBuilder.h" />
+    <ClInclude Include="CHendler.h" />
     <ClInclude Include="CCreateCircleCommand.h" />
     <ClInclude Include="CCreateRectangleCommand.h" />
     <ClInclude Include="CCreateTriangleCommand.h" />
@@ -200,24 +216,34 @@
     <ClInclude Include="CFillShapeVisitor.h" />
     <ClInclude Include="CircleCreator.h" />
     <ClInclude Include="const.h" />
+    <ClInclude Include="CRectangleBuilder.h" />
     <ClInclude Include="CSetCurrentColorCommand.h" />
     <ClInclude Include="CSetCurrentWidthCommand.h" />
+    <ClInclude Include="CShapeBuilderCreator.h" />
     <ClInclude Include="CShapeComposite.h" />
-    <ClInclude Include="CShapeHandler.h" />
+    <ClInclude Include="CShapeHendler.h" />
     <ClInclude Include="CSingleShapeDecorator.h" />
     <ClInclude Include="CShapeCreator.h" />
     <ClInclude Include="CRectangle.h" />
+    <ClInclude Include="CTriangleBuilder.h" />
     <ClInclude Include="CUserInterface.h" />
     <ClInclude Include="CWidthBorderCommand.h" />
     <ClInclude Include="CWidthBorderState.h" />
     <ClInclude Include="CWidthBorderVisitor.h" />
+    <ClInclude Include="CFileHendler.h" />
     <ClInclude Include="ICommand.h" />
+    <ClInclude Include="ImportFrom.h" />
+    <ClInclude Include="ImportFromBinary.h" />
+    <ClInclude Include="ImportFromText.h" />
     <ClInclude Include="IShapeMemento.h" />
     <ClInclude Include="IState.h" />
     <ClInclude Include="IVisitor.h" />
     <ClInclude Include="CTriangle.h" />
     <ClInclude Include="CShapeDecorator.h" />
     <ClInclude Include="RectangleCreator.h" />
+    <ClInclude Include="SaveIn.h" />
+    <ClInclude Include="SaveInBinary.h" />
+    <ClInclude Include="SaveInText.h" />
     <ClInclude Include="TriangleCreator.h" />
   </ItemGroup>
   <ItemGroup>

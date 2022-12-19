@@ -1,4 +1,3 @@
-Triangle: Area: 25600; Perimeter: 732.239
+Rectangle: Area: 57600; Perimeter: 960
 Circle: Area: 45238.9; Perimeter: 753.982
 Triangle: Area: 25600; Perimeter: 732.239
-Rectangle: Area: 57600; Perimeter: 960
