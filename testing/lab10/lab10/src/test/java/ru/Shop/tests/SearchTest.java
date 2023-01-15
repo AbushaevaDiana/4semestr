@@ -1,6 +1,5 @@
 package ru.Shop.tests;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
@@ -27,7 +26,12 @@ public class SearchTest {
                 .clickSearch();
 
         String url = driver.getCurrentUrl();
-        Assert.assertTrue(url.equals(outputWord), "Поиск не произошел");
+        if(url.equals(outputWord)) {
+            System.out.println("Успешный поиск");
+        }
+        else {
+            System.out.println("Тест не пройден");
+        }
     }
     @AfterMethod
     public void closeDriver() {

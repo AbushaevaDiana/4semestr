@@ -9,19 +9,16 @@
       <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/metods/cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/metods/Cart.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/metods/login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/metods/Login.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/metods/mainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/metods/MainPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/metods/search.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/testData/addData.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/testData/AddData.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/testData/buyData.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/testData/BuyData.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/testData/loginData.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/testData/LoginData.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/testData/searchData.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/testData/SearchData.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/metods/search.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/metods/Search.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/testData/addData.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/testData/addData.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/testData/buyData.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/testData/buyData.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/testData/loginData.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/testData/loginData.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/testData/searchData.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/testData/searchData.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/tests/addTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/tests/AddTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/tests/buyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/tests/BuyTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/tests/loginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/tests/LoginTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/tests/searchTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/tests/SearchTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/ru/Shop/metods/cart.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/ru/Shop/metods/login.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/ru/Shop/metods/mainPage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/ru/Shop/metods/search.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/ru/Shop/tests/addTest.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/ru/Shop/tests/buyTest.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/ru/Shop/tests/loginTest.class" beforeDir="false" />
@@ -75,10 +72,10 @@
       <recent name="$PROJECT_DIR$/src/test/java/ru/Shop/testData" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG./home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/SearchData.xml">
-    <configuration name="/home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/AddData.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="TestNG./home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/searchData.xml">
+    <configuration name="/home/diana/Documents/tests/lab10/addData.xml" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="lab10" />
-      <option name="SUITE_NAME" value="$PROJECT_DIR$/src/test/java/ru/Shop/testData/AddData.xml" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/addData.xml" />
       <option name="TEST_OBJECT" value="SUITE" />
       <properties />
       <listeners />
@@ -86,9 +83,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="/home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/BuyData.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="/home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/addData.xml" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="lab10" />
-      <option name="SUITE_NAME" value="$PROJECT_DIR$/src/test/java/ru/Shop/testData/BuyData.xml" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/src/test/java/ru/Shop/testData/addData.xml" />
       <option name="TEST_OBJECT" value="SUITE" />
       <properties />
       <listeners />
@@ -96,9 +93,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="/home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/LoginData.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="/home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/buyData.xml" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="lab10" />
-      <option name="SUITE_NAME" value="$PROJECT_DIR$/src/test/java/ru/Shop/testData/LoginData.xml" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/src/test/java/ru/Shop/testData/buyData.xml" />
       <option name="TEST_OBJECT" value="SUITE" />
       <properties />
       <listeners />
@@ -106,9 +103,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="/home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/SearchData.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="/home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/loginData.xml" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="lab10" />
-      <option name="SUITE_NAME" value="$PROJECT_DIR$/src/test/java/ru/Shop/testData/SearchData.xml" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/src/test/java/ru/Shop/testData/loginData.xml" />
       <option name="TEST_OBJECT" value="SUITE" />
       <properties />
       <listeners />
@@ -128,11 +125,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="TestNG./home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/SearchData.xml" />
-        <item itemvalue="TestNG./home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/LoginData.xml" />
-        <item itemvalue="TestNG./home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/BuyData.xml" />
-        <item itemvalue="TestNG./home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/AddData.xml" />
         <item itemvalue="TestNG./home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/searchData.xml" />
+        <item itemvalue="TestNG./home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/loginData.xml" />
+        <item itemvalue="TestNG./home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/buyData.xml" />
+        <item itemvalue="TestNG./home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/addData.xml" />
+        <item itemvalue="TestNG./home/diana/Documents/tests/lab10/addData.xml" />
       </list>
     </recent_temporary>
   </component>
