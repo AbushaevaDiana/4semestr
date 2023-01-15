@@ -150,30 +150,41 @@ void CHendler::SaveShapes()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
 	{
-		m_fileHendler->m_saveIn = new CSaveInText();
-		m_fileHendler->Save();
+		if (m_fileHendler->GetTypeSave() != typeid(CSaveInText).name())
+		{
+			m_fileHendler->m_saveIn = new CSaveInText();
+		}
+		
 	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::B))
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::B))
 	{
-		m_fileHendler->m_saveIn = new CSaveInBinary();
-		m_fileHendler->Save();
+		if (m_fileHendler->GetTypeSave() != typeid(CSaveInBinary).name())
+		{
+			m_fileHendler->m_saveIn = new CSaveInBinary();
+		}
 	}
+	m_fileHendler->Save();
+
 }
 
 void CHendler::ImportShapes()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
 	{
-		m_fileHendler->m_importFrom = new CImportFromText();
-		m_fileHendler->Import();
+		if (m_fileHendler->GetTypeImport() != typeid(CImportFromText).name())
+		{
+			m_fileHendler->m_importFrom = new CImportFromText();
+		}
+		
 	}
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::B))
 	{
-		m_fileHendler->m_importFrom = new CImportFromBinary();
-		m_fileHendler->Import();
+		if (m_fileHendler->GetTypeImport() != typeid(CImportFromBinary).name())
+		{
+			m_fileHendler->m_importFrom = new CImportFromBinary();
+		}
 	}
+	m_fileHendler->Import();
 }
 
 void CHendler::PrintInfoAboutShapes() const

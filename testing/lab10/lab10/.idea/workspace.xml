@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d0669d32-64d1-48f5-a424-2c0c197afdb7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/metods/cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/metods/Cart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/metods/login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/metods/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/metods/mainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/metods/MainPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/metods/search.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/testData/addData.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/testData/AddData.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/testData/buyData.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/testData/BuyData.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/testData/loginData.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/testData/LoginData.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/testData/searchData.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/testData/SearchData.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/tests/addTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/tests/AddTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/tests/buyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/tests/BuyTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/tests/loginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/tests/LoginTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/Shop/tests/searchTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/Shop/tests/SearchTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/ru/Shop/metods/cart.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/ru/Shop/metods/login.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/ru/Shop/metods/mainPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/ru/Shop/metods/search.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/ru/Shop/tests/addTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/ru/Shop/tests/buyTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/ru/Shop/tests/loginTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/ru/Shop/tests/searchTest.class" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="workspaceImportEnabled" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2IbThfHEiT6Xry815knmSRKMQkY" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/diana/Documents/tests/lab10&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/test/java/ru/Shop/testData" />
+    </key>
+  </component>
+  <component name="RunManager" selected="TestNG./home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/SearchData.xml">
+    <configuration name="/home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/AddData.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="lab10" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/src/test/java/ru/Shop/testData/AddData.xml" />
+      <option name="TEST_OBJECT" value="SUITE" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="/home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/BuyData.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="lab10" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/src/test/java/ru/Shop/testData/BuyData.xml" />
+      <option name="TEST_OBJECT" value="SUITE" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="/home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/LoginData.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="lab10" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/src/test/java/ru/Shop/testData/LoginData.xml" />
+      <option name="TEST_OBJECT" value="SUITE" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="/home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/SearchData.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="lab10" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/src/test/java/ru/Shop/testData/SearchData.xml" />
+      <option name="TEST_OBJECT" value="SUITE" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="/home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/searchData.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="lab10" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/src/test/java/ru/Shop/testData/searchData.xml" />
+      <option name="TEST_OBJECT" value="SUITE" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="TestNG./home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/SearchData.xml" />
+        <item itemvalue="TestNG./home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/LoginData.xml" />
+        <item itemvalue="TestNG./home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/BuyData.xml" />
+        <item itemvalue="TestNG./home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/AddData.xml" />
+        <item itemvalue="TestNG./home/diana/Documents/tests/lab10/src/test/java/ru/Shop/testData/searchData.xml" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d0669d32-64d1-48f5-a424-2c0c197afdb7" name="Changes" comment="" />
+      <created>1670449404318</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1670449404318</updated>
+    </task>
+    <servers />
+  </component>
+</project>
