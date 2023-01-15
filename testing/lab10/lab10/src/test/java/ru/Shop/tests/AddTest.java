@@ -2,12 +2,16 @@ package ru.Shop.tests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ru.Shop.metods.MainPage;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class AddTest {
@@ -30,16 +34,12 @@ public class AddTest {
                 .goToProductCard(outputWord)
                 .clickAddToCart();
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        // Добавить нормальные аасерты с message в них
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(outputWord)));
+        WebElement linkToTheAddingClock = driver.findElement(By.xpath(outputWord)); // Переименовать
         WebElement modal = driver.findElement(By.xpath(modalXpath));
-        WebElement a = driver.findElement(By.xpath(outputWord));
-        if(modal.isDisplayed() && a.isDisplayed()) {
-            System.out.println("Успешное добавление товара");
-        }
-        else {
-            System.out.println("Тест не пройден");
-        }
-
+        Assert.assertTrue(modal.isDisplayed(), "Не отобразилось модальное окно");
+        Assert.assertTrue(linkToTheAddingClock.isDisplayed(), "Не отобразились выбранные часы");
     }
     @AfterMethod
     public void closeDriver() {

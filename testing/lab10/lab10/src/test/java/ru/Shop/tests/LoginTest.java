@@ -1,4 +1,5 @@
 package ru.Shop.tests;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
@@ -36,12 +37,7 @@ public class LoginTest {
                 .clickEnter();
 
         WebElement alert = driver.findElement(By.xpath(alertXpath));
-        if(alert.isDisplayed()) {
-            System.out.println("Успешный вход");
-        }
-        else {
-            System.out.println("Тест не пройден");
-        }
+        Assert.assertTrue(alert.isDisplayed(), "Не отобразилось сообщение об успешной авторизации");
     }
     @AfterMethod
     public void closeDriver() {
