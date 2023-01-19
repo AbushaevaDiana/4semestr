@@ -5,13 +5,23 @@ void ReadTable(ifstream& input, vector<vector<string>>& inputAutomaton)
 {
 
     string str;
+    int indexStr = 0;
     while (getline(input, str))
     {
+        indexStr += 1;
         vector<string> arr;
         std::string item;
+        if (str[str.size() - 1] == ';')
+        {
+            str = str + " ";
+        }
         std::istringstream strStream(str);
         while (getline(strStream, item, ';'))
         {
+            if (item == "" || item == " " && indexStr != 1)
+            {
+                item = "-";
+            }
             arr.push_back(item);
         }
         inputAutomaton.push_back(arr);

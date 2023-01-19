@@ -2,6 +2,8 @@
 #include <map>
 #include <algorithm>
 
+//1 часть задания
+
 using namespace std;
 
 struct Eclose {
@@ -19,41 +21,16 @@ struct State {
     vector<string> transitionsName;
 };
 
-bool isInVector(map<vector<string>, string>& allStatesVector, vector<string>& newVector, map<string, Eclose>& ecloses, string& name)
+bool isInVector(vector<vector<string>>& allStatesVector, vector<string>& newVector)
 {
     if (allStatesVector.empty())
     {
         return false;
     }
-
-    for (auto i = 0; i < newVector.size(); i++)
+    for (auto i = 0; i < allStatesVector.size(); i++)
     {
-        if (newVector[i] == "-")
+        if (allStatesVector[i].size() == newVector.size() && is_permutation(allStatesVector[i].begin(), allStatesVector[i].end(), newVector.begin()))
         {
-            newVector.erase(newVector.begin() + i + 1);
-            i -= 1;
-            continue;
-        }
-        if (ecloses.find(newVector[i]) == ecloses.end())
-        {
-            continue;
-        }
-        for (auto j = 0; j < ecloses[newVector[i]].eStates.size(); j++)
-        {
-            if (std::find(newVector.begin(), newVector.end(), ecloses[newVector[i]].eStates[j]) == newVector.end())
-            {
-                newVector.push_back(ecloses[newVector[i]].eStates[j]);
-                name = name + ecloses[newVector[i]].eStates[j];
-            }
-        }
-    }
-
-    for (auto& item: allStatesVector)
-    {
-        if (item.first.size() == newVector.size() && is_permutation(item.first.begin(), item.first.end(), newVector.begin()))
-        {
-            newVector.clear();
-            newVector = item.first;
             return true;
         }
     }
@@ -108,20 +85,19 @@ void makeTransitions(map<string, Eclose>& ecloses, vector<vector<string>>& input
                     outputState.transitionsName[i - 2] = outputState.transitionsName[i - 2] + item;
                 }
             }
-                
         }
     }
 
 }
 
-void makeState(map<string, Eclose>& ecloses, vector<vector<string>>& inputAutomaton, 
+int makeState(map<string, Eclose>& ecloses, vector<vector<string>>& inputAutomaton, 
     vector<vector<string>>& outputAutomaton, int eStr, int line, int column, State& outputState)
 {
     string newState = inputAutomaton[line][column];
     if (std::count(outputState.arrOfStates.begin(), outputState.arrOfStates.end(), newState))
     {
         //уже есть такое состояние
-        return;
+        return 0;
     }
     outputState.arrOfStates.push_back(newState);
     outputState.name = outputState.name + newState;
@@ -134,7 +110,7 @@ void makeState(map<string, Eclose>& ecloses, vector<vector<string>>& inputAutoma
 
     if (ecloses[newState].eStates.empty())
     {
-        return;
+        return 0;
     }
     
     for (auto i = 0; i < ecloses[newState].eStates.size(); i++)
@@ -142,51 +118,56 @@ void makeState(map<string, Eclose>& ecloses, vector<vector<string>>& inputAutoma
         makeState(ecloses, inputAutomaton, outputAutomaton, eStr, 1, ecloses[ecloses[newState].eStates[i]].column, outputState);
     }
 
-    return;
+    return 0;
+
 }
 
-void makeAllStates(map<string, Eclose>& ecloses, vector<vector<string>>& inputAutomaton, 
-    vector<vector<string>>& outputAutomaton, int eStr, vector<State>& allStates, map<vector<string>, string>& allStatesVector)
+void makeAllStates(map<string, Eclose>& ecloses, vector<vector<string>>& inputAutomaton, vector<vector<string>>& outputAutomaton, int eStr, vector<State>& allStates)
 {
+    vector<vector<string>> allStatesVector;
     State outputState = {};
     outputState.fin = false;
     makeState(ecloses, inputAutomaton, outputAutomaton, eStr, 1, 1, outputState);
     allStates.push_back(outputState);
-    allStatesVector.insert(make_pair(outputState.arrOfStates, "S"+to_string(allStatesVector.size())));
+    allStatesVector.push_back(outputState.arrOfStates);
 
     for (auto i = 0; i < allStates.size(); i++)
     {   
         for (auto j = 0; j < allStates[i].transitions.size(); j++)
         {
-           
+            if (allStates[i].transitions[j].empty())
+            {
+                continue;
+            }
+            
           //сравнение массивов
-            if (isInVector(allStatesVector, allStates[i].transitions[j], ecloses, allStates[i].transitionsName[j]) == false && !allStates[i].transitions[j].empty())
+            if (isInVector(allStatesVector, allStates[i].transitions[j]) == false && i<3)
             {
                 State newState;
                 newState.fin = false;
            
                 for (auto z = 0; z < allStates[i].transitions[j].size(); z++)
                 {
-                    std::cout << "cf\n";
+                    cout << "cf\n";
                     int column = ecloses[allStates[i].transitions[j][z]].column;
                     makeState(ecloses, inputAutomaton, outputAutomaton, eStr, 1, column, newState);
                 }
-                allStatesVector.insert(make_pair(newState.arrOfStates, "S" + to_string(allStatesVector.size())));
-                //allStatesVector.push_back(newState.arrOfStates);
+                allStatesVector.push_back(newState.arrOfStates);
 
                 allStates.push_back(newState);
             }
         }
     }
 
-    for (auto item: allStatesVector)
+    for (auto i = 0; i < allStatesVector.size(); i++)
     {
-        for (auto j = 0; j < item.first.size(); j++)
+        for (auto j = 0; j < allStatesVector[i].size(); j++)
         {
-            std::cout << item.first[j] << " ";
+            cout << allStatesVector[i][j] << " ";
         }
-        std::cout << "-" << item.second << "\n";
+        cout << "-\n";
     }
+
 }
 
 void processAutomaton(map<string, Eclose>& ecloses, vector<vector<string>>& inputAutomaton, vector<vector<string>>& outputAutomaton, int eStr)
@@ -205,8 +186,7 @@ void processAutomaton(map<string, Eclose>& ecloses, vector<vector<string>>& inpu
     bool end = false;
 
     vector<State> allStates;
-    map<vector<string>, string> allStatesVector;
-    makeAllStates(ecloses, inputAutomaton, outputAutomaton, eStr, allStates, allStatesVector);
+    makeAllStates(ecloses, inputAutomaton, outputAutomaton, eStr, allStates);
 
     for (auto st = 0; st < allStates.size(); st++)
     {
@@ -218,10 +198,7 @@ void processAutomaton(map<string, Eclose>& ecloses, vector<vector<string>>& inpu
         {
             outputAutomaton[0].push_back("");
         }
-
-        cout << allStatesVector[allStates[st].arrOfStates] << "\n";
-        outputAutomaton[1].push_back(allStatesVector[allStates[st].arrOfStates]);
-
+        outputAutomaton[1].push_back(allStates[st].name);
         for (auto i = 2; i < outputAutomaton.size(); i++)
         {
             if (allStates[st].transitionsName[i - 2] == "")
@@ -230,7 +207,7 @@ void processAutomaton(map<string, Eclose>& ecloses, vector<vector<string>>& inpu
             }
             else
             {
-                outputAutomaton[i].push_back(allStatesVector[allStates[st].transitions[i-2]]);
+                outputAutomaton[i].push_back(allStates[st].transitionsName[i - 2]);
             }
         }
 
@@ -282,7 +259,7 @@ int main(int argc, char* argv[])
         std::cout << "Invalid input format";
         return 0;
     }
-
+    std::string type = argv[1];
     std::string file = argv[2];
     std::ifstream fileIn;
     fileIn.open(file);
@@ -295,15 +272,28 @@ int main(int argc, char* argv[])
         cerr << "Error open files!\n";
         return 1;
     }
+    if (type != "left" && type != "right")
+    {
+        cerr << "You should enter type of gramma: left or right\n";
+        return 1;
+    }
     int eStr = 0;
     vector<vector<string>> inputAutomaton;
     vector<vector<string>> outputAutomaton;
     map<string, Eclose> ecloses;
-    ReadTable(fileIn, inputAutomaton);
+    if (type == "left")
+    {
+        ReadLeftTable(fileIn, inputAutomaton);
+    }
+    if (type == "right")
+    {
+        ReadRightTable(fileIn, inputAutomaton);
+    }
+
     if (!MakeEcloses(ecloses, inputAutomaton, eStr))
     {
-        cerr << "Error file format. There isn't empty sybols!\n";
-        return 1;
+       cerr << "Error file format. There isn't empty sybols!\n";
+       return 1;
     };
     processAutomaton(ecloses, inputAutomaton, outputAutomaton, eStr);
     WriteTable(fileOut, outputAutomaton);
