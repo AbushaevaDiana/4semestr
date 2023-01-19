@@ -112,6 +112,11 @@ void ReadLeftTable(ifstream& input, vector<vector<string>>& inputAutomaton)
     inputAutomaton.push_back(states);
     vector<Position> transitions;
 
+    inputStates.insert(make_pair("H", countOfInputStates));
+    inputAutomaton[0].push_back("");
+    countOfInputStates += 1;
+    inputAutomaton[1].push_back("H");
+
     while (getline(input, str))
     {
         str.erase(remove(str.begin(), str.end(), ' '), str.end());
@@ -125,7 +130,7 @@ void ReadLeftTable(ifstream& input, vector<vector<string>>& inputAutomaton)
         if (inputStates.find(state) == inputStates.end())
         {
             inputStates.insert(make_pair(state, countOfInputStates));
-            if (countOfInputStates == 1)
+            if (countOfInputStates == 2)
             {
                 inputAutomaton[0].push_back("F");
             }
