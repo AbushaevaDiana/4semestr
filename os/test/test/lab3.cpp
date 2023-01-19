@@ -158,8 +158,6 @@ void makeAllStates(map<string, Eclose>& ecloses, vector<vector<string>>& inputAu
     {   
         for (auto j = 0; j < allStates[i].transitions.size(); j++)
         {
-           
-          //сравнение массивов
             if (isInVector(allStatesVector, allStates[i].transitions[j], ecloses, allStates[i].transitionsName[j]) == false && !allStates[i].transitions[j].empty())
             {
                 State newState;
@@ -167,12 +165,10 @@ void makeAllStates(map<string, Eclose>& ecloses, vector<vector<string>>& inputAu
            
                 for (auto z = 0; z < allStates[i].transitions[j].size(); z++)
                 {
-                    std::cout << "cf\n";
                     int column = ecloses[allStates[i].transitions[j][z]].column;
                     makeState(ecloses, inputAutomaton, outputAutomaton, eStr, 1, column, newState);
                 }
                 allStatesVector.insert(make_pair(newState.arrOfStates, "S" + to_string(allStatesVector.size())));
-                //allStatesVector.push_back(newState.arrOfStates);
 
                 allStates.push_back(newState);
             }
@@ -218,8 +214,6 @@ void processAutomaton(map<string, Eclose>& ecloses, vector<vector<string>>& inpu
         {
             outputAutomaton[0].push_back("");
         }
-
-        cout << allStatesVector[allStates[st].arrOfStates] << "\n";
         outputAutomaton[1].push_back(allStatesVector[allStates[st].arrOfStates]);
 
         for (auto i = 2; i < outputAutomaton.size(); i++)
@@ -277,16 +271,16 @@ bool MakeEcloses(map<string, Eclose>& ecloses, vector<vector<string>>& inputAuto
 
 int main(int argc, char* argv[])
 {
-    if (argc != 4)
+    if (argc != 3)
     {
         std::cout << "Invalid input format";
         return 0;
     }
 
-    std::string file = argv[2];
+    std::string file = argv[1];
     std::ifstream fileIn;
     fileIn.open(file);
-    file = argv[3];
+    file = argv[2];
     std::ofstream fileOut;
     fileOut.open(file);
 
