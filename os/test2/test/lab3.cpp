@@ -2,8 +2,6 @@
 #include <map>
 #include <algorithm>
 
-//1 часть задания
-
 using namespace std;
 
 struct Eclose {
@@ -21,16 +19,41 @@ struct State {
     vector<string> transitionsName;
 };
 
-bool isInVector(vector<vector<string>>& allStatesVector, vector<string>& newVector)
+bool isInVector(map<vector<string>, string>& allStatesVector, vector<string>& newVector, map<string, Eclose>& ecloses, string& name)
 {
     if (allStatesVector.empty())
     {
         return false;
     }
-    for (auto i = 0; i < allStatesVector.size(); i++)
+
+    for (auto i = 0; i < newVector.size(); i++)
     {
-        if (allStatesVector[i].size() == newVector.size() && is_permutation(allStatesVector[i].begin(), allStatesVector[i].end(), newVector.begin()))
+        if (newVector[i] == "-")
         {
+            newVector.erase(newVector.begin() + i + 1);
+            i -= 1;
+            continue;
+        }
+        if (ecloses.find(newVector[i]) == ecloses.end())
+        {
+            continue;
+        }
+        for (auto j = 0; j < ecloses[newVector[i]].eStates.size(); j++)
+        {
+            if (std::find(newVector.begin(), newVector.end(), ecloses[newVector[i]].eStates[j]) == newVector.end())
+            {
+                newVector.push_back(ecloses[newVector[i]].eStates[j]);
+                name = name + ecloses[newVector[i]].eStates[j];
+            }
+        }
+    }
+
+    for (auto& item : allStatesVector)
+    {
+        if (item.first.size() == newVector.size() && is_permutation(item.first.begin(), item.first.end(), newVector.begin()))
+        {
+            newVector.clear();
+            newVector = item.first;
             return true;
         }
     }
@@ -51,14 +74,14 @@ void makeTransitions(map<string, Eclose>& ecloses, vector<vector<string>>& input
                 outputState.transitionsName.push_back("");
                 continue;
             }
-            
+
             string item;
             istringstream strStream(inputAutomaton[i][column]);
             outputState.transitionsName.push_back("");
-           
+
             while (getline(strStream, item, ','))
             {
-                if ((find(strVector.begin(), strVector.end(), item) == strVector.end())) 
+                if ((find(strVector.begin(), strVector.end(), item) == strVector.end()))
                 {
                     strVector.push_back(item);
                     outputState.transitionsName[i - 2] = outputState.transitionsName[i - 2] + item;
@@ -79,25 +102,26 @@ void makeTransitions(map<string, Eclose>& ecloses, vector<vector<string>>& input
             istringstream strStream(inputAutomaton[i][column]);
             while (getline(strStream, item, ','))
             {
-                if ((find(outputState.transitions[i - 2].begin(), outputState.transitions[i - 2].end(), item) == outputState.transitions[i - 2].end())) 
+                if ((find(outputState.transitions[i - 2].begin(), outputState.transitions[i - 2].end(), item) == outputState.transitions[i - 2].end()))
                 {
                     outputState.transitions[i - 2].push_back(item);
                     outputState.transitionsName[i - 2] = outputState.transitionsName[i - 2] + item;
                 }
             }
+
         }
     }
 
 }
 
-int makeState(map<string, Eclose>& ecloses, vector<vector<string>>& inputAutomaton, 
+void makeState(map<string, Eclose>& ecloses, vector<vector<string>>& inputAutomaton,
     vector<vector<string>>& outputAutomaton, int eStr, int line, int column, State& outputState)
 {
     string newState = inputAutomaton[line][column];
     if (std::count(outputState.arrOfStates.begin(), outputState.arrOfStates.end(), newState))
     {
         //уже есть такое состояние
-        return 0;
+        return;
     }
     outputState.arrOfStates.push_back(newState);
     outputState.name = outputState.name + newState;
@@ -110,64 +134,59 @@ int makeState(map<string, Eclose>& ecloses, vector<vector<string>>& inputAutomat
 
     if (ecloses[newState].eStates.empty())
     {
-        return 0;
+        return;
     }
-    
+
     for (auto i = 0; i < ecloses[newState].eStates.size(); i++)
     {
         makeState(ecloses, inputAutomaton, outputAutomaton, eStr, 1, ecloses[ecloses[newState].eStates[i]].column, outputState);
     }
 
-    return 0;
-
+    return;
 }
 
-void makeAllStates(map<string, Eclose>& ecloses, vector<vector<string>>& inputAutomaton, vector<vector<string>>& outputAutomaton, int eStr, vector<State>& allStates)
+void makeAllStates(map<string, Eclose>& ecloses, vector<vector<string>>& inputAutomaton,
+    vector<vector<string>>& outputAutomaton, int eStr, vector<State>& allStates, map<vector<string>, string>& allStatesVector)
 {
-    vector<vector<string>> allStatesVector;
     State outputState = {};
     outputState.fin = false;
     makeState(ecloses, inputAutomaton, outputAutomaton, eStr, 1, 1, outputState);
     allStates.push_back(outputState);
-    allStatesVector.push_back(outputState.arrOfStates);
+    allStatesVector.insert(make_pair(outputState.arrOfStates, "S" + to_string(allStatesVector.size())));
 
     for (auto i = 0; i < allStates.size(); i++)
-    {   
+    {
         for (auto j = 0; j < allStates[i].transitions.size(); j++)
         {
-            if (allStates[i].transitions[j].empty())
-            {
-                continue;
-            }
-            
-          //сравнение массивов
-            if (isInVector(allStatesVector, allStates[i].transitions[j]) == false && i<3)
+
+            //сравнение массивов
+            if (isInVector(allStatesVector, allStates[i].transitions[j], ecloses, allStates[i].transitionsName[j]) == false && !allStates[i].transitions[j].empty())
             {
                 State newState;
                 newState.fin = false;
-           
+
                 for (auto z = 0; z < allStates[i].transitions[j].size(); z++)
                 {
-                    cout << "cf\n";
+                    std::cout << "cf\n";
                     int column = ecloses[allStates[i].transitions[j][z]].column;
                     makeState(ecloses, inputAutomaton, outputAutomaton, eStr, 1, column, newState);
                 }
-                allStatesVector.push_back(newState.arrOfStates);
+                allStatesVector.insert(make_pair(newState.arrOfStates, "S" + to_string(allStatesVector.size())));
+                //allStatesVector.push_back(newState.arrOfStates);
 
                 allStates.push_back(newState);
             }
         }
     }
 
-    for (auto i = 0; i < allStatesVector.size(); i++)
+    for (auto item : allStatesVector)
     {
-        for (auto j = 0; j < allStatesVector[i].size(); j++)
+        for (auto j = 0; j < item.first.size(); j++)
         {
-            cout << allStatesVector[i][j] << " ";
+            std::cout << item.first[j] << " ";
         }
-        cout << "-\n";
+        std::cout << "-" << item.second << "\n";
     }
-
 }
 
 void processAutomaton(map<string, Eclose>& ecloses, vector<vector<string>>& inputAutomaton, vector<vector<string>>& outputAutomaton, int eStr)
@@ -186,7 +205,8 @@ void processAutomaton(map<string, Eclose>& ecloses, vector<vector<string>>& inpu
     bool end = false;
 
     vector<State> allStates;
-    makeAllStates(ecloses, inputAutomaton, outputAutomaton, eStr, allStates);
+    map<vector<string>, string> allStatesVector;
+    makeAllStates(ecloses, inputAutomaton, outputAutomaton, eStr, allStates, allStatesVector);
 
     for (auto st = 0; st < allStates.size(); st++)
     {
@@ -198,7 +218,10 @@ void processAutomaton(map<string, Eclose>& ecloses, vector<vector<string>>& inpu
         {
             outputAutomaton[0].push_back("");
         }
-        outputAutomaton[1].push_back(allStates[st].name);
+
+        cout << allStatesVector[allStates[st].arrOfStates] << "\n";
+        outputAutomaton[1].push_back(allStatesVector[allStates[st].arrOfStates]);
+
         for (auto i = 2; i < outputAutomaton.size(); i++)
         {
             if (allStates[st].transitionsName[i - 2] == "")
@@ -207,12 +230,12 @@ void processAutomaton(map<string, Eclose>& ecloses, vector<vector<string>>& inpu
             }
             else
             {
-                outputAutomaton[i].push_back(allStates[st].transitionsName[i - 2]);
+                outputAutomaton[i].push_back(allStatesVector[allStates[st].transitions[i - 2]]);
             }
         }
 
     }
-    
+
 };
 
 bool MakeEcloses(map<string, Eclose>& ecloses, vector<vector<string>>& inputAutomaton, int eStr)
@@ -259,6 +282,7 @@ int main(int argc, char* argv[])
         std::cout << "Invalid input format";
         return 0;
     }
+
     std::string type = argv[1];
     std::string file = argv[2];
     std::ifstream fileIn;
@@ -274,7 +298,7 @@ int main(int argc, char* argv[])
     }
     if (type != "left" && type != "right")
     {
-        cerr << "You should enter type of gramma: left or right\n";
+        cerr << "You need to enter type of gramma: left or right\n";
         return 1;
     }
     int eStr = 0;
@@ -289,17 +313,16 @@ int main(int argc, char* argv[])
     {
         ReadRightTable(fileIn, inputAutomaton);
     }
-
     if (!MakeEcloses(ecloses, inputAutomaton, eStr))
     {
-       cerr << "Error file format. There isn't empty sybols!\n";
-       return 1;
+        cerr << "Error file format. There isn't empty sybols!\n";
+        return 1;
     };
     processAutomaton(ecloses, inputAutomaton, outputAutomaton, eStr);
     WriteTable(fileOut, outputAutomaton);
 
     fileIn.close();
     fileOut.close();
-    
+
     return 0;
 }
