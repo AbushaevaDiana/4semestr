@@ -24,6 +24,7 @@ bool FirstProcessMealy(vector<vector<string>>& inputAutomaton, vector<State>& in
     {
         return false;
     }
+    set<string> reachableStates;
     for (auto i = 1; i < inputAutomaton[0].size(); i++)
     {
         State state;
@@ -35,10 +36,22 @@ bool FirstProcessMealy(vector<vector<string>>& inputAutomaton, vector<State>& in
             string outputSimvol = inputAutomaton[j][i].substr(index + 1, inputAutomaton[j][i].size() - 1 - index);
             state.outputSimvols.push_back(outputSimvol);
             state.transitions.push_back(newState);
+            if (newState != state.name)
+            {
+                reachableStates.insert(newState);
+            }
         }
         state.firstName = state.name;
         state.firstTransitions = state.transitions;
         inputStates.push_back(state);
+    }
+    for (auto i = 0; i < inputStates.size(); i++)
+    {
+        if (reachableStates.find(inputStates[i].name) == reachableStates.end())
+        {
+            inputStates.erase(inputStates.begin() + i);
+            i -= 1;
+        }
     }
     return true;
 }
@@ -53,6 +66,7 @@ bool FirstProcessMoore(vector<vector<string>>& inputAutomaton, vector<State>& in
     {
         return false;
     }
+    set<string> reachableStates;
     for (auto i = 1; i < inputAutomaton[0].size(); i++)
     {
         State state;
@@ -63,10 +77,22 @@ bool FirstProcessMoore(vector<vector<string>>& inputAutomaton, vector<State>& in
             string outputSimvol = inputAutomaton[0][i];
             state.outputSimvols.push_back(outputSimvol);
             state.transitions.push_back(newState);
+            if (newState != state.name)
+            {
+                reachableStates.insert(newState);
+            }
         }
         state.firstName = state.name;
         state.firstTransitions = state.transitions;
         inputStates.push_back(state);
+    }
+    for (auto i = 0; i < inputStates.size(); i++)
+    {
+        if (reachableStates.find(inputStates[i].name) == reachableStates.end())
+        {
+            inputStates.erase(inputStates.begin() + i);
+            i -= 1;
+        }
     }
     return true;
 }
@@ -114,13 +140,10 @@ bool ProcessAutomatonFirst(vector<State>& processStates, vector<State>& outputSt
         newState.firstName = processStates[i].firstName;
         newState.firstTransitions = processStates[i].firstTransitions;
         outputStates.push_back(newState);
-        //cout << outputStates[i].name << " - ";
         for (auto j = 0; j < outputStates[i].outputSimvols.size(); j++)
         {
             outputStates[i].transitions.push_back(dict[processStates[i].firstTransitions[j]]);
-            //cout << outputStates[i].transitions[j] << "/" << outputStates[i].outputSimvols[j] << " ";
         }
-        //cout << "\n";
     }
 
     countOfStates = newStates.size();
@@ -168,13 +191,10 @@ bool ProcessAutomaton(vector<State>& processStates, vector<State>& outputStates,
         newState.firstName = processStates[i].firstName;
         newState.firstTransitions = processStates[i].firstTransitions;
         outputStates.push_back(newState);
-        cout << outputStates[i].name << " - ";
         for (auto j = 0; j < outputStates[i].outputSimvols.size(); j++)
         {
             outputStates[i].transitions.push_back(dict[processStates[i].firstTransitions[j]]);
-            cout << outputStates[i].transitions[j] << "/" << outputStates[i].outputSimvols[j] << " ";
         }
-        cout << "\n";
 
     }
     countOfStates = newStates.size();
@@ -238,6 +258,7 @@ void Minimization(vector<State>& inputStates, vector<State>& outputStates)
     size_t countOfStates = inputStates.size();
     if (ProcessAutomatonFirst(inputStates, outputStates, countOfStates))
     {
+        outputStates = inputStates;
         return;
     }
     vector<State> processStates;
